@@ -1,0 +1,48 @@
+<include file="Public:header" />
+<script>
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#uname").formValidator({onshow:"请输入用户名",onfocus:"请输入用户名",oncorrect:"输入正确"}).inputValidator({min:4,onerror:"请输入用户名"});
+		$("#money").formValidator({onshow:"请输入赠送资金",onfocus:"赠送资金应该为1-5位的数字"}).inputValidator({max:5,onerror:"赠送资金应该为1-5位的数字"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"赠送资金应该为1-5位的数字"});
+		$("#credit").formValidator({onshow:"请输入赠送积分",onfocus:"赠送积分应该为1-5位的数字"}).inputValidator({max:5,onerror:"赠送积分应该为1-5位的数字"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"赠送积分应该为1-5位的数字"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="__SELF__" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td width="80">会员名：</td>
+				<td><input type="text" name="uname" id="uname" size="50" value="{$uname}"/></td>
+			</tr>
+			<tr>
+				<td>会员组：</td>
+				<td>
+					<volist name="grouplist" id="vo">
+					<if condition="$vo.id gt 4"><input type="radio" name="vip[gid]" value="{$vo.id}" <eq name="vo.id" value="5">checked</eq>/>{$vo.gname}&nbsp;</if>
+					</volist>
+				</td>
+			</tr>
+			<tr>
+				<td>服务有效期：</td>
+				<td>{:show_date('vip[viptotime]','',0,0,'false')}</td>
+			</tr>
+			<tr>
+				<td>赠送资金：</td>
+				<td><input type="text" name="vip[money]" id="money" size="5" value="0"/> 元</td>
+			</tr>
+			<tr>
+				<td>赠送积分：</td>
+				<td><input type="text" name="vip[credit]" id="credit" size="5" value="0"/> 点</td>
+			</tr>
+			<tr>
+				<td>赠送理由：</td>
+				<td><input type="text" name="reason" size="30" value="升级赠送"/></td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

@@ -1,0 +1,154 @@
+<include file="Public:header" />
+<div class="pad-10">
+	<div class="common-form">
+		<form name="myform" action="__SELF__" method="post" id="myform">
+		<input type="hidden" name="item" value="{$item}">
+			<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td width="120">网站名称</td>
+				<td><input name="setting[site_name]" type="text" value="{$setting.site_name}" size="40"/></td>
+			</tr>
+			<tr>
+				<td>网站URL</td>
+				<td><input name="setting[site_url]" type="text" value="{$setting.site_url}" size="40"/> 不能以斜线结尾</td>
+			</tr>
+			<tr>
+				<td>地区总称</td>
+				<td><input name="setting[site_area]" type="text" value="{$setting.site_area}" size="40"/> 此处设置与“区域注册限制”和前台“地区列表”关联</td>
+			</tr>
+			<tr>
+				<td>网站标题</td>
+				<td><input name="setting[site_title]" type="text" value="{$setting.site_title}" size="40"/> 此处设置只对非信息模块有效，比如帮助中心</td>
+			</tr>
+			<tr>
+				<td>网站关键字</td>
+				<td><textarea name="setting[site_keywords]" style="width:500px;height:50px;">{$setting.site_keywords}</textarea></td>
+			</tr>
+			<tr>
+				<td>网站描述</td>
+				<td><textarea name="setting[site_description]" style="width:500px;height:50px;">{$setting.site_description}</textarea></td>
+			</tr>
+			<tr>
+				<td>版权信息</td>
+				<td><textarea name="setting[site_copyright]" id="copyright" style="width:500px;height:50px;">{$setting.site_copyright}</textarea></td>
+			</tr>
+			<tr>
+				<td>ICP备案序号</td>
+				<td><input name="setting[site_icpno]" type="text" value="{$setting.site_icpno}" size="40"/></td>
+			</tr>
+			<tr>
+				<td>客服电话</td>
+				<td><input name="setting[site_tel]" type="text" value="{$setting.site_tel}" size="40"/></td>
+			</tr>
+			<tr>
+				<td>客服QQ</td>
+				<td><input name="setting[site_qq]" type="text" value="{$setting.site_qq}" size="40"/></td>
+			</tr>
+			<tr>
+				<td>搜索模式</td>
+				<td>
+					<input name="setting[search_type]" type="radio" value="1" <eq name="setting.search_type" value="1">checked</eq> /> 单模块搜索&nbsp;&nbsp;
+					<input name="setting[search_type]" type="radio" value="0" <eq name="setting.search_type" value="0">checked</eq> /> 多模块搜索
+					{:tips('单模块搜索：搜索当前模块内信息，支持地区和分类搜索<br>多模块搜索：可选择网站的信息模块进行搜索，不支持地区和分类搜索<br>一般单独一个模块开启单模块搜索就可以')}
+				</td>
+			</tr>
+			<tr>
+				<td>远程FTP上传</td>
+				<td>
+					<input name="setting[ftp_enable]" type="radio" value="1" onclick="$('#ftp').css('display','')" <eq name="setting.ftp_enable" value="1">checked</eq> <eq name="ftp_disable" value="1">disabled</eq>/> 开启&nbsp;&nbsp;
+					<input name="setting[ftp_enable]" type="radio" value="0" onclick="$('#ftp').css('display','none')" <eq name="setting.ftp_enable" value="0">checked</eq> <eq name="ftp_disable" value="1">disabled</eq>/> 关闭
+					<eq name="ftp_disable" value="1">{:tips('不能使用，可能缺少文件或者需要商业授权')}</eq>
+				</td>
+			</tr>
+			<eq name="ftp_disable" value="0">
+			<tbody id="ftp" <eq name="setting.ftp_enable" value="0">style="display:none;"</eq>>
+			<tr> 
+				<td class="tl">FTP主机</td>
+				<td><input name="setting[ftp_host]" id="ftp_host" type="text" size="30" value="{$setting.ftp_host}"/>{:tips('可以是 FTP 服务器的 IP 地址或域名')}</td>
+			</tr>
+			<tr> 
+				<td class="tl">FTP端口</td>
+				<td><input name="setting[ftp_port]" id="ftp_port" type="text" size="30" value="{$setting.ftp_port}"/>{:tips('默认为 21')}</td>
+			</tr>
+			<tr> 
+				<td class="tl">FTP帐号</td>
+				<td><input name="setting[ftp_user]" id="ftp_user" type="text" size="30" value="{$setting.ftp_user}"/>{:tips('该帐号必需具有以下权限：读取文件、写入文件、删除文件、创建目录、子目录继承')}</td>
+			</tr>
+			<tr> 
+				<td class="tl">FTP密码</td>
+				<td><input name="setting[ftp_pass]" type="text" id="ftp_pass" size="30" value="{$setting.ftp_pass}" onfocus="if(this.value.indexOf('**')!=-1)this.value='';"/></td>
+			</tr>
+			<tr> 
+				<td class="tl">远程存储目录</td>
+				<td><input name="setting[ftp_path]" id="ftp_path" type="text" size="60" value="{$setting.ftp_path}"/>{:tips('例如 /wwwroot/img/ 或者 /httpdocs/img/<br/>具体以实际情况为准')}</td>
+			</tr>
+			<tr>
+				<td class="tl">远程访问URL</td>
+				<td><input name="setting[remote_url]" type="text" value="{$setting.remote_url}" size="60"/>{:tips('例如 http://static.destoon.com/，注意以 / 结尾')}</td>
+			</tr>
+			<tr>
+				<td class="tl">被动模式(PASV)连接</td>
+				<td>
+					<input type="checkbox" name="setting[ftp_pasv]" value="1" id="ftp_pasv" <eq name="setting.ftp_pasv" value="1">checked</eq> /> 是
+					{:tips('一般情况下非被动模式即可，如果存在上传失败问题，可尝试打开此设置')}
+				</td>
+			</tr>
+			<tr>
+				<td class="tl">SSL连接</td>
+				<td>
+					<input type="checkbox" name="setting[ftp_ssl]" value="1" id="ftp_ssl" <eq name="ftp_ssl" value="0">disabled</eq> <eq name="setting.ftp_ssl" value="1">checked</eq> /> 是
+					<eq name="ftp_ssl" value="0"><span style="color:red">您的服务器不支持SSL方式连接</span></eq> {:tips('FTP 服务器必需开启了 SSL 才可以启用')}
+				</td>
+			</tr>
+			<tr> 
+				<td class="tl">测试FTP连接</td>
+				<td><input name="testftp" type="button" class="btn" value="点击测试" onclick="TestFTP();"/></td>
+			</tr>
+			</tbody>
+			</eq>
+			</table>
+			<div class="bk15"></div>
+			<input name="dosubmit" type="submit" value=" 提 交 " class="button" id="dosubmit">
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+function TestFTP() {
+	if($('#ftp_host').val().length < 4) {
+		alert('FTP主机不能为空');
+		$('#ftp_host').focus();
+		return false;
+	}
+	if($('#ftp_port').val().length < 2) {
+		alert('FTP端口不能为空');
+		$('#ftp_port').focus();
+		return false;
+	}
+	if($('#ftp_user').val().length < 1) {
+		alert('FTP帐号不能为空');
+		$('#ftp_user').focus();
+		return false;
+	}
+	if($('#ftp_pass').val().length < 1) {
+		alert('FTP密码不能为空');
+		$('#ftp_pass').focus();
+		return false;
+	}
+	var host = $('#ftp_host').val();
+	var port = $('#ftp_port').val();
+	var username = $('#ftp_user').val();
+	var password = $('#ftp_pass').val();
+	var path = $('#ftp_path').val();
+	var pasv = $("input[type='checkbox'][name='setting[ftp_pasv]']:checked").val();
+	var ssl = $("input[type='checkbox'][name='setting[ftp_ssl]']:checked").val();
+	$.get("/admin.php",{m:'Setting',a:'ftp_test', host:host,port:port,username:username,password:password,pasv:pasv,ssl:ssl,path:path}, function(data){
+		if (data==1){
+			alert('FTP服务器连接成功！');
+		} else {
+			alert(data);
+		}
+	});
+}
+</script>
+</body>
+</html>

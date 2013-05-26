@@ -1,0 +1,52 @@
+<include file="Public:header" />
+<div class="main">
+	<div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Finance/pay')}">会员充值</a></div>
+	<table align="center" width='930' border="0" cellspacing="0" cellpadding="0" style='margin:20px auto 0;border:0px;line-height:45px;font-size:14px;'>
+	<form id="form2" method='post' action="__SELF__">
+	<input type="hidden" name="uname" value="{$uname}"/>
+		<tr>
+			<td align="right" width="200">充值金额：</td>
+			<td align='left'><input type="text" name="money" style="height:23px" class="large bLeft" size="5">元</td>
+		</tr>
+		<tr>
+			<td align="right">充值方式：</td>
+			<td align='left'>
+				<input type="radio" name="paystyle" value="1" checked onclick="$('#online').css('display','');$('#offline').css('display','none');">在线充值&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="paystyle" value="0" onclick="$('#online').css('display','none');$('#offline').css('display','');">人工充值
+			</td>
+		</tr>
+		<tbody id="online">
+		<tr>
+			<td align="right" valign="top">支付平台：</td>
+			<td align='left'>
+				<volist name="payment" id="vo">
+				<eq name="vo.enable" value="1"><input type="radio" name="payid" value="{$key}">&nbsp;&nbsp;<img src="__PUBLIC__/Images/pay/{$key}.gif" align="absmiddle" alt="{$vo.name}"><br></eq>
+				</volist>
+			</td>
+		</tr>
+		</tbody>
+		<tbody id="offline" style="display:none;">
+		<tr>
+			<td align="right" valign="top">支付平台：</td>
+			<td align='left'>
+				<select name="bank">
+				<option value="">请选择</option>
+				<volist name="paytype" id="vo">
+				<option value="{$vo}">{$vo}</option>
+				</volist>
+				</select>
+			</td>
+		</tr>
+		</tbody>
+		<tr>
+			<td align="right" valign="top">备注：</td>
+			<td align="left"><textarea type="text" name="note" rows="5" cols="30"></textarea></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="left" style='padding-left:5px;'><input type="submit" class="but" name="dosubmit" value="确定"/> </td>
+		</tr>
+	</form>
+	</table>
+</div>
+<include file="$footer" />

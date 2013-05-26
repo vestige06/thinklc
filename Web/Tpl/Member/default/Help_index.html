@@ -1,0 +1,24 @@
+<include file="Public:header" />
+<div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">客服中心</a></div>
+<div class="con w960 cent">
+<table align="center" width='930' border="0" cellspacing="0" cellpadding="0" class='table'>
+ <tr class="thead">
+  <td>分类</td>
+  <td>状态</td>
+  <td>标题</td>
+  <td>操作</td>
+ </tr> 
+ <volist name="list" id="vo">
+ <tr>
+  <td>{$etype[$vo['tid']]['typename']}</td>
+  <td><if condition="$vo.status eq 1"><span class="green">已解决</span><else /><span class="red">待处理</span></if></td>
+  <td align="left"><a href="{:U('Help/detail?id='.$vo[id])}">{$vo.title}</a></td>
+  <td><if condition="$vo.status eq 1">--<else /><a href="{:U('Help/edit?id='.$vo[id])}">修改</a></if></td>
+ </tr>
+ </volist>
+ <tr>
+  <td colspan='6'>{$page}</td> 
+ </tr>
+</table>
+</div>
+<include file="$footer" />

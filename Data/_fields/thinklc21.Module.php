@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'mname', 2 => 'mtitle', 3 => 'listorder', 4 => 'status', 5 => 'display', 6 => 'installtime', 7 => 'system', 8 => 'islink', 9 => 'linkurl', '_autoinc' => true, '_pk' => 'id', ); ?>

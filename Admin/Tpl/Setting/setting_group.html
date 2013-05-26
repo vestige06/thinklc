@@ -1,0 +1,104 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#info_count").formValidator({onshow:"请输入每日发布信息数量",onfocus:"请输入每日发布信息数量",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入每日发布信息数量"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"只能填写大于等于0的整数。"});
+	})
+//-->
+</script>
+<div class="pad-10">
+	<div class="common-form">
+		<form name="myform" action="__SELF__" method="post" id="myform">
+		<input type="hidden" name="doclose" id="doclose" value="0">
+		<input type="hidden" name="item" value="{$item}">
+		<fieldset>
+			<legend>综合信息权限</legend>
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="150">每日发布信息数量：</td>
+					<td><input name="setting[info_count]"id ="info_count" type="text" value="{$setting.info_count}" size="5"/>条 禁止发布请填0 </td>
+				</tr>
+				<tr>
+					<td>发布信息需要审核：</td>
+					<td>
+						<input name="setting[info_pass]" type="radio" value="1" <if condition="$setting['info_pass'] eq 1">checked</if>/>否&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[info_pass]" type="radio" value="0" <if condition="$setting['info_pass'] eq 0">checked</if>/>是
+					</td>
+				</tr>
+				<tr>
+					<td>允许使用积分置顶：</td>
+					<td>
+						<input name="setting[info_credit]" type="radio" value="1" <if condition="$setting['info_credit'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[info_credit]" type="radio" value="0" <if condition="$setting['info_credit'] eq 0">checked</if>/>否
+						{:tips('必须在信息模块设置里开通积分置顶，此处设置才有效')}
+					</td>
+				</tr>
+				<tr>
+					<td>信息允许外链：</td>
+					<td>
+						<input name="setting[info_link]" type="radio" value="1" <if condition="$setting['info_link'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[info_link]" type="radio" value="0" <if condition="$setting['info_link'] eq 0">checked</if>/>否
+					</td>
+				</tr>
+				<tr>
+					<td>自定义信息标题颜色：</td>
+					<td>
+						<input name="setting[info_title]" type="radio" value="1" <if condition="$setting['info_title'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[info_title]" type="radio" value="0" <if condition="$setting['info_title'] eq 0">checked</if>/>否
+					</td>
+				</tr>
+				<tr>
+					<td>图片显示信息：</td>
+					<td>
+						<input name="setting[info_pic]" type="radio" value="1" <if condition="$setting['info_pic'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[info_pic]" type="radio" value="0" <if condition="$setting['info_pic'] eq 0">checked</if>/>否
+					</td>
+				</tr>
+				<tr>
+					<td>添加详细信息：</td>
+					<td>
+						<input name="setting[info_detail]" type="radio" value="1" <if condition="$setting['info_detail'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[info_detail]" type="radio" value="0" <if condition="$setting['info_detail'] eq 0">checked</if>/>否
+					</td>
+				</tr>
+			</table>
+			</fieldset>
+			<div class="bk15"></div>
+			<fieldset>
+				<legend>电话黄页权限</legend>
+				<table width="100%" class="table_form contentWrap">
+					<tr>
+						<td width="150">可发布电话黄页数量：</td>
+						<td><input name="setting[phone_count]" id="phone_count" type="text" value="{$setting.phone_count}" size="5"/>条 禁止发布请填0 </td>
+					</tr>
+					<tr>
+						<td>发布电话黄页需要审核：</td>
+						<td>
+							<input name="setting[phone_pass]" type="radio" value="1" <if condition="$setting['phone_pass'] eq 1">checked</if> />否&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="setting[phone_pass]" type="radio" value="0" <if condition="$setting['phone_pass'] eq 0">checked</if> />是
+						</td>
+					</tr>
+					<tr>
+						<td>允许使用积分置顶和推广：</td>
+						<td>
+							<input name="setting[phone_credit]" type="radio" value="1" <if condition="$setting['phone_credit'] eq 1">checked</if> />是&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="setting[phone_credit]" type="radio" value="0" <if condition="$setting['phone_credit'] eq 0">checked</if> />否
+							&nbsp;<img src="/Public/Images/icon/help.png" align="absmiddle" alt="必须在电话黄页模块设置里开通积分置顶和推广，此处设置才有效" style="cursor: pointer" onclick="window.top.art.dialog({content:'必须在信息模块设置里开通积分置顶，此处设置才有效',lock:true}, function(){this.close();$(obj).focus();})" />					</td>
+					</tr>
+					<tr>
+						<td>自定义电话黄页标题颜色：</td>
+						<td>
+							<input name="setting[phone_title]" type="radio" value="1" <if condition="$setting['phone_title'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+							<input name="setting[phone_title]" type="radio" value="0" <if condition="$setting['phone_title'] eq 0">checked</if>/>否
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<div class="bk15"></div>
+			<input name="dosubmit" type="submit" value=" 提 交 " class="dialog" id="dosubmit">
+		</form>
+	</div>
+</div>
+</body>
+</html>

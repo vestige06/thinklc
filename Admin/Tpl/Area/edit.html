@@ -1,0 +1,28 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#aname").formValidator({onshow:"请输入地区名称",onfocus:"请输入地区名称",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入地区名称"});
+		$("#alias").formValidator({empty:true,onshow:"请输入英文别名",onfocus:"英文别名不超过20个字符",oncorrect:"输入正确"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Area/update')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="id" value="{$vo.id}">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<th width="120">地区名称：</th>
+				<td><input type="text" name="aname" id="aname" class="input-text" value="{$vo.aname}"></td>
+			</tr>
+			<tr>
+				<th>英文别名：</th>
+				<td><input type="text" name="alias" id="alias" class="input-text" value="{$vo.alias}"></td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

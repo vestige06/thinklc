@@ -1,0 +1,96 @@
+<include file="Public:header" />
+<script language="JavaScript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onsuccess:function(){if($("#tel").val()=="" && $("#mobile").val()==""){art.dialog({content:"电话和手机至少填写一个",lock:true}, function(){this.close();$("#tel").focus();});return false}},onerror:function(msg,obj){art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#catid").formValidator({onshow:"请选择商家分类",onfocus:"请选择商家分类"})
+			.inputValidator({min:1,onerror:"请选择商家分类"});
+		$("#areaid").formValidator({onshow:"请选择所在地区",onfocus:"请选择所在地区"})
+			.inputValidator({min:1,onerror:"请选择所在地区"});
+		$("#title").formValidator({onshow:"请输入商家名称",onfocus:"请输入商家名称"})
+			.inputValidator({onerror:"请输入商家名称"})
+			.regexValidator({regexp:"^[\\\\w\\\\u4e00-\\\\u9fa5]{4,20}$",onerror:"请输入商家名称，只能填写汉字,数字,字母(4-20个字)。" });
+		$("#business").formValidator({onshow:"请输入公司主要业务或经营范围",onfocus:"请输入公司主要业务或经营范围",'empty':true})
+			.regexValidator({regexp:"^[\\\\w\\\\u4e00-\\\\u9fa5\\\\uFF00-\\\\uFFFF,]{4,60}$",onerror:"只能填写汉字,数字,字母，不超过60个字。" });
+		$('#tel').formValidator({onshow:"电话和手机至少填写一个",onfocus:'请输入电话号码','empty':true})
+			.regexValidator({regexp: "(^(0\\\\d{2,3})?-?([2-9]\\d{6,7})(-\\d{1,5})?$)|(^(400|800)\\d{7}(-\\\\d{1,6})?$)|(^(95013)\\d{6,8}$)",onerror:"电话填写错误。请参照格式填写：87654321-001"});
+		$('#mobile').formValidator({onshow:"手机和电话至少填写一个",onfocus:'请输入手机号码','empty':true})
+			.regexValidator({regexp:"(^(13|14|15|18)\\\\d{9}$)",onerror:"手机填写错误。请参照格式填写：138********"});
+        $('#qq').formValidator({onshow:"方便别人与您在线交流",onfocus:'请输入您的QQ号码','empty':true})
+			.regexValidator({regexp: "^[1-9]\\\\d{4,11}$", onerror: "QQ格式不正确"});
+		$("#address").formValidator({onshow:"请输入详细地址",onfocus:"请输入详细地址"})
+			.inputValidator({onerror:"请输入详细地址"})
+			.regexValidator({regexp:"^[-\\\\w\\\\u4e00-\\\\u9fa5]{5,30}$",onerror:"请输入详细地址，只能填写汉字,数字,字母(5-30个字)。" });
+	})
+//-->
+</script>
+<div class="main">
+ <div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Phone/index')}">{$modulename}</a>&nbsp;>&nbsp;编辑电话黄页</div>
+ <form id="myform" name="myform" method='post' action="{:U('Phone/update')}">
+ <input type="hidden" name="id" value="{$row['id']}"/> 
+ <input type="hidden" name="is_top" value="{$is_top}"/> 
+ <table class="infotab">
+  <tr>
+   <td align="right" width="90">商家分类：</td>
+   <td align='left'>  
+	<select name="catid" id='catid'>
+	<option value="0" <eq name="row['catid']" value="0">selected</eq>>--选择分类--</option>
+	<volist name="CATEGORY" id="vo">
+	<option value="{$vo.id}" <eq name="row['catid']" value="$vo['id']">selected</eq>>{$vo.catname}</option>
+	</volist>
+	</select>
+   </td>
+  </tr>
+  <tr>
+   <td align="right">所在地区：</td>
+   <td align='left'>  
+	<select name="areaid" id='areaid'>
+	<option value="0" <eq name="row['areaid']" value="0">selected</eq>>--选择地区--</option>
+	<volist name="AREA" id="vo">
+	<option value="{$vo.id}" <eq name="row['areaid']" value="$vo['id']">selected</eq>>{$vo.aname}</option>
+	</volist>
+	</select>
+   </td>
+  </tr>
+  <tr>
+	<td align="right">商家名称：</td>
+	<td align='left'><input type="text" name="title" id="title" maxlength="20" value="{$row['title']}"> <if condition="$rule_title eq 1">{:show_style('toptitle',$row['toptitle'])}</if></td>
+  </tr>
+  <tr>
+	<td align="right">主营业务：</td>
+	<td align='left'><input type="text" name="business" id="business" maxlength="60" size="30" value="{$row['business']}"></td>
+  </tr>
+  <tr>
+   <td align="right">固定电话：</td>
+   <td align='left'><input type="text" name="tel" id="tel" maxlength="18" value="{$row['tel']}"></td>
+  </tr>
+  <tr>
+   <td align="right">手机号码：</td>
+   <td align='left'><input type="text" name="mobile" id="mobile" maxlength="11" value="{$row['mobile']}"></td>
+  </tr>
+  <tr>
+   <td align="right">QQ联系：</td>
+   <td align='left'><input type="text" name="qq" id="qq" maxlength="12" value="{$row['qq']}"></td>
+  </tr>
+  <tr>
+	<td align="right">详细地址：</td>
+	<td align='left'>
+		<input type="text" name="address" id="address" maxlength="30" value="{$row['address']}">
+	</td>
+  </tr>
+  <tr>
+    <td align="right">标注地图：</td>
+	<td align='left'>
+		<input <if condition="$row.map neq ''"> style="display:none"</if> type="button" id="map_add" value="在地图上标记位置" onclick="pageDialog('{:U('Phone/map')}', '标记地图')"/>
+		<input <if condition="$row.map eq ''"> style="display:none"</if> type="button" id="map_edit" value="已标注地图，可修改" onclick="pageDialog('{:U('Phone/map')}', '修改地图标记')"/>
+		<input type="hidden" name="map" id="map" value="{$row.map}">
+	</td>
+  </tr>
+  <tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align="left" style='padding-left:5px;'><input type="submit" class="but" name="submit" value="提交"/> </td>
+  </tr>
+ </table>
+ </form>
+</div>
+<include file="$footer" />

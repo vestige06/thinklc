@@ -1,0 +1,25 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Menu/order')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Menu/add')}','添加一级菜单','640','400')">添加一级菜单</a><span></span>
+				<a href="javascript:void(0)" onclick="$('#myform').submit();" class="sort">排序</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="80">排序</th>
+            <th width="60">ID</th>
+            <th>菜单名称</th>
+            <th width="80">显示菜单</th>
+            <th width="80">菜单状态</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		{$menus}
+		</tbody>
+	</table>
+	</form>
+</div>
+<include file="Public:footer" />

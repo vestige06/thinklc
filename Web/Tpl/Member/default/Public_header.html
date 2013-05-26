@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<title>会员中心 - {$Think.config.site_name}</title>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidator.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidatorregex.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/dialog.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/dialog.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css"/>
+</head>
+<body class='body'>
+<div id="warp">
+	<div class="head">
+		<div class="headz w930 cent">
+			<div class="head1"><a href="{$Think.config.site_url}">网站首页</a></div>
+			<div class="head2">{$uname}&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{:U('Public/logout')}">退出</a></div>
+		</div>
+	</div>
+	<div class="head3 cent w960">
+		<div class="logo"><a href="{$Think.config.site_url}"><img src="__PUBLIC__/Images/logo.gif" alt="{$Think.config.site_name}" /></a></div>
+		<div class="head3-1">会员中心</div>
+	</div>
+	<ul class="mtab2 cent tc clear">
+		<li class="l"></li>
+		<li id="nav1" <if condition="$navmenu eq 1">class="sel"</if>><a href="javascript:" onclick="memberNav('1')" hidefocus="true">会员首页</a></li>
+		<li id="nav2" <if condition="$navmenu eq 2">class="sel"</if>><a href="javascript:" class='blue' onclick="memberNav('2')" hidefocus="true">信息管理</a></li>
+		<li id="nav3" <if condition="$navmenu eq 3">class="sel"</if>><a href="javascript:" class='blue' onclick="memberNav('3')" hidefocus="true">财务管理</a></li>
+		<li id="nav4" <if condition="$navmenu eq 4">class="sel"</if>><a href="javascript:" class='blue' onclick="memberNav('4')" hidefocus="true">客服中心</a></li>
+		<li class='tab2x'><a href="{:U('Info/add')}">快速发布信息>></a></li>
+	</ul>
+	<ul class="clear subnav cent tc" id="subnav1" <if condition="$navmenu neq 1">style="display:none;"</if>>
+		<li class="l"></li>
+		<li><a href="{:U('Index/index')}" class='blue'>会员信息</a></li> 
+		<li><a href="{:U('Index/vip')}" class='blue'>会员升级</a></li> 
+		<li><a href="{:U('Index/edit')}" class='blue'>修改资料</a></li>  
+		<li><a href="{:U('Index/oauth')}" class='blue'>一键登录</a></li>  
+	</ul>
+	<ul class="clear subnav cent tc" id="subnav2" <if condition="$navmenu neq 2">style="display:none;"</if>>
+		<li class="l"></li>
+		<volist name="modules" id="vo">
+		<if condition="$vo['id'] gt 4">
+		<li><a href="{:U($vo[mname].'/add')}" class='blue'>发布{$vo.mtitle}</a></li> 
+		<li><a href="{:U($vo[mname].'/index')}" class='blue'>{$vo.mtitle}列表</a></li>
+		</if>
+		</volist>
+	</ul>
+	<ul class="clear subnav cent tc" id="subnav3" <if condition="$navmenu neq 3">style="display:none;"</if>>
+		<li class="l"></li>
+		<li><a href="{:U('Finance/pay')}" class='blue'>账户充值</a></li>
+		<li><a href="{:U('Finance/charge')}" class='blue'>充值记录</a></li> 
+		<li><a href="{:U('Finance/money')}" class='blue'>资金流水</a></li>
+		<li><a href="{:U('Finance/credit')}" class='blue'>积分纪录</a></li> 
+	</ul>
+	<ul class="clear subnav cent tc" id="subnav4" <if condition="$navmenu neq 4">style="display:none;"</if>>
+		<li class="l"></li>
+		<li><a href="{:U('Help/add')}" class='blue'>提交新问题</a></li> 
+		<li><a href="{:U('Help/index')}" class='blue'>问题及解答</a></li>
+	</ul>

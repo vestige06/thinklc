@@ -1,0 +1,32 @@
+<include file="Public:header" />
+<div class='weiz'>
+	当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Phone/index')}">{$modulename}</a>
+</div>
+<div class="con w960 cent">
+<table align="center" width='930' border="0" cellspacing="0" cellpadding="0" class='table'>
+ <tr class="thead">
+  <td width='50'>编号</td>
+  <td width='250'>商家名称</td>
+  <td width='100'>商家分类</td>
+  <td>状态</td>
+  <td>操作</td>
+ </tr> 
+ <volist name="list" id="vo">
+ <tr>
+  <td class='blue'>{$vo.id}</td>
+  <td align="left"><php>if($vo['spreadtotime']>=time()) echo '<span class="red">[推]</span>';</php><span style="color:{$vo.toptitle}">{$vo.title}</span>&nbsp;</td>
+  <td>{$CATEGORY[$vo['catid']]['catname']}</td>
+  <td><eq name="vo['status']" value="0"><span class="red">待审核</span><else /><span class="green">正常</span></eq></td>
+  <td>
+	<eq name="vo['status']" value="0"><font color="#cccccc">推广</font><else /><a href="{:U('Phone/spread?id='.$vo[id])}">推广</a></eq>&nbsp;&nbsp;
+	<a href="{:U('Phone/edit?id='.$vo[id])}">修改</a>&nbsp;&nbsp;
+	<a href="{:U('Phone/delete?id='.$vo[id])}" onclick="return confirm('确定要删除此商家吗？')">删除</a>
+  </td>
+ </tr>
+ </volist>
+ <tr>
+  <td colspan='7'>{$page}</td> 
+ </tr>
+</table>
+</div>
+<include file="$footer" />

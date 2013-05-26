@@ -1,0 +1,120 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+var chargecheck = "{:U('Charge/check')}";
+var chargerecycle = "{:U('Charge/recycle')}";
+var chargedelete = "{:U('Charge/delete')}";
+-->
+</script>
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Charge/index')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="uname_like" value="1" />
+<input type="hidden" name="editor_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="bank" >
+		<option value="">支付平台</option>
+		<volist name="paytype" id="vo">
+		<option value="{$vo}" <eq name="Think.get.bank" value="$vo"> selected=selected</eq>>{$vo}</option>
+		</volist>
+	</select>
+	<select name="status">
+		<option value="">状态</option>
+		<option value="0" <eq name="Think.get.status" value="0"> selected=selected</eq>>充值完成</option>
+		<option value="1" <eq name="Think.get.status" value="1"> selected=selected</eq>>充值失败</option>
+		<option value="2" <eq name="Think.get.status" value="2"> selected=selected</eq>>充值超时</option>
+		<option value="3" <eq name="Think.get.status" value="3"> selected=selected</eq>>充值处理中</option>
+		<option value="4" <eq name="Think.get.status" value="4"> selected=selected</eq>>未支付</option>
+		<option value="4" <eq name="Think.get.status" value="5"> selected=selected</eq>>充值取消</option>
+		<option value="4" <eq name="Think.get.status" value="6"> selected=selected</eq>>充值错误</option>
+		<option value="4" <eq name="Think.get.status" value="7"> selected=selected</eq>>人工审核</option>
+	</select>
+	<select name="timetype">
+		<option value="sendtime" <eq name="Think.get.timetype" value="sendtime"> selected=selected</eq>>下单时间</option>
+		<option value="receivetime" <eq name="Think.get.timetype" value="receivetime"> selected=selected</eq>>支付时间</option>
+	</select>
+	{$Think.get.fromtime|show_date='fromtime',###,0,0,'false'}- &nbsp;{$Think.get.totime|show_date='totime',###,0,0,'false'}
+	<select name="mtype">
+		<option value="money" <eq name="Think.get.mtype" value="money"> selected=selected</eq>>充值金额</option>
+		<option value="fee" <eq name="Think.get.mtype" value="fee"> selected=selected</eq>>手续费</option>
+		<option value="amount" <eq name="Think.get.mtype" value="amount"> selected=selected</eq>>实收金额</option>
+	</select>
+	<input type="text" name="minamount" value="{$Think.get.minamount}" size="5"/>至 <input type="text" name="maxamount" value="{$Think.get.maxamount}" size="5"/>
+	<select name="fieldskey">
+		<option value="uname" <eq name="Think.get.fieldskey" value="uname"> selected=selected</eq>>会员名</option>
+		<option value="editor" <eq name="Think.get.fieldskey" value="editor"> selected=selected</eq>>操作人</option>
+		<option value="ordernum" <eq name="Think.get.fieldskey" value="ordernum"> selected=selected</eq>>订单号</option>
+	</select>
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Charge/check')}" method="post" id="myform">
+	<input type="hidden" name="url" id="url" value="">
+	<table class="table">
+		<tr>
+			<th colspan="13" class="top_th">
+			</th>
+		</tr>
+		<tr>
+            <th width="40"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="60">{:getSort('流水号', 'id', $order, $sortImg)}</th>
+			<th width="70">{:getSort('充值金额', 'money', $order, $sortImg)}</th>
+			<th width="60">{:getSort('手续费', 'fee', $order, $sortImg)}</th>
+			<th width="70">{:getSort('实收金额', 'amount', $order, $sortImg)}</th>
+			<th width="80">会员名称</th>
+			<th width="80">支付平台</th>
+			<th width="60">充值方式</th>
+			<th width="120">{:getSort('下单时间', 'sendtime', $order, $sortImg)}</th>
+			<th width="120">{:getSort('支付时间', 'receivetime', $order, $sortImg)}</th>
+			<th width="60">操作人</th>
+			<th width="70">状态</th>
+			<th>备注</td>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td>{$vo.id}</td>
+			<td>{$vo.money}</td>
+			<td>{$vo.fee}</td>
+			<td>{$vo.amount}</td>
+			<td>{$vo.uname}</td>
+			<td>{$vo.bank}</td>
+			<td><eq name="vo.paystyle" value="1">在线<else/>人工</eq></td>
+			<td>{$vo.sendtime}</td>
+			<td>{$vo.receivetime}</td>
+			<td>{$vo.editor}</td>
+			<td>{$vo.dstatus}</td>
+			<td>{$vo.note}</td>
+		</tr>
+		</volist>
+		<tr>
+			<td></td>
+			<td>小计</td>
+			<td class="blue">{$money}</td>
+			<td class="red">{$fee}</td>
+			<td class="blue">{$amount}</td>
+			<td colspan="8"></td>
+		</tr>
+		<tr><td colspan="13">
+			<input type="submit" value="人工审核" class="button" onclick="if(confirm('确定要审核通过选中记录状态吗？此操作将不可撤销\n\n如果金额未到帐或金额不符，请勿进行此操作')){this.form.action=chargecheck}else{return false;}"/>&nbsp;
+			<input type="submit" value=" 作 废 " class="button" onclick="if(confirm('确定要作废选中（限未知状态）记录状态吗？此操作将不可撤销')){this.form.action=chargerecycle}else{return false;}"/>&nbsp;
+			<input type="submit" value="删除记录" class="button" onclick="if(confirm('警告：确定要删除选中（限未知状态）记录吗？此操作将不可撤销\n\n如果无特殊原因，建议不要删除记录，以便查询对帐')){this.form.action=chargedelete}else{return false;}"/>&nbsp;&nbsp;
+			<input type="checkbox" name="enforce" value="1"> 强制删除或作废 {:tips('正常情况下，作废和删除操作仅限未支付状态<br>如果选择此项，会强制删除所有选择记录，请谨慎操作')}
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

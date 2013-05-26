@@ -1,0 +1,40 @@
+<include file="Public:header" />
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script>
+<!--
+	KindEditor.ready(function(K) {
+		var contenteditor;
+		contenteditor = K.create('#content', {
+			newlineTag : 'br'
+		});
+	});
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#title").formValidator({onshow:"请输入标题",onfocus:"请输入标题",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入标题"});
+		$("#alias").formValidator({onshow:"请输入英文别名",onfocus:"英文别名不超过20个字符",oncorrect:"输入正确"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<div style="clear:both;"><a href="{:U('Webpage/index')}" class="navbtn">返回单页管理</a></div>
+	<form name="myform" id="myform" action="{:U('Webpage/update')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="id" value="{$vo.id}">
+		<table width="100%" class="table_form contentWrap">
+		<tr>
+			<td width="120">标题：</td>
+			<td><input name="title" type="text" id="title" size="40" value="{$vo.title}"/></td>
+		</tr>
+		<tr>
+			<td>英文别名：</td>
+			<td><input name="alias" type="text" id="alias" size="40" value="{$vo.alias}"/></td>
+		</tr>
+		<tr>
+			<td>内容：</td>
+			<td><textarea name='content' id='content' style='height:400px;width:700px;'>{$vo.content}</textarea></td>
+		</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="bttn" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

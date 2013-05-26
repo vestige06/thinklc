@@ -1,0 +1,30 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#rname").formValidator({onshow:"请输入角色名称",onfocus:"请输入角色名称",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入角色名称"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Role/insert')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<th width="120">角色名称：</th>
+				<td><input type="text" name="rname" id="rname" class="input-text"></td>
+			</tr>
+			<tr>
+				<th>角色描述：</th>
+				<td><input type="text" name="remark" id="remark" class="input-text" size="50"></td>
+			</tr>
+			<tr>
+				<th>角色状态：</th>
+				<td><input type="radio" name="status" value="1" checked> 启用&nbsp;&nbsp;<input type="radio" name="status" value="0"> 禁用</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

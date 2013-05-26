@@ -1,0 +1,86 @@
+<include file="Module:header" />
+<eq name="CFG['contact_extend']" value="1">
+<script language="javascript" type="text/javascript" src="/Public/Js/dialog.js"></script>
+<link href="/Public/Css/dialog.css" rel="stylesheet" type="text/css" />
+</eq>
+<eq name="CFG.loadtype" value="0"><div class="w960 pagetop clear">{$page}</div></eq>
+<div class="w960 center clear">
+	<div class="tleft">
+		<ul class="phonelist" id="container">
+		<volist name="list" id="vo">
+			<li class="post">
+				<span class="title"><if condition="$vo.spreadtotime gt time()"><font color="red">[推广]</font></if><a href="{:U('Phone/detail?id='.$vo['id'])}" target="_blank"><font color="{$vo.toptitle}">{$vo.title}</font></a></span>
+				<span class="phone">{$vo.tel}<if condition="($vo.tel neq '') AND ($vo.mobile neq '')">、</if>{$vo.mobile}</span>
+				<span class="area">{$AREA[$vo['areaid']]['aname']}</span>
+			</li>
+		</volist> 
+		</ul>
+	</div>
+	<div class="tright">
+		<div class="tuijian">
+			<div class="title">推荐商家</div>
+			<dl>{:W('ShowSpreadPhone')}</dl>
+			<div class="tuiguang"><a href="http://www.life0573.com/help/show/id/9" target="_blank">我要出现在这里 >></a></div>
+		</div>
+	</div>
+</div>
+<div style="clear:both"></div>
+<div class="w960 clear pagefoot">{$page}</div>
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<eq name="CFG.loadtype" value="1"><script type="text/javascript" src="__PUBLIC__/Js/jquery.infinitescroll.min.js"></script></eq>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $container = $('#container');
+	<eq name="CFG.loadtype" value="1">
+	$container.infinitescroll({
+		navSelector  : '.pagefoot',    // 选择的分页导航 
+		nextSelector : '.pagefoot #nextpage',  // 选择的下一个链接到（第2页）
+		itemSelector : '.post',     // 选择检索所有项目
+		loading: {
+			finishedMsg: '没有更多的页面加载。',
+			img: '/Public/Image/loadings.gif'
+		}
+	},function(newElements){
+		<eq name="CFG.water" value="1">
+		// 隐藏新的项目，而他们正在加载
+		var $newElems = $( newElements ).css({ opacity: 0 });
+		
+		// 确保的图像装载增加砖石布局
+		$newElems.imagesLoaded(function(){	
+			// 元素展示准备
+			$newElems.animate({opacity:1});
+			$container.masonry( 'appended', $newElems, true ); 
+		});
+		</eq>
+	});
+	</eq>
+	$('<a href="#" id="retop">返回顶部</a>').appendTo('body').fadeOut().click(function(){
+		$(document).scrollTop(0);
+		$(this).fadeOut();
+		return false
+	});
+	var $retop = $('#retop');
+	function backTopLeft(){
+		var btLeft = $(window).width() / 2 + 490;
+		if (btLeft <= 950){
+			$retop.css({ 'left': 955 })
+		}else{
+			$retop.css({ 'left': btLeft }) 
+		}
+	}
+	backTopLeft();
+	$(window).resize(backTopLeft);
+	$(window).scroll(function(){
+		if ($(document).scrollTop() === 0){
+			$retop.fadeOut()
+		}else{
+			$retop.fadeIn()
+		}
+		if ($.browser.msie && $.browser.version == 6.0 && $(document).scrollTop() !== 0){
+			$retop.css({ 'opacity': 1 })
+		} 
+	});
+});
+</script>
+<div class="clear"></div>
+<include file="Public:footer" />

@@ -1,0 +1,29 @@
+<volist name="menu_2" id="vo">
+<div class="left_title cu on">{$vo.mtitle}</div>
+<ul class="side">
+	<volist name="vo['menu_3']" id="sub">
+	<eq name="vo['id']" value="7">
+	<li id="_MP{$sub.mid}" class="sub_menu"><a href="javascript:_MP({$sub.mid},'{$sub['url']}');" hidefocus="true" style="outline:none;">{$sub.mtitle}</a></li>
+	<else/>
+	<li id="_MP{$sub.id}" class="sub_menu"><a href="javascript:_MP({$sub.id},'{:U($sub['mname'].'/'.$sub['aname'].'?'.$sub['parameter'])}');" hidefocus="true" style="outline:none;">{$sub.mtitle}</a></li>
+	</eq>
+	</volist> 
+</ul>
+</volist> 
+<script type="text/javascript">
+$(".left_title").each(function(i){
+	var ul = $(this).next();
+	$(this).click(
+	function(){
+		if(ul.is(':visible')){
+			ul.hide();
+			$(this).removeClass('on');
+			$(this).addClass('off');
+		}else{
+			ul.show();
+			$(this).removeClass('off');
+			$(this).addClass('on');
+		}
+	})
+});
+</script>

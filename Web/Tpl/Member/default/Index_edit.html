@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<script>
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#upwd").formValidator({empty:true,onshow:"请正确填写大于6位新密码（不改请留空）",onfocus:"密码应该为6-20位之间",oncorrect:"输入正确"}).inputValidator({min:6,max:20,onerror:"密码应该为6-20位之间"});
+		$("#upwd2").formValidator({onshow:"请输入确认密码",onfocus:"两次密码输入不同",oncorrect:"密码输入一致"}).compareValidator({desid:"upwd",operateor:"=",onerror:"两次密码输入不同"});
+	})
+//-->
+</script>
+<div class="main">
+ <div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Index/edit')}">修改资料</a></div>
+ <table align="center" width='930' border=0 cellspacing=0 cellpadding=0 style='margin:20px auto 0;border:0px;line-height:45px;'>
+ <form name="myform" id="myform" method='post' action="__SELF__" autocomplete="off">
+  <input type="hidden" name="type" value="editinfo"/>
+  <tr>
+	<td align="right" width="120">请输入旧密码：</td>
+	<td align='left'><input type="password" name="oldupwd" style="height:23px" class="large bLeft">请输入原密码（不改请留空）</td>
+  </tr>
+  <tr>
+	<td align="right">请输入新密码：</td>
+	<td align='left'><input type="password" name="upwd" id="upwd" style="height:23px" class="large bLeft"></td>
+  </tr>
+  <tr>
+	<td align="right">请再次输入密码：</td>
+	<td align='left'><input type="password" name="upwd2" id="upwd2" style="height:23px" class="large bLeft"></td>
+  </tr>
+  <tr>
+	<td align="right">联系人：</td>
+	<td align="left"><input type="text" name="contacter" style="height:23px" value='{$uinfo.contacter}'></td>
+  </tr>
+  <tr>
+	<td align="right">联系电话：</td>
+	<td align="left"><input type="text" name="tel" style="height:23px" value='{$uinfo.tel}'></td>
+  </tr>
+  <tr>
+	<td align="right">公司名称：</td>
+	<td align="left"><input type="text" name="company" style="height:23px" value='{$uinfo.company}' size="50"></td>
+  </tr>
+  <tr>
+	<td align="right">公司地址：</td>
+	<td align="left"><input type="text" name="address" style="height:23px" value='{$uinfo.address}' size="50"></td>
+  </tr>
+  <tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align="left" style='padding-left:5px;'><input type="submit" class="but" name="dosubmit" value="提交"/> </td>
+  </tr>
+ </form>
+ </table>
+</div>
+<include file="$footer" />

@@ -1,0 +1,48 @@
+<include file="Public:header" />
+<script language="javascript">
+<!--
+function souh(){
+	var title=document.getElementById("title").value;
+    if(title=='') {
+		alert('请输入您要找的帮助关键词');
+		document.getElementById("title").focus();
+    }
+    else{
+		var s_url = "{:U('Help/index?title=Title')}";
+		s_url = s_url.replace("Title",title);
+		window.location.href = s_url;
+    }
+}
+//-->
+</script>
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz"><h2>当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">帮助中心</a></h2></div>
+		<div class="listbox">
+			<ul class="e10">
+				<li class="helpsearch">
+				<form name="help" method="get" action="{:U('Help/index')}">
+					<input name="title_like" type="hidden" value="1">
+					<input name="title" type="text" id="title" size="30" value="{$Think.get.title}" />
+        			<input name="button" type="submit" value="搜 索" />
+				</form>
+				</li>
+				<li><a href="{:U('Help/usergrade')}">VIP会员和普通会员等级权限说明，置顶信息权限说明</a></li>
+				<li><a href="{:U('Help/top')}">信息置顶收费说明，信息置顶优惠折扣</a></li>
+				<volist name="list" id="vo">
+				<li><a href="{:U('Help/show?id='.$vo[id])}">{$vo.title}</a></li>
+				</volist>
+			</ul>
+		</div>
+		<div style="clear:both"></div>
+		<div class="listpage">{$page}</div>
+	</div>
+	<div class="pright">
+		<dl class="jingp">
+			<dt>广告赞助<span></span></dt>
+			<dd><script type="text/javascript" src="__PUBLIC__/ads/detail2.js"></script></dd> 
+		</dl>
+	</div> 
+	<div style="clear:both"></div>
+</div>
+<include file="Public:footer" />

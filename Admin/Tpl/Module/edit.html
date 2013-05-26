@@ -1,0 +1,53 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#mtitle").formValidator({onshow:"请输入模块名称",onfocus:"不能超过6个汉字或20个字符",oncorrect:"输入正确"}).inputValidator({min:1,max:20,onerror:"请输入模块名称"});
+		$("#mname").formValidator({empty:true,onshow:"请输入模块英文标识",onfocus:"不能超过20个字符",oncorrect:"输入正确"}).inputValidator({min:1,max:20,onerror:"请输入模块英文标识"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+		$("#linkurl").formValidator({empty:true,onshow:"请填写链接URL",onfocus:"请填写链接URL"}).inputValidator({onerror:"请填写链接URL"}).regexValidator({regexp:"url",datatype:"enum",param:'i',onerror:"链接URL格式错误"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Module/update')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="id" value="{$vo.id}">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<th width="120">模块名称：</th>
+				<td><input type="text" name="mtitle" id="mtitle" class="input-text" value="{$vo.mtitle}"></td>
+			</tr>
+			<eq name="vo.system" value="0">
+			<tr>
+				<th>模块类型：</th>
+				<td>
+					<input type="radio" name="islink" value="0" onclick="$('#link').css('display','none');$('#module').css('display','');" <eq name="vo.islink" value="0">checked</eq>/> 自定义模块
+					<input type="radio" name="islink" value="1" onclick="$('#link').css('display','');$('#module').css('display','none');" <eq name="vo.islink" value="1">checked</eq>/> 外部链接
+				</td>
+			</tr>
+			<tbody id="module" <eq name="vo.islink" value="1">style="display:none;"</eq>>
+			<tr>
+				<th>英文标识：</th>
+				<td><input type="text" name="mname" id="mname" class="input-text" value="{$vo.mname}"></td>
+			</tr>
+			</tbody>
+			<tbody id="link" <eq name="vo.islink" value="0">style="display:none;"</eq>>
+			<tr>
+				<th>链接URL：</th>
+				<td><input type="text" name="linkurl" id="linkurl" class="input-text" size="30" value="{$vo.linkurl}"></td>
+			</tr>
+			</tbody>
+			</eq>
+			<tr>
+				<th>模块状态：</th>
+				<td>
+					<input type="radio" name="status" value="1" <eq name="vo.status" value="1">checked</eq>> 启用&nbsp;&nbsp;
+					<input type="radio" name="status" value="0" <eq name="vo.status" value="0">checked</eq>> 禁用
+				</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

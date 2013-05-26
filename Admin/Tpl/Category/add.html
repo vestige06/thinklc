@@ -1,0 +1,40 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#catname").formValidator({onshow:"请输入分类名称",onfocus:"请输入分类名称",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入分类名称"});
+		$("#alias").formValidator({empty:true,onshow:"请输入英文别名",onfocus:"英文别名不超过20个字符",oncorrect:"输入正确"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Category/insert')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="moduleid" value="{$moduleid}">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td width="120">分类名称：</td>
+				<td><input type="text" name="catname" id="catname" class="input-text"></td>
+			</tr>
+			<tr>
+				<td>英文别名：</td>
+				<td><input type="text" name="alias" id="alias" class="input-text"></td>
+			</tr>
+			<tr>
+				<td>Title(分类标题)：</td>
+				<td><input name="seo_title" type="text" value="" size="50"/></td>
+			</tr>
+			<tr>
+				<td>Meta Keywords<br>分类关键词</td>
+				<td><textarea name="seo_keywords" style="width:320px;height:50px;"></textarea></td>
+			</tr>
+			<tr>
+				<td>Meta Description<br>分类描述</td>
+				<td><textarea name="seo_description" style="width:320px;height:50px;"></textarea></td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

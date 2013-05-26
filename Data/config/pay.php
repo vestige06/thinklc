@@ -1,0 +1,2 @@
+<?php
+return array ( 'alipay' => array ( 'name' => '支付宝', 'enable' => '0', 'order' => '1', ), 'tenpay' => array ( 'name' => '财付通', 'enable' => '0', 'order' => '2', ), 'chinabank' => array ( 'name' => '网银在线', 'order' => '3', 'enable' => '0', ), 'paypal' => array ( 'name' => 'Paypal', 'order' => '4', 'enable' => '0', ), ); ?>

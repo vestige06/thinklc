@@ -1,0 +1,42 @@
+﻿<include file="Public:header" />
+<div class='weiz'>
+	当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Finance/money')}">资金流水</a>
+</div>
+<div class="con w960 cent">
+<table align="center" width='930' border=0 cellspacing=0 cellpadding=0 class='table'>
+ <tr class="thead">
+  <td>流水号</td>
+  <td>收入</td>
+  <td>支出</td>
+  <td>余额</td>
+  <td>支付平台</td>
+  <td>发生时间</td>
+  <td>操作人</td>
+  <td>事由</td>
+  <td>备注</td>
+ </tr> 
+ <volist name="list" id="vo">
+ <tr onmouseover="this.className='on';" onmouseout="this.className='';">
+  <td class='blue'>{$vo.id}</td>
+  <td><if condition="$vo['amount'] gt 0">{$vo.amount}</if></td>
+  <td><if condition="$vo['amount'] lt 0">{$vo.amount}</if></td>
+  <td>{$vo.balance}</td>
+  <td>{$vo.bank}</td>
+  <td>{$vo.addtime}</td>
+  <td>{$vo.editor}</td>
+  <td>{$vo.reason}</td>
+  <td>{$vo.note}</td>
+ </tr>
+ </volist>
+ <tr>
+  <td>小计</td>
+  <td>{$income} 元</td>
+  <td>{$expense} 元</td>
+  <td colspan="6"></td>
+ </tr>
+ <tr>
+  <td colspan='9'>{$page}</td> 
+ </tr>
+</table>
+</div>
+<include file="$footer" />

@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Category/bupdate')}" method="post">
+	<input type="hidden" name="moduleid" value="{$moduleid}">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Category/add?moduleid='.$moduleid)}','添加分类','520','320')">添加分类</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="60">ID</th>
+            <th width="80">排序</th>
+            <th width="100">分类名称</th>
+            <th width="100">英文别名</th>
+            <th width="60">信息数</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td>{$vo.id}</td>
+			<td><input name="category[{$vo['id']}][listorder]" type='text' size='3' value='{$vo.listorder}'></td>
+			<td><input name="category[{$vo['id']}][catname]" type='text' size='10' value='{$vo.catname}'></td>
+			<td><input name="category[{$vo['id']}][alias]" type='text' size='10' value='{$vo.alias}'></td>
+            <td>{$vo.items}</td>
+			<td>
+				<a href="javascript:doDialog('{:U('Category/edit?moduleid='.$moduleid.'&id='.$vo['id'])}','修改分类——{$vo['catname']}','520','320')" title="修改分类——{$vo['catname']}">{:getIcon('edit','修改分类')}</a>
+				<a href="{:U('Category/delete?moduleid='.$moduleid.'&id='.$vo['id'])}" onclick="return confirm('你确定要删除此分类吗？')">{:getIcon('del','删除分类')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="12">
+			<input type="submit" value="更新分类" class="button" />{:tips('当英文别名为空时，系统会自动生成分类名的拼音作为英文别名')}
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

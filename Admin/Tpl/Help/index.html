@@ -1,0 +1,80 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Help/index')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="title_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="tid">
+		<option value="">选择分类</option>
+		<volist name="etype" id="vo">
+		<option value="{$vo.id}" <eq name="Think.get.tid" value="$vo.id"> selected=selected</eq>>{$vo.typename}</option>
+		</volist>
+	</select>
+	<select name="status" >
+		<option value="">问题状态</option>
+		<option value="1" <eq name="Think.get.status" value="1"> selected=selected</eq>>已处理</option>
+		<option value="0" <eq name="Think.get.status" value="0"> selected=selected</eq>>未处理</option>
+	</select>
+	<select name="display" >
+		<option value="">显示状态</option>
+		<option value="1" <eq name="Think.get.display" value="1"> selected=selected</eq>>前台显示</option>
+		<option value="0" <eq name="Think.get.display" value="0"> selected=selected</eq>>前台不显示</option>
+	</select>
+	<select name="fieldskey">
+		<option value="title" <eq name="Think.get.fieldskey" value="title"> selected=selected</eq>>标题</option>
+		<option value="uid" <eq name="Think.get.fieldskey" value="uid"> selected=selected</eq>>会员ID</option>
+	</select>
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Help/delete')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="{:U('Help/add')}">添加问题</a><span></span>
+				<a class="add" href="{:U('Etype/index?item=help')}">问题分类</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="40"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="100">分类</th>
+            <th>标题</th>
+            <th width="60">会员ID</th>
+            <th width="120">{:getSort('提问时间', 'asktime', $order, $sortImg)}</th>
+            <th width="80">处理状态</th>
+            <th width="80">前台显示</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td><a href="{:U('Help/index?tid='.$vo['tid'])}">{$etype[$vo['tid']]['typename']}</a></td>
+            <td><if condition="$vo.status eq 0"><font color="red">{$vo.title}</font><else />{$vo.title}</if></td>
+            <td><a href="{:U('Help/index??fieldskey=uid&fieldsvalue='.$vo['uid'])}">{$vo.uid}</a></td>
+            <td><eq name="vo.uid" value="0">后台添加<else /><font color="blue">{$vo.asktime|date="Y-m-d H:i",###}</font></eq></td>
+            <td>{:getStatus($vo['status'], true, $vo['id'], 'status', array('未处理','已处理'))}</td>
+            <td>{:getStatus($vo['display'], true, $vo['id'], 'display', array('不显示','显示'))}</td>
+			<td>
+				<a href="{:U('Help/edit?id='.$vo['id'])}" title="问题处理与修改">{:getIcon('edit','问题处理与修改')}</a>
+				<a href="{:U('Help/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此问题吗？')">{:getIcon('del','删除问题')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="10"><input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 删 除 " onclick="return confirm('你确定要删除选中问题吗？')"/></td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

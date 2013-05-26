@@ -1,0 +1,2 @@
+<?php
+return array ( 'reg_enable' => '1', 'reg_status' => '1', 'reg_area' => '0', 'reg_ip' => '0', 'credit_reg' => '10', 'credit_login' => '2', 'credit_post' => '3', 'credit_pay' => '5', 'credit_delete' => '5', 'credit_money' => '10', 'paytype' => '站内|支付宝|财付通|中国工商银行|中国农业银行', ); ?>

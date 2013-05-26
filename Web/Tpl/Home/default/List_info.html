@@ -1,0 +1,132 @@
+<include file="Module:header" />
+<eq name="CFG['contact_extend']" value="1">
+<script language="javascript" type="text/javascript" src="/Public/Js/dialog.js"></script>
+<link href="/Public/Css/dialog.css" rel="stylesheet" type="text/css" />
+</eq>
+<eq name="CFG.loadtype" value="0"><div class="w960 pagetop clear">{$page}</div></eq>
+<div class="w960 center clear mt1">
+	<ul class="infocont" id="container">
+	<php>$infocount=0;</php>
+	<if condition="$havetop eq 1">
+	<volist name="toplist" id="top">
+		<php>$thisrow=(int)($infocount/5);$thisbg=$thisrow%2;</php>
+		<li class="post sj_{$top.topnum} color{$thisbg}">
+		<if condition="$top.id eq 0">
+			<div class="info_title blue">置顶广告</div>
+			<div class="info_cont info_ad" <eq name="CFG.water" value="0">style="height:{$CFG.cell_height}px"</eq>>
+				广告位招租，详情请咨询<BR>咨询QQ：{$Think.config.site_qq}<BR>电话：{$Think.config.site_tel}
+			</div>
+			<div class="info_cate">{$Think.config.site_name}</div>
+			<div class="info_date"><span class="red">置顶信息</span></div>
+		<else />
+			<div class="info_title">
+				<a href="{:U('Info/detail?id='.$top['id'])}" target="_blank"><font color="{$top.toptitle}">{$top.title}</font></a>
+			</div>
+			<div class="info_cont" <eq name="CFG.water" value="0">style="height:{$CFG.cell_height}px"</eq>>
+				<eq name="top['ispic']" value="1"><img src="{$top.picurl}">
+				<else/><p class="txt">{$top.content}<if condition="($CFG['contact_extend'] eq 1) AND ($top['extend'] eq 1)">{:getExtend($top['contact'], $CFG, 1)}</if></p>
+				</eq>
+			</div>
+			<div class="info_cate">
+				{$top.amount|getGrade}
+				<if condition="($CFG['contact_extend'] eq 1) AND ($top['extend'] eq 1)">
+				<span class="extend">{:getExtend($top['contact'], $CFG)}</span>
+				</if>
+			</div>
+			<div class="info_date"><span class="red">置顶信息</span>&nbsp;&nbsp;{$top.toptotime|getExpired}<if condition="$vo.detail neq ''">&nbsp;<a href="{:U('Info/detail?id='.$top['id'])}" target="_blank" title="查看详细信息"><img src="__PUBLIC__/Images/icon/xiang.png" height="15" alt="信息详情" align="absmiddle" /></a></if></div>
+		</if>
+		</li>
+		<php>$infocount += $top['topnum'];</php>
+	</volist> 
+	</if>
+	<volist name="list" id="vo">
+		<php>$thisrow=(int)($infocount/5);$thisbg=$thisrow%2;</php>
+		<li class="post sj_{$vo.topnum} color{$thisbg}">
+			<div class="info_title">
+				<a href="{:U('Info/detail?id='.$vo['id'])}" target="_blank"><font color="{$vo.toptitle}">{$vo.title}</font></a>
+			</div>
+			<div class="info_cont" <eq name="CFG.water" value="0">style="height:{$CFG.cell_height}px"</eq>>
+				<eq name="vo['ispic']" value="1"><img src="{$vo.picurl}">
+				<else/><p class="txt">{$vo.content}<if condition="($CFG['contact_extend'] eq 1) AND ($vo['extend'] eq 1)">{:getExtend($vo['contact'], $CFG, 1)}</if></p>
+				</eq>
+			</div>
+			<div class="info_cate">
+				<eq name="vo['areaid']" value="0">{$Think.config.site_area}<else/>{$AREA[$vo['areaid']]['aname']}</eq>{$CATEGORY[$vo['catid']]['catname']}
+				<if condition="($CFG['contact_extend'] eq 1) AND ($vo['extend'] eq 1)">
+				<span class="extend">{:getExtend($vo['contact'], $CFG)}</span>
+				</if>
+			</div>
+			<div class="info_date">日期：{$vo.edittime|date="Y-m-d",###}<if condition="$vo.detail neq ''">&nbsp;<a href="{:U('Info/detail?id='.$vo['id'])}" target="_blank" title="查看详细信息"><img src="__PUBLIC__/Images/icon/xiang.png" height="15" alt="信息详情" align="absmiddle" /></a></if></div>
+		</li>
+		<php>$infocount += $vo['topnum'];</php>
+	</volist> 
+	</ul>
+</div>
+<div class="w960 clear pagefoot">{$page}</div>
+<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<eq name="CFG.water" value="1"><script type="text/javascript" src="__PUBLIC__/Js/jquery.masonry.min.js"></script></eq>
+<eq name="CFG.loadtype" value="1"><script type="text/javascript" src="__PUBLIC__/Js/jquery.infinitescroll.min.js"></script></eq>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $container = $('#container');
+	<eq name="CFG.water" value="1">
+	$container.imagesLoaded(function(){
+		$container.masonry({
+			itemSelector: '.post',
+			columnWidth: 1 //每两列之间的间隙为5像素
+		});
+	});
+	</eq>
+	<eq name="CFG.loadtype" value="1">
+	$container.infinitescroll({
+		navSelector  : '.pagefoot',    // 选择的分页导航 
+		nextSelector : '.pagefoot #nextpage',  // 选择的下一个链接到（第2页）
+		itemSelector : '.post',     // 选择检索所有项目
+		loading: {
+			finishedMsg: '没有更多的页面加载。',
+			img: '/Public/Image/loadings.gif'
+		}
+	},function(newElements){
+		<eq name="CFG.water" value="1">
+		// 隐藏新的项目，而他们正在加载
+		var $newElems = $( newElements ).css({ opacity: 0 });
+		
+		// 确保的图像装载增加砖石布局
+		$newElems.imagesLoaded(function(){	
+			// 元素展示准备
+			$newElems.animate({opacity:1});
+			$container.masonry( 'appended', $newElems, true ); 
+		});
+		</eq>
+	});
+	</eq>
+	$('<a href="#" id="retop">返回顶部</a>').appendTo('body').fadeOut().click(function(){
+		$(document).scrollTop(0);
+		$(this).fadeOut();
+		return false
+	});
+	var $retop = $('#retop');
+	function backTopLeft(){
+		var btLeft = $(window).width() / 2 + 490;
+		if (btLeft <= 950){
+			$retop.css({ 'left': 955 })
+		}else{
+			$retop.css({ 'left': btLeft }) 
+		}
+	}
+	backTopLeft();
+	$(window).resize(backTopLeft);
+	$(window).scroll(function(){
+		if ($(document).scrollTop() === 0){
+			$retop.fadeOut()
+		}else{
+			$retop.fadeIn()
+		}
+		if ($.browser.msie && $.browser.version == 6.0 && $(document).scrollTop() !== 0){
+			$retop.css({ 'opacity': 1 })
+		} 
+	});
+});
+</script>
+<div class="clear"></div>
+<include file="Public:footer" />

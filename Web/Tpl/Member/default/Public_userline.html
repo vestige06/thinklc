@@ -1,0 +1,7 @@
+var tp_member = '';
+<eq name="uid" value="0">
+	tp_member += '{:W('ShowOauth',array('type'=>1))}<a href="{:U('Member/Public/login')}">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{:U('Member/Public/reg')}">注册</a>';
+<else />
+	tp_member = '{$uname}&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{:U('Member/Index/index')}">会员中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{:U('Member/Public/logout')}">退出</a>';
+</eq>
+try { document.getElementById('userline').innerHTML = tp_member; } catch(e) {}

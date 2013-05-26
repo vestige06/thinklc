@@ -1,0 +1,16 @@
+<include file="Public:header" />
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz"><h2>当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="{:U('About/index')}">关于我们</a>&nbsp;>&nbsp;{$about.title}</h2></div>
+		<dl class="ckz2 clear">
+			<dd class="content">{$about.content}</dd>
+		</dl>
+	</div>
+	<div class="pright">
+		<dl class="ckz2 clear xing">
+		{:W('ShowAbout',array('type'=>1))}
+		</dl>
+	</div> 
+	<div style="clear:both"> &nbsp;&nbsp;&nbsp;&nbsp;</div>
+</div>
+<include file="Public:footer" />

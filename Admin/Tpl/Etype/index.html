@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<script type="text/javascript">
+var _del = 0;
+</script>
+<div class="tablelist">
+<form method="post" action="{:U('Etype/update')}">
+<input type="hidden" name="item" value="{$item}"/>
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+			<volist name="menus" id="vo">
+				<a class="add" href="{$vo.url}">{$vo.title}</a><span></span>
+			</volist>
+			</th>
+		</tr>
+		<tr>
+            <th width="60">ID</th>
+            <th width="60">删除</th>
+            <th width="80">排序</th>
+            <th width="150">分类名</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+			<td>{$vo.id}</td>
+			<td><input name="etype[{$vo.id}][delete]" type="checkbox" value="1" onclick="if(this.checked){_del++;}else{_del--;}"/></td>
+			<td><input name="etype[{$vo.id}][listorder]" type="text" size="3" value="{$vo.listorder}" maxlength="3"/></td>
+			<td><input name="etype[{$vo.id}][typename]" type="text" size="20" value="{$vo.typename}" maxlength="20" style="width:200px;"/></td>
+		</tr>
+		</volist>
+		<tr>
+			<td></td>
+			<td>新增</td>
+			<td><input name="etype[0][listorder]" type="text" size="3" value="" maxlength="3"/></td>
+			<td><input name="etype[0][typename]" type="text" size="20" value="" maxlength="20" style="width:200px;"/></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan='3' align="left"><input type="submit" name="dosubmit" value=" 更 新 " onclick="if(_del && !confirm('提示:您选择删除'+_del+'个分类？确定要删除吗？')) return false;" class="btn"/></td> 
+		</tr>
+		</tbody>
+	</table>
+</form>
+</div>
+<include file="Public:footer" />

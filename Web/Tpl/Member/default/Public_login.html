@@ -1,0 +1,35 @@
+<include file="$header" />
+<div style='height:400px;width:960px;margin:0 auto'>
+	<div style="width:600px;float:left;margin-top:30px;">&nbsp;&nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/Images/web/dlgg_{$randpic}.jpg" border=0 alt=""></div>
+	<div style="height:300px;float:left;background: url('__PUBLIC__/Images/web/dlbg.gif') top left no-repeat;padding-left:15px;margin-top:30px;">
+		<form id="form1" method='post' action="{:U('Public/checklogin')}">
+		<table align="center" width='300' border=0 cellspacing=0 cellpadding=0 style='margin-top:50px;border:0px;line-height:45px; '>
+			<tr><td colspan="2"><div id="result" class="none result" style="font-family:微软雅黑,Tahoma;letter-spacing:2px"></div></td></tr>
+			<tr>
+				<td align="right" >账号：</td>
+				<td class="tLeft" ><input type="text" name="uname"  style='width:150px;'></td>
+			</tr>
+			<tr>
+				<td align="right" >密码：</td>
+				<td><input type="password" name="upwd" id="upwd"  style='width:150px;'></td>
+			</tr>
+			<tr>
+				<td align="right" >验证码：</td>
+				<td>
+					<input name="verify" type="text" style="height:23px; width:60px;"/>&nbsp;
+					<img id="verifyImg" src="{:U('Public/verify')}" align="absmiddle" onClick="fleshVerify()" border="0" alt="点击刷新验证码" style="cursor:pointer">
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td style='padding-left:9px;'>
+					<input type="submit" name="submit" class="but" value="登录"/> &nbsp;&nbsp;
+					<a href="{:U('Public/reg')}">注册新用户名</a>
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>
+<div class='clear'>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<include file="$footer" />

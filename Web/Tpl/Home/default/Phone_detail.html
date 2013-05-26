@@ -1,0 +1,47 @@
+<include file="Public:header" />
+<div style="clear:both"></div>
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz">当前位置：<a href="/" >首页</a>&nbsp;>&nbsp;<a href="{:U('Phone/index')}">{$modulename}</a>&nbsp;>&nbsp;<a href="{$AREA[$row['areaid']]['url']}">{$AREA[$row['areaid']]['aname']}</a>&nbsp;>&nbsp;<a href="{$CATEGORY[$row['catid']]['url']}">{$CATEGORY[$row['catid']]['catname']}</a>&nbsp;>&nbsp;{$row['title']}</div>
+		<UL class="video showphone">
+			<LI class="ads"><script type="text/javascript" src="__PUBLIC__/ads/detail1.js"></script></LI>
+			<LI class="msg">商家名称：<strong>{$row['title']}</strong></LI>
+			<LI class="msg">固定电话：{$row['tel']}</LI>
+			<LI class="msg">手机联系：{$row['mobile']}</LI>
+			<LI class="msg">在线交流：<if condition="$row['qq'] neq ''"><a href="http://wpa.qq.com/msgrd?v=3&uin={$row['qq']}&site=嘉兴信息网&menu=yes" target="_blank" rel="nofollow"><img src="http://wpa.qq.com/pa?p=1:{$row['contact']['qq']}:4" title="点击QQ交谈/留言" align="absmiddle" onerror="this.src='__PUBLIC__/Images/icon/qq-off.gif'"/></a></if></LI>
+			<LI class="msg">主营业务：{$row['business']}</LI>
+			<LI class="msg">详细地址：{$row['address']}</LI>
+		</UL>
+		<if condition="$row['map'] neq ''">
+		<div class="mapinfo clear">
+			<div id="map"></div>
+			<div id="map_route">
+				起点 <input id="map_route_from" type="text" />
+				终点 <input id="map_route_to" type="text"/>
+				<span class="route_type">
+					<input id="map_route_bus" name="map_route_type" type="radio" value="bus" checked />
+					<label class="label" for="map_route_bus">公共交通</label>
+				</span>
+				<span class="route_type">
+					<input id="map_route_car" name="map_route_type" type="radio" value="car" />
+					<label class="label" for="map_route_car">自驾车</label>
+				</span>
+				<input id="map_route_search" type="button" value="查询线路" onclick="map.search();"/>
+			</div>
+			<div id="map_search_result"></div>
+		</div>
+		<script type="text/javascript">try{ var skinurl = '__PUBLIC__', ____gongsi = { name:'{$row["title"]}', address:'{$row["address"]}', compmap:'{$row["map"]}' } } catch (e) { };</script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+		<script type="text/javascript" src="__PUBLIC__/Js/map.js"></script>
+		</if>
+	</div>
+
+	<div class="pright">
+		<dl class="jingp">
+			<dt>广告赞助<span></span></dt>
+			<dd><script type="text/javascript" src="__PUBLIC__/ads/detail2.js"></script></dd> 
+		</dl>
+	</div> 
+	<div style="clear:both"></div>
+</div>
+<include file="Public:footer" />

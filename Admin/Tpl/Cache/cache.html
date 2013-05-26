@@ -1,0 +1,60 @@
+<include file="Public:header" />
+<div class="tablelist" style="width:480px">	
+	<table class="table">
+		<tr><th colspan="12" class="top_th">
+			<h6><if condition="$action eq 'config'">更新{$menu[$action]}<elseif condition="($action eq 'index') OR ($action eq 'onekey')"/>{$menu[$action]}<else />清理{$menu[$action]}</if></h6>
+		</th></tr>
+		<tr>
+			<td>
+				<div class="content">
+					{$description[$action]}
+					<br />
+					<div class="bk20 hr"><hr /></div>
+					<switch name="action">
+					<case value="config"><a href="{:U('Cache/config?confirm=1')}">点击这里确认更新配置缓存</a></case>
+					<case value="compiled">
+						<form action="{:U('Cache/compiled')}" method="get">
+						<if condition="$Think.config.URL_MODE eq 0">
+						<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+						<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+						</if>
+						<input type="checkbox" name="db" value="1">数据库字段缓存
+						<input type="checkbox" name="web" value="1" checked>前台编译文件
+						<input type="checkbox" name="admin" value="1" checked>后台编译文件<br><br>
+						<input type="submit" name="confirm" value="确认更新" class="button">
+						</form>
+					</case>
+					<case value="templates">
+						<form action="{:U('Cache/templates')}" method="get">
+						<if condition="$Think.config.URL_MODE eq 0">
+						<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+						<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+						</if>
+						<input type="checkbox" name="web" value="1" checked>前台模版缓存
+						<input type="checkbox" name="admin" value="1">后台模版缓存<br><br>
+						<input type="submit" name="confirm" value="确认更新" class="button">
+						</form>
+					</case>
+					<case value="html"><a href="{:U('Cache/html?confirm=1')}">点击这里确认清理网页缓存</a></case>
+					<case value="index"><a href="{:U('Cache/index?confirm=1')}">点击这里确认刷新静态首页</a></case>
+					<case value="onekey">
+						<form action="{:U('Cache/onekey')}" method="get">
+						<if condition="$Think.config.URL_MODE eq 0">
+						<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+						<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+						</if>
+						<input type="checkbox" name="config" value="1" checked>配置缓存
+						<input type="checkbox" name="compiled" value="1">编译缓存
+						<input type="checkbox" name="templates" value="1" checked>模版缓存
+						<input type="checkbox" name="html" value="1" checked>网页缓存
+						<input type="checkbox" name="index" value="1">静态首页<br><br>
+						<input type="submit" name="confirm" value="确认更新" class="button">
+						</form>
+					</case>
+					</switch>
+				</div>
+			</td>
+		</tr>
+</div>
+</body>
+</html>

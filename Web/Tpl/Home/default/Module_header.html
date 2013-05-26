@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$site_title} - {$Think.config.site_name}</title>
+<meta name="keywords" content="{$site_keywords}">
+<meta name="description" content="{$site_description}">
+<script type="text/javascript" src="__PUBLIC__/Js/shouji.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css"/>
+<script language="javascript">
+<!--
+function soua(){
+	var key=document.getElementById("key").value;
+	if(key == '请输入您要找的信息关键词') {
+		key = '';
+	}
+	<eq name="Think.config.search_type" value="1">
+	var cate=document.getElementById("cate").value;
+	var area=document.getElementById("area").value;
+    if(key=='' && cate==0 && area==0) {
+		alert('请输入您要找的信息关键词或选择相关地区和分类');
+		document.getElementById("key").value='';
+		document.getElementById("key").focus();
+    } else {
+		var s_url = "{:U(MODULE_NAME.'/search?cate=Cate&area=Area&key=Key')}";
+		s_url = s_url.replace("Cate",cate);
+		s_url = s_url.replace("Area",area);
+		s_url = s_url.replace("Key",encodeURI(key));
+		window.location.href = s_url;
+    }
+	<else/>
+	var module=document.getElementById("module").value;
+	if(key=='') {
+		alert('请输入您要找的信息关键词');
+		document.getElementById("key").value='';
+		document.getElementById("key").focus();
+		return false;
+    }
+	if(module=='') {
+		alert('请选择要搜索的模块');
+		document.getElementById("module").focus();
+		return false;
+    }
+	var s_url = "{:U('searchmodule/search?cate=0&area=0&key=Key')}";
+	s_url = s_url.replace("searchmodule",module);
+	s_url = s_url.replace("Key",encodeURI(key));
+	window.location.href = s_url;
+	</eq>
+}
+//-->
+</script>
+</head>
+<body class='body'>
+<div id="warp">
+	<div class="head">
+		<div class="head1"><a href="{$Think.config.site_url}">{$Think.config.site_name}</a>&nbsp;-&nbsp;{$Think.config.site_area}生活信息发布网</div>
+		<div class="head2" id="userline"><script type="text/javascript" src="{:U('Member/Public/userline')}"></script></div>
+	</div>
+	<div class="w960 cent head3">
+		<div class="logo"><a href="{$Think.config.site_url}"><img src="__PUBLIC__/Images/logo.gif" alt="{$Think.config.site_name}" /></a></div>
+		<div class="head3-1"><script type="text/javascript" src="__PUBLIC__/ads/head.js"></script></div>
+		<div class="head3-2"></div>
+		<div class="head3-3">
+			<input type="text" name="key" id="key" <if condition="$searchkey neq ''">value="{$searchkey}"<else />value="请输入您要找的信息关键词" onclick='this.value=""'</if> />
+			<div class="head3-sel">
+			<eq name="Think.config.search_type" value="1">
+				<select name="area" id='area'>
+				<option value="0">地区</option>
+				<volist name="AREA" id="vo">
+				<option value="{$vo.name}" <eq name="vo.name" value="$Think.get.area">selected</eq>>{$vo.aname}</option>
+				</volist>
+				</select>
+				<select name="cate" id='cate'>
+				<option value="0">分类</option>
+				<volist name="CATEGORY" id="vo">
+				<option value="{$vo.name}" <eq name="vo.name" value="$Think.get.cate">selected</eq>>{$vo.catname}</option>
+				</volist>
+				</select>
+			<else/>
+				<input type="hidden" name="cate" value="0">
+				<input type="hidden" name="area" value="0">
+				<select name="module" id="module">
+				<option value="">选择模块</option>
+				<volist name="modules" id="vo">
+				<option value="{$vo.mname}" <eq name="vo.mname" value="$Think.MODULE_NAME">selected</eq>>{$vo.mtitle}</option>
+				</volist>
+				</select>
+			</eq>
+			</div>
+			<div class="head3-sou" onclick="soua()">&nbsp;</div>
+		</div>
+	</div>
+	 
+	<ul class="mtab2 cent tc">
+		<li><a href="/">网站首页</a></li>
+		<volist name="navigation" id="vo">
+		<li><a href="{$vo.url}">{$vo.name}</a></li>
+		</volist>
+	</ul>
+	 
+	<include file="Public:cate" />
+	<include file="Public:ads1" />
+	<notempty name="searchkey"><div class="w960 searchtop clear">您输入的关键字：<span class="red">{$searchkey}</span>，以下是搜索结果</div><else/><div style="clear:both"></div></notempty>

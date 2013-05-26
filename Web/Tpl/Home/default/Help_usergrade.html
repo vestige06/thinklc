@@ -1,0 +1,162 @@
+<include file="Public:header" />
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz"><h2>当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">帮助中心</a>&nbsp;>&nbsp;会员等级说明</h2></div>
+		<table cellpadding="6" cellspacing="1" width="98%" bgcolor="#E3EEF5" align="center" class="mt10">
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb" width="20%">服务范围\会员组</td>
+				<volist name="grouplist" id="vo">
+				<td class="fb" width="{$width}%">{$vo.gname}</td>
+				</volist>
+				<td class="fb" width="{$width}%">信息置顶</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>收费模式</td>
+				<volist name="grouplist" id="vo">
+				<td><eq name="vo['id']" value="4"><span class="green">免费</span><else/><span class="red">按年</span></eq></td>
+				</volist>
+				<td><span class="red">按月</span></td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>价格</td>
+				<volist name="grouplist" id="vo">
+				<td><eq name="vo['id']" value="4">--<else/><span class="red">{$vo.price} 元/年</span><br>（续费{$vo.price2}元/年）</eq></td>
+				</volist>
+				<td><a href="{:U('Help/top')}">置顶说明</a></td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>会员自助升级</td>
+				<volist name="grouplist" id="vo">
+				<td>
+					<eq name="vo['id']" value="4">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/{$vo.upgrade}.gif" align="absmiddle">
+					</eq>
+				</td>
+				</volist>
+				<td><img src="__PUBLIC__/Images/icon/1.gif" align="absmiddle"></td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>使用积分升级</td>
+				<volist name="grouplist" id="vo">
+				<td>
+					<eq name="vo['id']" value="4">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/{$vo.usescore}.gif" align="absmiddle">
+					</eq>
+				</td>
+				</volist>
+				<td>模块设置</td>
+			</tr>
+			<volist name="module" id="vo">
+			<tr bgcolor="#FFFFFF" align="center">
+				<td colspan="{$colspan}" class="blue">{$vo.mtitle}模块</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>每日发布信息数量</td>
+				<volist name="groupsetting" id="vol">
+				<td><?php echo $vol[strtolower($vo['mname']).'_count']?></td>
+				</volist>
+				<td>--</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>信息不需审核</td>
+				<volist name="groupsetting" id="vol">
+				<td><img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_pass']?>.gif" align="absmiddle"></td>
+				</volist>
+				<td>--</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>自定义标题颜色</td>
+				<volist name="groupsetting" id="vol">
+				<td><img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_title']?>.gif" align="absmiddle"></td>
+				</volist>
+				<td><img src="__PUBLIC__/Images/icon/{$CFGS[$vo['id']]['top_title']}.gif" align="absmiddle"></td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>发布图片信息</td>
+				<volist name="groupsetting" id="vol">
+				<td>
+					<eq name="CFGS[$vo['id']]['top_pic']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_pic']?>.gif" align="absmiddle">
+					</eq>
+				</td>
+				</volist>
+				<td>
+					<eq name="CFGS[$vo['id']]['top_pic']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/{$CFGS[$vo['id']]['top_pic']}.gif" align="absmiddle">
+					</eq>
+				</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>添加详细信息</td>
+				<volist name="groupsetting" id="vol">
+				<td>
+					<eq name="CFGS[$vo['id']]['top_detail']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_detail']?>.gif" align="absmiddle">
+					</eq>
+				</td>
+				</volist>
+				<td>
+					<eq name="CFGS[$vo['id']]['top_detail']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/{$CFGS[$vo['id']]['top_detail']}.gif" align="absmiddle">
+					</eq>
+				</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>允许信息外链</td>
+				<volist name="groupsetting" id="vol">
+				<td>
+					<eq name="CFGS[$vo['id']]['top_link']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_link']?>.gif" align="absmiddle">
+					</eq>
+				</td>
+				</volist>
+				<td>
+					<eq name="CFGS[$vo['id']]['top_link']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/{$CFGS[$vo['id']]['top_link']}.gif" align="absmiddle">
+					</eq>
+				</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>使用积分置顶</td>
+				<volist name="groupsetting" id="vol">
+				<td><img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_credit']?>.gif" align="absmiddle"></td>
+				</volist>
+				<td><img src="__PUBLIC__/Images/icon/{$CFGS[$vo['id']]['top_credit']}.gif" align="absmiddle"></td>
+			</tr>
+			</volist>
+			<tr bgcolor="#FFFFFF" align="left">
+				<td colspan="{$colspan}">&nbsp;&nbsp;&nbsp;&nbsp;说明：
+					1. <img src="__PUBLIC__/Images/icon/1.gif" align="absmiddle">表示支持此功能，<img src="__PUBLIC__/Images/icon/0.gif" align="absmiddle">表示不支持此功能<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;2. 信息置顶不属于会员组，任意会员组发布的信息都可以置顶<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;3. 信息置顶不支持的功能，则继承会员组的设置<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;4. 使用积分置顶功能，需要对应的模块开启积分置顶
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="pright">
+		<dl class="jingp">
+			<dt>广告赞助<span></span></dt>
+			<dd><script type="text/javascript" src="__PUBLIC__/ads/detail2.js"></script></dd> 
+		</dl>
+	</div> 
+	<div style="clear:both"></div>
+</div>
+<include file="Public:footer" />

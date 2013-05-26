@@ -1,0 +1,50 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Group/order')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Group/add')}','添加会员组','600','250')">添加会员组</a><span></span>
+				<a href="javascript:void(0)" onclick="$('#myform').submit();" class="sort">排序</a>
+			</th>
+		</tr>
+		<tr>
+			<th width="80">排序</th>
+            <th width="60">ID</th>
+            <th width="150">会员组名称</th>
+            <th width="80">类型</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+			<td>
+			<if condition="($vo.system eq 1) AND ($vo.id lt 5) ">
+				{$vo.listorder}
+			<else />
+				<input name="listorders[{$vo['id']}]" type='text' size='3' value='{$vo.listorder}'>
+			</if>
+			</td>
+            <td>{$vo.id}</td>
+            <td>{$vo.gname}</td>
+            <td><eq name="vo.system" value="1">系统<else />自定义</eq></td>
+			<td>
+				<a href="javascript:doDialog('{:U('Setting/index?item=group_'.$vo['id'])}','权限设置——{$vo['gname']}','700','500')" title="权限设置——{$vo['gname']}">{:getIcon('set','权限设置')}</a>
+				<if condition="($vo.system eq 1) AND ($vo.id lt 5) ">
+				{:getIcon('edit','修改会员组',0)}
+				<else />
+				<a href="javascript:doDialog('{:U('Group/edit?id='.$vo['id'])}','修改会员组——{$vo['gname']}','600','250')" title="修改会员组——{$vo['gname']}">{:getIcon('edit','修改会员组')}</a>
+				</if>
+				<eq name="vo.system" value="1">
+				{:getIcon('del','删除会员组',0)}
+				<else />
+				<a href="{:U('Group/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此会员组吗？')">{:getIcon('del','删除会员组')}</a>
+				</eq>
+			</td>
+		</tr>
+		</volist>
+		</tbody>
+	</table>
+	</form>
+</div>
+<include file="Public:footer" />

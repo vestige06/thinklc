@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'mname', 2 => 'aname', 3 => 'parameter', 4 => 'mtitle', 5 => 'status', 6 => 'pid', 7 => 'level', 8 => 'action', 9 => 'system', 10 => 'display', 11 => 'listorder', 12 => 'dialog', '_autoinc' => true, '_pk' => 'id', ); ?>

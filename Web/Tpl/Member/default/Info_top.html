@@ -1,0 +1,148 @@
+<include file="Public:header" />
+<script language="JavaScript">
+<!--
+	var top_price = getPrice('{$CFG.top_price}');
+	var top_off_1 = getPrice('{$CFG.top_off_1}');
+	var top_off_2= getPrice('{$CFG.top_off_2}');
+	var top_off_3 = getPrice('{$CFG.top_off_3}');
+	var top_off_5 = getPrice('{$CFG.top_off_5}');
+	window.onload = checkMoney();
+//-->
+</script>
+<div class="main">
+ <div class='weiz'>当前位置： <a href="/" >网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Info/index')}">{$modulename}</a>&nbsp;>&nbsp;信息置顶</div>
+ <div class="w960 cent" style='font-size:14px;color:#ee5500;height:35px;line-height:35px;'>
+	<strong>&nbsp;&nbsp;&nbsp;&nbsp;欢迎您办理信息置顶，信息位置固定显示在最前，获得更好的广告效果！</strong>
+ </div>
+ <table align="center" width='930' border=0 cellspacing=0 cellpadding=0 style='margin:0 auto;border:0px;line-height:40px;'>
+ <form id="form1" method='post' action="__SELF__">
+ <input type="hidden" name="id" value="{$row.id}"/>
+ <input type="hidden" name="money" id="money" value="{$top_startmoney}"/>
+ <input type="hidden" name="dosubmit" value="1"/>
+  <tr>
+	<td align="right" width="120"><if condition="$top_status eq 1">已</if>置顶信息：</td>
+	<td align='left' width="180" class="blue">{$row.title}&nbsp;{:getToppic($row['topstatus'],$row['toptotime'],$row['topnum'])}</td>
+  </tr>
+  <tr>
+	<td align="right">置顶<if condition="$top_status eq 1">续费</if>天数：</td>
+	<td align='left'>
+		<select name="topdays" id="topdays" onchange="checkMoney();">
+			<option value="1">1个月</option>
+			<option value="2">2个月</option>
+			<option value="3">3个月</option>
+			<option value="6">6个月</option>
+			<option value="12">12个月</option>
+		</select>
+	</td>
+	<td align='left' rowspan="6">
+		<table cellpadding="6" cellspacing="1" class="tprice">
+			<tr bgcolor="#FFFFFF" align="center">
+				<td class="fb px14 red" colspan="5">信息置顶基本价格 (购买月份按自然月计算)</td>
+			</tr>
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb" width="20%">置顶方式\置顶格数</td>
+				<td class="fb" width="20%">1格</td>
+				<td class="fb" width="20%">2格</td>
+				<td class="fb" width="20%">3格</td>
+				<td class="fb" width="20%">通栏5格</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>分类置顶</td>
+				<td>{$top_price[0][0]} 元/月</td>
+				<td>{$top_price[1][0]} 元/月</td>
+				<td>{$top_price[2][0]} 元/月</td>
+				<td>{$top_price[3][0]} 元/月</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>首页置顶/分类置顶</td>
+				<td>{$top_price[0][1]} 元/月</td>
+				<td>{$top_price[1][1]} 元/月</td>
+				<td>{$top_price[2][1]} 元/月</td>
+				<td>{$top_price[3][1]} 元/月</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td class="fb px14 red" colspan="5">信息置顶优惠折扣</td>
+			</tr>
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb" width="20%">置顶格数</td>
+				<td class="fb" width="20%">1格</td>
+				<td class="fb" width="20%">2格</td>
+				<td class="fb" width="20%">3格</td>
+				<td class="fb" width="20%">通栏5格</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>优惠折扣</td>
+				<td>
+				<volist name="top_off_1" id="vo">
+				{$vo[1]}折 / {$vo[0]}个月<br>
+				</volist>
+				</td>
+				<td>
+				<volist name="top_off_2" id="vo">
+				{$vo[1]}折 / {$vo[0]}个月<br>
+				</volist>
+				</td>
+				<td>
+				<volist name="top_off_3" id="vo">
+				{$vo[1]}折 / {$vo[0]}个月<br>
+				</volist>
+				</td>
+				<td>
+				<volist name="top_off_5" id="vo">
+				{$vo[1]}折 / {$vo[0]}个月<br>
+				</volist>
+				</td>
+			</tr>
+		</table>
+	</td>
+  </tr>
+  <tr>
+	<td align="right">选择置顶格数：</td>
+	<td align='left'>
+		<select name="topnum" id="topnum" onchange="checkMoney();" <if condition="$top_status eq 1"> disabled="true"</if>>
+			<option value="1" <if condition="($top_status eq 1) AND ($row['topnum'] eq 1)"> selected</if>>1格</option>
+			<option value="2" <if condition="($top_status eq 1) AND ($row['topnum'] eq 2)"> selected</if>>2格</option>
+			<option value="3" <if condition="($top_status eq 1) AND ($row['topnum'] eq 3)"> selected</if>>3格</option>
+			<option value="5" <if condition="($top_status eq 1) AND ($row['topnum'] eq 5)"> selected</if>>通栏5格</option>
+		</select>
+	</td>
+  </tr>
+  <tr>
+	<td align="right">选择置顶方式：</td>
+	<td align='left'>
+		<select name="topstatus" id="topstatus" onchange="checkMoney();" <if condition="$top_status eq 1"> disabled="true"</if>>
+			<option value="1" <if condition="($top_status eq 1) AND ($row['topstatus'] eq 1)"> selected</if>>分类置顶</option>
+			<option value="2" <if condition="($top_status eq 1) AND ($row['topstatus'] eq 2)"> selected</if>>首页置顶/分类置顶</option>
+		</select>
+	</td>
+  </tr>
+  <tr>
+	<td align="right">金额总计：</td>
+	<td align='left'><span class="red" id="oldmoney">{$top_startmoney}</span> 元</td>
+  </tr>
+  <tr>
+	<td align="right">优惠价格：</td>
+	<td align='left'><span class="green" id="newmoney">{$top_startmoney}</span> 元</td>
+  </tr>
+  <tr>
+	<td align="right">支付方式：</td>
+	<td align='left'>
+		<input type="radio" name="paytype" value="0" checked>资金&nbsp;&nbsp;&nbsp;&nbsp;
+		<eq name="top_credit" value="1"><input type="radio" name="paytype" value="1">积分</eq>
+	</td>
+  </tr>
+  <tr>
+	<td>&nbsp;</td>
+	<td align="left" style='padding-left:5px;'><input type="button" class="but" value="提交" onclick="commit()"/></td>
+  </tr>
+ </form>
+ </table>
+</div>
+<script type="text/javascript" >
+	function commit() { 
+		document.getElementById('topstatus').disabled = false;
+		document.getElementById('topnum').disabled = false;
+		document.getElementById('form1').submit();
+	}
+</script> 
+<include file="$footer" />

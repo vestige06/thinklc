@@ -1,0 +1,15 @@
+	<include file="Public:cate" />
+	<include file="Public:ads2" />
+	<div style="clear:both"></div>
+	<div class="warning red">郑重提示：{$Think.config.site_name}是一个公益性的信息发布平台，我们对您的交易不做担保！建议大家当面交易，交易需谨慎，以免上当！</div>
+	<if condition="$havelink eq 1"><div style="clear:both"></div>{:W('ShowLink')}</if>
+	<div style="clear:both"></div>
+	<div class="w960 tc copyright">
+		{:W('ShowAbout')}
+		联系电话：<font color="#0000FF">{$Think.config.site_tel}</font>&nbsp;&nbsp;&nbsp;客服QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?V=3&Uin={$Think.config.site_qq}&Site=www.life0573.com&Menu=yes"><font color="#0000FF">{$Think.config.site_qq}</font></a><br />
+		<a href="{$Think.config.site_url}">{$Think.config.site_name}</a>&nbsp;&nbsp;&nbsp;{$Think.config.site_copyright}&nbsp;&nbsp;&nbsp;{$Think.config.site_icpno}
+	</div>
+	<div style="display:none"><script type="text/javascript" src="__PUBLIC__/ads/tongji.js"></script></div>
+</div>
+</body>
+</html>

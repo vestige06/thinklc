@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title>{$Think.config.site_name} - 后台管理中心</title>
+<link href="__PUBLIC__/Css/admin.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Css/system.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Css/table_form.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/admin_common.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidator.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidatorregex.js" charset="UTF-8"></script>
+<SCRIPT language=javascript>
+if (top.location !== parent.location) {
+	parent.location="{:U('Index/main')}";
+}
+$(function(){  
+	$('.table').each(function(){
+		$(this).find('tr:odd').find('td').css("background","#f1f1f1");
+	});
+ });
+</SCRIPT>
+</head>
+<body>
+<style type="text/css">
+	html{_overflow-y:scroll}
+</style>

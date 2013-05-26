@@ -1,0 +1,62 @@
+<include file="Public:header" />
+<div style="clear:both"></div>
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz"><h2>
+			当前位置：<a href="/" >首页</a>&nbsp;>&nbsp;<a href="{:U('Info/index')}">{$modulename}</a>
+			<if condition="$row['areaid'] neq 0">&nbsp;>&nbsp;<a href="{$AREA[$row['areaid']]['url']}">{$AREA[$row['areaid']]['aname']}</a></if>
+			<if condition="$row['catid'] neq 0">&nbsp;>&nbsp;<a href="{$CATEGORY[$row['catid']]['url']}">{$CATEGORY[$row['catid']]['catname']}</a></if>
+			&nbsp;>&nbsp;{$row['title']}
+		</h2></div>
+		<UL class="video">
+			<LI class="ads"><script type="text/javascript" src="__PUBLIC__/ads/detail1.js"></script></LI>
+			<LI class="subject">{$row['title']}</LI>
+			<LI class="msg">发布时间: {$row.edittime|date="Y-m-d",###}</LI>
+			<if condition="$row['keyword'] neq ''"><LI class="msg">关&nbsp;键&nbsp;&nbsp;字: <a href="{:U('Info/search?key='.$row['keyword'])}">{$row['keyword']}</a></LI></if>
+			<if condition="$row['linkurl'] neq ''"><LI class="msg">相关链接: <a href="{$row['linkurl']}" title="{$row['keyword']}" target="_blank">{$row['linkurl']}</a></LI></if>
+			<if condition="$row['uid'] neq 0">
+			<LI class="msg">公司名称: {$user['company']}&nbsp;&nbsp;{$user.amount|getGrade}</LI>
+			<LI class="msg">公司地址: {$user['address']}</LI>
+			<LI class="msg">联&nbsp;系&nbsp;&nbsp;人: {$user['contacter']}</LI>
+			<LI class="msg">联系电话: {$user['tel']}</LI>
+			<elseif condition="$row['extend'] eq 1" />
+			<LI class="msg">联&nbsp;系&nbsp;&nbsp;人: {$row['contact']['contacter']}</LI>
+			<LI class="msg">联系电话: {$row['contact']['tel']}</LI>
+			</if>
+			<if condition="($CFG['contact_extend'] eq 1) AND ($row['extend'] eq 1)">
+			<LI class="msg">在线交流: 
+				<if condition="($CFG['contact_qq'] eq 1) AND ($row['contact']['qq'] neq '')">
+				<a href="http://wpa.qq.com/msgrd?v=3&uin={$row['contact']['qq']}&site=qq&menu=yes" target="_blank" rel="nofollow"><img src="http://wpa.qq.com/pa?p=1:{$row['contact']['qq']}:4" title="点击QQ交谈/留言" align="absmiddle" onerror="this.src='__PUBLIC__/Images/icon/qq-off.gif'"/></a>&nbsp;
+				</if>
+				<if condition="($CFG['contact_ali'] eq 1) AND ($row['contact']['ali'] neq '')">
+				<a href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$row['contact']['ali']}&site=cnalichn&s=6" target="_blank" rel="nofollow"><img src="http://amos.im.alisoft.com/online.aw?v=2&uid={$row['contact']['ali']}&site=cnalichn&s=6" title="点击旺旺交谈/留言" align="absmiddle" onerror="this.src='__PUBLIC__/Images/icon/ali-off.gif'" onload="if(this.width>20)this.src='__PUBLIC__/Images/icon/ali-off.gif'"/></a>&nbsp;
+				</if>
+				<if condition="($CFG['contact_msn'] eq 1) AND ($row['contact']['msn'] neq '')">
+				<a href="msnim:chat?contact={$row['contact']['msn']}" rel="nofollow"><img src="__PUBLIC__/Images/icon/msn.gif" width="16" height="16" title="点击MSN交谈/留言" align="absmiddle"/></a>
+				</if>
+			</LI>
+			</if>
+		</UL>
+		<dl class="ckzl clear" >
+			<div class="content"><eq name="row.ispic" value="1"><img src="{$row['picurl']}"><else/>{$row['content']}</eq></div>
+			<if condition="$row['detail'] neq ''">
+			<dt><span class="blue fb px16">详细信息</span></dt>
+			<dd class="px14">{$row['detail']}</dd>
+			</if>
+		</dl>
+		<div class="infost_s">
+		1、在这里，您可以刊登想发布的各种信息。同时请您对您的言行负责，遵守中华人民共和国有关法律、法规；尊重网上道德并遵守诚实信用原则；禁止利用本网站进行危害国家和恶意攻击他人的行为；本网站保留删除违规信息权利；在本网站中所发信息若违反规定而受到法律追究者，责任自负。<br />
+		2、在本站阅读和发布所有的信息都是免费的，网友购买二手物品时等交易时，一定要谨慎，以免上当受骗。<br />
+		3、本网站严格遵守《互联网站禁止传播淫秽、色情等不良信息自律规范》的相关规定，严禁用户发布反动、淫秽、色情等不良信息。对于违反此规定者我们将主动向公安机关举报。
+		</div>
+	</div>
+
+	<div class="pright">
+		<dl class="jingp">
+			<dt>广告赞助<span></span></dt>
+			<dd><script type="text/javascript" src="__PUBLIC__/ads/detail2.js"></script></dd> 
+		</dl>
+	</div> 
+	<div style="clear:both"></div>
+</div>
+<include file="Public:footer" />

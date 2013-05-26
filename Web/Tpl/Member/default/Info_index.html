@@ -1,0 +1,37 @@
+<include file="Public:header" />
+<div class='weiz'>
+	当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Info/index')}">{$modulename}</a>
+</div>
+<div class="con w960 cent">
+<table align="center" width='930' border="0" cellspacing="0" cellpadding="0" class='table'>
+ <tr class="thead">
+  <td width='50'>编号</td>
+  <td width='250'>信息标题</td>
+  <td width='100'>信息分类</td>
+  <td >发布时间</td>
+  <td>过期时间</td>
+  <td>状态</td>
+  <td>操作</td>
+ </tr> 
+ <volist name="list" id="vo">
+ <tr>
+  <td class='blue'>{$vo.id}</td>
+  <td align="left"><span style="color:{$vo.toptitle}">{$vo.title}</span>&nbsp;{:getToppic($vo['topstatus'],$vo['toptotime'],$vo['topnum'])}</td>
+  <td>{$CATEGORY[$vo['catid']]['catname']}</td>
+  <td>{$vo.edittime|date="Y-m-d",###}</td>
+  <td><eq name="vo['expired']" value="0">永久有效<else />{$vo.expired|date="Y-m-d",###}</eq></td>
+  <td><eq name="vo['status']" value="0"><span class="red">待审核</span><else /><span class="green">正常</span></eq></td>
+  <td>
+	<if condition="date('Ymd',$vo['edittime']) neq date('Ymd')"><a href="{:U('Info/refresh?id='.$vo[id])}">刷新</a><else /><font color="#cccccc">刷新</font></if>&nbsp;&nbsp;
+	<eq name="vo['status']" value="0"><font color="#cccccc">置顶</font><else /><a href="{:U('Info/top?id='.$vo[id])}">置顶</a></eq>&nbsp;&nbsp;
+	<a href="{:U('Info/edit?id='.$vo[id])}">修改</a>&nbsp;&nbsp;
+	<a href="{:U('Info/delete?id='.$vo[id])}" onclick="return confirm('确定要删除此信息吗？')">删除</a>
+  </td>
+ </tr>
+ </volist>
+ <tr>
+  <td colspan='7'>{$page}</td> 
+ </tr>
+</table>
+</div>
+<include file="$footer" />

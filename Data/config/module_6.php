@@ -1,0 +1,2 @@
+<?php
+return array ( 'cate_alias' => '1', 'area_alias' => '1', 'wappagenum' => '20', 'listtemp' => 'phone', 'pagenum' => '30', 'loadtype' => '0', 'top_credit' => '1', 'top_title' => '1', 'top_price' => '120', 'top_off' => '2|95,3|90,6|85,12|80', 'spread_credit' => '1', 'spread_price' => '100', 'spread_off' => '2|95,3|90,6|85,12|80', ); ?>

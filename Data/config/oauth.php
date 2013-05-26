@@ -1,0 +1,2 @@
+<?php
+return array ( 'qq' => array ( 'name' => 'QQ登录', 'order' => '1', 'enable' => '0', ), 'weibo' => array ( 'name' => '新浪微博', 'order' => '2', 'enable' => '0', ), 'msn' => array ( 'name' => 'MSN', 'order' => '3', 'enable' => '0', ), ); ?>

@@ -1,0 +1,47 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#gname").formValidator({onshow:"请输入会员组名称",onfocus:"请输入会员组名称",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入会员组名称"});
+		$("#price").formValidator({onshow:"请输入会员组购买价格",onfocus:"请输入会员组购买价格",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入会员组购买价格"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"只能填写大于等于0的整数。"});
+		$("#price2").formValidator({onshow:"请输入会员组购买价格",onfocus:"请输入会员组购买价格",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入会员组购买价格"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"只能填写大于等于0的整数。"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Group/insert')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="listorder" value="6">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td width="120">会员组名称：</td>
+				<td><input type="text" name="gname" id="gname" class="input-text"></td>
+			</tr>
+			<tr>
+				<td>允许会员自助升级：</td>
+				<td>
+					<input name="upgrade" type="radio" value="1" checked/>是&nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="upgrade" type="radio" value="0" />否&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td>开通积分升级</td>
+				<td>
+					<input name="usescore" type="radio" value="1" />是&nbsp;&nbsp;&nbsp;&nbsp;
+					<input name="usescore" type="radio" value="0" checked/>否
+				</td>
+			</tr>
+			<tr>
+				<td>会员组购买价格</td>
+				<td><input name="price" id="price" type="text" value="0" size="10"/>元/年 免费会员请填0 </td>
+			</tr>
+			<tr>
+				<td>会员组续费价格</td>
+				<td><input name="price2" id="price2" type="text" value="0" size="10"/>元/年 免费会员请填0 </td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

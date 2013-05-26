@@ -1,0 +1,76 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Member/vip')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="uname_like" value="1" />
+<input type="hidden" name="contacter_like" value="1" />
+<input type="hidden" name="tel_like" value="1" />
+<input type="hidden" name="address_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="gid">
+		<option value="">会员组</option>
+		<volist name="grouplist" id="vo">
+		<if condition="$vo.id gt 4"><option value="{$vo.id}" <eq name="Think.get.gid" value="$vo.id"> selected=selected</eq>>{$vo.gname}</option></if>
+		</volist>
+	</select>
+	<select name="fieldskey">
+		<option value="uname" <eq name="Think.get.fieldskey" value="uname"> selected=selected</eq>>会员名</option>
+		<option value="contacter" <eq name="Think.get.fieldskey" value="contacter"> selected=selected</eq>>联系人</option>
+		<option value="tel" <eq name="Think.get.fieldskey" value="tel"> selected=selected</eq>>联系电话</option>
+		<option value="address" <eq name="Think.get.fieldskey" value="address"> selected=selected</eq>>公司地址</option>
+	</select>
+	{$Think.get.start_time|show_date='start_time',###,0,0,'false'}- &nbsp;{$Think.get.end_time|show_date='end_time',###,0,0,'false'}
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Member/vip?action=delete')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="10" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Member/vip?action=add')}','添加VIP','600','300')">添加VIP</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="30"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="50">{:getSort('ID', 'id', $order, $sortImg)}</th>
+            <th width="100">会员名</th>
+            <th>会员组</th>
+            <th width="100">{:getSort('服务到期时间', 'viptotime', $order, $sortImg)}</th>
+            <th width="60">{:getSort('积分', 'credit', $order, $sortImg)}</th>
+            <th width="60">{:getSort('余额', 'money', $order, $sortImg)}</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td>{$vo.id}</td>
+            <td>{$vo.uname}</td>
+            <td>{$grouplist[$vo['gid']]['gname']} {$vo.amount|getGrade}</td>
+            <td><if condition="$vo.viptotime lt time()"><span class="red">{$vo.viptotime|date="Y-m-d",###}</span><else />{$vo.viptotime|date="Y-m-d",###}</if></td>
+            <td>{$vo.credit}</td>
+            <td>{$vo.money}</td>
+			<td>
+				<a href="javascript:doDialog('{:U('Member/vip?action=edit&id='.$vo['id'])}','编辑VIP','600','300')" title="编辑VIP">{:getIcon('edit','编辑VIP')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="10">
+			<input type="submit" class="button" name="dosubmit" value=" 撤销VIP " onclick="return confirm('你确定要撤销选中会员VIP资格吗？')'"/>
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

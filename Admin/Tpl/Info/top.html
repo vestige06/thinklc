@@ -1,0 +1,88 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Info/top')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="title_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="catid">
+		<option value="">分类</option>
+		<volist name="CATEGORY" id="vo">
+		<option value="{$vo.id}" <eq name="Think.get.catid" value="$vo.id"> selected=selected</eq>>{$vo.catname}</option>
+		</volist>
+	</select>
+	<select name="areaid">
+		<option value="">地区</option>
+		<volist name="AREA" id="vo">
+		<option value="{$vo.id}" <eq name="Think.get.areaid" value="$vo.id"> selected=selected</eq>>{$vo.aname}</option>
+		</volist>
+	</select>
+	<select name="istotime">
+		<option value="">服务是否到期</option>
+		<option value="1" <eq name="Think.get.istotime" value="1"> selected=selected</eq>>有效期内</option>
+		<option value="2" <eq name="Think.get.istotime" value="2"> selected=selected</eq>>过期</option>
+	</select>
+	{$Think.get.fromtime|show_date='fromtime',###,0,0,'false'}- &nbsp;{$Think.get.totime|show_date='totime',###,0,0,'false'}
+	<select name="fieldskey">
+		<option value="title" <eq name="Think.get.fieldskey" value="title"> selected=selected</eq>>标题</option>
+		<option value="uid" <eq name="Think.get.fieldskey" value="uid"> selected=selected</eq>>会员ID</option>
+	</select>
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Info/forbid')}" method="post">
+	<input type="hidden" name="field" value="topstatus" />
+	<table class="table">
+		<tr>
+			<th colspan="12" class="top_th">
+			</th>
+		</tr>
+		<tr>
+            <th width="20"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+			<th width="60">分类</th>
+			<th width="60">地区</th>
+			<th width="80">图片</th>
+			<th>标题</th>
+			<th width="50">会员ID</th>
+            <th width="40">格数</th>
+            <th width="60">类型</th>
+			<th width="100">{:getSort('服务到期时间', 'toptotime', $order, $sortImg)}</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td><a href="{:U('Info/top?catid='.$vo['catid'])}">{$CATEGORY[$vo['catid']]['catname']}</a></td>
+			<td><eq name="vo['areaid']" value="0">--<else /><a href="{:U('Info/top?areaid='.$vo['areaid'])}">{$AREA[$vo['areaid']]['aname']}</a></eq></td>
+			<td><eq name="vo['ispic']" value="0">--<else /><img src="{$vo.picurl}" align="absmiddle" width="60" onclick="preview(this.src)" class="cu"></eq></td>
+			<td><span style="color:{$vo.toptitle}">{$vo.title}</span>&nbsp;{:getToppic($vo['topstatus'],$vo['toptotime'],$vo['topnum'])}</td>
+			<td><a href="{:U('Info/top?fieldskey=uid&fieldsvalue='.$vo['uid'])}">{$vo['uid']}</a></td>
+            <td>{$vo.topnum}</td>
+            <td>{:getTopstatus($vo['topstatus'],$vo['toptotime'])}</td>
+			<td>{$vo.toptotime|date="Y-m-d",###}</td>
+			<td>
+				<a href="{:U('Info/topbuy?id='.$vo['id'])}" title="信息置顶">{:getIcon('set','信息置顶')}</a>
+				<a href="{:U('Info/edit?id='.$vo['id'])}" title="编辑信息">{:getIcon('edit','编辑信息')}</a>
+				<a href="{:U('Info/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此信息吗？')">{:getIcon('del','删除信息')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="12">
+			<input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 撤销置顶 " />
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

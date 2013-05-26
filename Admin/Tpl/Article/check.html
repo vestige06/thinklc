@@ -1,0 +1,92 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Article/check')}" method="get" id="searchform">
+    <input type="hidden" name="title_like" value="1" />
+    <input type="hidden" name="_order" id="_order" value="{$order}" />
+    <input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+    <div class="filed fl">
+        <select name="catid">
+            <option value="">分类</option>
+            <volist name="CATEGORY" id="vo">
+                <option value="{$vo.id}" <eq name="Think.get.catid" value="$vo.id"> selected=selected</eq>>{$vo.catname}</option>
+            </volist>
+        </select>
+        <select name="areaid">
+            <option value="">地区</option>
+            <volist name="AREA" id="vo">
+                <option value="{$vo.id}" <eq name="Think.get.areaid" value="$vo.id"> selected=selected</eq>>{$vo.aname}</option>
+            </volist>
+        </select>
+        <select name="isexpired">
+            <option value="">是否过期</option>
+            <option value="1" <eq name="Think.get.isexpired" value="1"> selected=selected</eq>>有效期内</option>
+            <option value="2" <eq name="Think.get.isexpired" value="2"> selected=selected</eq>>过期</option>
+        </select>
+        {$Think.get.fromtime|show_date='fromtime',###,0,0,'false'}- &nbsp;{$Think.get.totime|show_date='totime',###,0,0,'false'}
+        <select name="fieldskey">
+            <option value="title" <eq name="Think.get.fieldskey" value="title"> selected=selected</eq>>标题</option>
+            <option value="uid" <eq name="Think.get.fieldskey" value="uid"> selected=selected</eq>>会员ID</option>
+        </select>
+        <input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+    </div>
+    <div class="filed fl">
+        <input type="submit" name="dosubmit" class="button" value="" />
+    </div>
+</form>
+<div class="tablelist">
+    <form action="{:U('Article/resume')}" method="post">
+        <input type="hidden" name="field" value="status" />
+        <table class="table">
+            <tr>
+                <th colspan="12" class="top_th">
+                    <a class="add" href="{:U('Article/add')}">添加{$modulename}</a>
+                </th>
+            </tr>
+            <tr>
+                <th width="20"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+                <th width="60">分类</th>
+                <th width="60">地区</th>
+                <th width="80">图片</th>
+                <th>标题</th>
+                <th width="50">会员ID</th>
+                <th width="120">{:getSort('更新时间', 'edittime', $order, $sortImg)}</th>
+                <th width="80">过期时间</th>
+                <th width="40">状态</th>
+                <th>管理操作</th>
+            </tr>
+            <tbody>
+            <volist name="list" id="vo">
+                <tr>
+                    <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+                    <td><a href="{:U('Article/check?catid='.$vo['catid'])}">{$CATEGORY[$vo['catid']]['catname']}</a></td>
+                    <td><eq name="vo['areaid']" value="0">--<else /><a href="{:U('Article/check?areaid='.$vo['areaid'])}">{$AREA[$vo['areaid']]['aname']}</a></eq></td>
+                <td><eq name="vo['ispic']" value="0">--<else /><img src="{$vo.picurl}" align="absmiddle" width="60" onclick="preview(this.src)" class="cu"></eq></td>
+                <td>{$vo.title}&nbsp;{:getToppic($vo['topstatus'],$vo['toptotime'],$vo['topnum'])}</td>
+                <td><a href="{:U('Article/check?fieldskey=uid&fieldsvalue='.$vo['uid'])}">{$vo['uid']}</a></td>
+                <td>{$vo.edittime|date="Y-m-d H:i",###}</td>
+                <td><eq name="vo['expired']" value="0">永久有效<else />{$vo.expired|date="Y-m-d",###}</eq></td>
+                <td>{:getStatus($vo['status'], true, $vo['id'], 'status', array('未审核','正常'))}</td>
+                <td>
+                    <a href="{:U('Article/edit?id='.$vo['id'])}" title="编辑信息">{:getIcon('edit','编辑信息')}</a>
+                    <a href="{:U('Article/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此信息吗？')">{:getIcon('del','删除信息')}</a>
+                </td>
+                </tr>
+            </volist>
+            <tr><td colspan="12">
+                    <input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 通过审核 " />
+                    <input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 删除信息 " onclick="if(!confirm('你确定要删除选中信息吗？')){return false;}this.form.action='{:U('Article/delete')}';" />
+                    <input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 移动分类 " onclick="if($('#mcatid').val()==0){alert('请选择分类');$('#mcatid').focus();return false;}this.form.action='{:U('Article/move')}';" />
+                    <select name="mcatid" id="mcatid">
+                        <option value="0">信息分类</option>
+                        <volist name="CATEGORY" id="vo">
+                            <option value="{$vo.id}">{$vo.catname}</option>
+                        </volist>
+                    </select>
+                </td></tr>
+            </tbody>
+        </table>
+    </form>
+    <div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

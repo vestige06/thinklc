@@ -1,0 +1,111 @@
+<include file="Public:header" />
+<form name="myform" action="__SELF__" method="post" id="myform">
+<input type="hidden" name="item" value="{$item}">
+<div class="pad-10">
+	<div class="col-tab">
+		<ul class="tabBut cu-li">
+			<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',3,1);">基本设置</li>
+			<li id="tab_setting_2" onclick="SwapTab('setting','on','',3,2);">显示设置</li>
+			<li id="tab_setting_3" onclick="SwapTab('setting','on','',3,3);">推广设置</li>
+		</ul>
+		<div id="div_setting_1" class="contentList pad-10">
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="180">Title(模块标题)：</td>
+					<td><input name="setting[title]" type="text" value="{$setting.title}" size="60"/></td>
+				</tr>
+				<tr>
+					<td>Meta Keywords(模块关键词)：</td>
+					<td><textarea name="setting[keywords]" id="keywords" style="width:400px;height:50px;">{$setting.keywords}</textarea></td>
+				</tr>
+				<tr>
+					<td>Meta Description(模块描述)：</td>
+					<td><textarea name="setting[description]" id="description" style="width:400px;height:50px;">{$setting.description}</textarea></td>
+				</tr>
+				<tr>
+					<td>分类URL使用英文别名：</td>
+					<td>
+						<input type="radio" name="setting[cate_alias]" value="1" <if condition="$setting['cate_alias'] eq 1">checked</if>>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="setting[cate_alias]" value="0" <if condition="$setting['cate_alias'] eq 0">checked</if>>否{:tips('需要为每个分类设置英文别名')}
+					</td>
+				</tr>
+				<tr>
+					<td>地区URL使用英文别名：</td>
+					<td>
+						<input type="radio" name="setting[area_alias]" value="1" <if condition="$setting['area_alias'] eq 1">checked</if>>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="setting[area_alias]" value="0" <if condition="$setting['area_alias'] eq 0">checked</if>>否{:tips('需要为每个地区设置英文别名')}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="div_setting_2" class="contentList pad-10 hidden">
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="180">WAP模块列表页显示信息数：</td>
+					<td><input name="setting[wappagenum]" type="text" value="{$setting.wappagenum}" size="10"/> {:tips('仅对WAP模块有效，以下设置仅对网页版有效')}</td>
+				</tr>
+				<tr>
+					<td>列表页模版：</td>
+					<td>{$setting.listtemp|getListTemp}</td>
+				</tr>
+				<tr>
+					<td>列表页显示信息数：</td>
+					<td><input name="setting[pagenum]" type="text" value="{$setting.pagenum}" size="10"/> {:tips('模块首页、分类页、地区页、搜索页每页信息数<br>如果选择无限加载方式，则为每次加载信息数')}</td>
+				</tr>
+				<tr>
+					<td>列表页加载方式：</td>
+					<td>
+						<input type="radio" name="setting[loadtype]" value="0" <if condition="$setting['loadtype'] eq 0">checked</if>>分页加载&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="setting[loadtype]" value="1" <if condition="$setting['loadtype'] eq 1">checked</if>>单页无限加载
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="div_setting_3" class="contentList pad-10 hidden">
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="180">开通积分置顶：</td>
+					<td>
+						<input name="setting[top_credit]" type="radio" value="1" <if condition="$setting['top_credit'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[top_credit]" type="radio" value="0" <if condition="$setting['top_credit'] eq 0">checked</if>/>否{:tips('此处开启后会员组使用积分置顶才有效')}
+					</td>
+				</tr>
+				<tr>
+					<td>允许设置标题颜色：</td>
+					<td>
+						<input name="setting[top_title]" type="radio" value="1" <if condition="$setting['top_title'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[top_title]" type="radio" value="0" <if condition="$setting['top_title'] eq 0">checked</if>/>否（选择否则继承会员组设置）
+					</td>
+				</tr>
+				<tr>
+					<td>置顶基本价格：</td>
+					<td><input name="setting[top_price]" type="text" value="{$setting.top_price}" size="10"/>元/月 {:tips('以|分割栏目和首页价格')}</td>
+				</tr>
+				<tr>
+					<td>置顶优惠折扣：</td>
+					<td><input name="setting[top_off]" type="text" value="{$setting.top_off}" size="20"/> {:tips('以|分割购买月份和折扣')}</td>
+				</tr>
+				<tr>
+					<td width="180">开通积分推广：</td>
+					<td>
+						<input name="setting[spread_credit]" type="radio" value="1" <if condition="$setting['spread_credit'] eq 1">checked</if>/>是&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[spread_credit]" type="radio" value="0" <if condition="$setting['spread_credit'] eq 0">checked</if>/>否{:tips('此处开启后会员组使用积分置顶才有效')}
+					</td>
+				</tr>
+				<tr>
+					<td>推广基本价格：</td>
+					<td><input name="setting[spread_price]" type="text" value="{$setting.spread_price}" size="10"/>元/月</td>
+				</tr>
+				<tr>
+					<td>推广优惠折扣：</td>
+					<td><input name="setting[spread_off]" type="text" value="{$setting.spread_off}" size="20"/> {:tips('以|分割购买月份和折扣')}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="bk15"></div>
+		<input name="dosubmit" type="submit" value=" 提 交 " class="button" id="dosubmit">
+	</div>
+</div>
+</form>
+</body>
+</html>

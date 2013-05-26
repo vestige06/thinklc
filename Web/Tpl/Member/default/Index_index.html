@@ -1,0 +1,38 @@
+<include file="Public:header" />
+<div class='weiz'>
+	当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('/Member')}" >会员中心</a>
+</div>
+<div class="con w960 cent">
+ <table cellspacing=0 cellpadding=0 class="userindex">
+  <tr>
+	<td align="right" width="180"><img src="__PUBLIC__/Images/icon/member.gif" align="absmiddle"> 会员组：&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align='left'>
+		<span class="blue">{$groupname}</span>
+		<if condition="$uinfo['gid'] eq 4">&nbsp;&nbsp;<a href="{:U('Index/vip')}">升级会员组</a>
+		<else />（{$uinfo.viptotime|date="Y-m-d",###}过期）&nbsp;&nbsp;{$uinfo.amount|getGrade}&nbsp;&nbsp;<a href="{:U('Index/vip')}">续费或升级</a>
+		</if>
+	</td>
+  </tr>
+  <tr>
+	<td align="right"><img src="__PUBLIC__/Images/icon/money.gif" align="absmiddle"> 资金：&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td  align='left'>
+		<span class="red fb">{$uinfo.money} 元</span>&nbsp;&nbsp;
+		<a href="{:U('Finance/money')}">资金流水</a> | <a href="{:U('Finance/charge')}">充值记录</a> | <a href="{:U('Finance/pay')}">账户充值</a>
+	</td>
+  </tr>
+  <tr>
+	<td align="right"><img src="__PUBLIC__/Images/icon/credit.gif" align="absmiddle"> 积分：&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align="left"><span class="fb">{$uinfo.credit} 分</span>&nbsp;&nbsp;<a href="{:U('Finance/credit')}">积分纪录</a></td>
+  </tr>
+  {:W('ShowPost')}
+  <tr>
+	<td align="right">最后登录IP：&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align="left">{$uinfo.loginip}</td>
+  </tr>
+  <tr>
+	<td align="right">最后登录日期：&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align="left">{$uinfo.logintime|date="Y-m-d H:i",###}</td>
+  </tr>
+ </table>
+</div>
+<include file="$footer" />

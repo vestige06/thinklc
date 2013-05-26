@@ -1,0 +1,38 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Area/bupdate')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Area/add')}','添加地区','520','220')">添加地区</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="60">ID</th>
+            <th width="80">排序</th>
+            <th width="100">地区名称</th>
+            <th width="100">英文别名</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td>{$vo.id}</td>
+			<td><input name="area[{$vo['id']}][listorder]" type='text' size='3' value='{$vo.listorder}'></td>
+			<td><input name="area[{$vo['id']}][aname]" type='text' size='10' value='{$vo.aname}'></td>
+			<td><input name="area[{$vo['id']}][alias]" type='text' size='10' value='{$vo.alias}'></td>
+			<td>
+				<a href="javascript:doDialog('{:U('Area/edit?id='.$vo['id'])}','修改地区——{$vo['aname']}','520','220')" title="修改地区——{$vo['aname']}">{:getIcon('edit','修改地区')}</a>
+				<a href="{:U('Area/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此地区吗？')">{:getIcon('del','删除地区')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="12">
+			<input type="submit" value="更新地区" class="button" />{:tips('当英文别名为空时，系统会自动生成地区名的拼音作为英文别名')}
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

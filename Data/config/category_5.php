@@ -1,0 +1,2 @@
+<?php
+return array ( 1 => array ( 'id' => '1', 'moduleid' => '5', 'catname' => '默认分类', 'style' => '', 'alias' => 'fenlei', 'items' => '0', 'pid' => '0', 'listorder' => '1', 'seo_title' => '', 'seo_keywords' => '', 'seo_description' => '', ), ); ?>

@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Admin/add')}','添加管理员','520','220')">添加管理员</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="60">ID</th>
+            <th width="150">用户名</th>
+            <th width="80">状态</th>
+			<th width="150">角色</th>
+			<th width="150">最后登录IP</th>
+			<th width="180">最后登录时间</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.aname}</td>
+            <td>{:getStatus($vo['status'], true, $vo['id'], 'status')}</td>
+            <td><eq name="vo.founder" value="1"><font color="blue">创始人</font><else />{$rolelist[$vo['rid']]['rname']}</eq></td>
+			<td>{$vo.loginip}</td>
+			<td>{$vo.logintime|date="Y-m-d H:i:s",###}</td>
+			<td>
+				<eq name="vo.founder" value="1">
+					{:getIcon('edit','修改管理员',0)}
+					{:getIcon('del','删除管理员',0)}
+				<else />
+					<a href="javascript:doDialog('{:U('Admin/edit?id='.$vo['id'])}','修改管理员——{$vo['aname']}','520','220')" title="修改管理员——{$vo['aname']}">{:getIcon('edit','修改管理员')}</a>
+					<a href="{:U('Admin/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此管理员吗？')">{:getIcon('del','删除管理员')}</a>
+				</eq>
+			</td>
+		</tr>
+		</volist>
+		</tbody>
+	</table>
+</div>
+<include file="Public:footer" />

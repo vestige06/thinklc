@@ -1,0 +1,153 @@
+<include file="Public:header" />
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script>
+<!--
+	KindEditor.ready(function(K) {
+		var detaileditor;
+		detaileditor = K.create('#detail', {
+			newlineTag : 'br'
+		});
+	});
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#catid").formValidator({onshow:"请选择信息分类",onfocus:"请选择信息分类",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请选择信息分类"});
+		$("#title").formValidator({onshow:"请输入标题",onfocus:"请输入标题",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入标题"});
+		$("#uid").formValidator({onshow:"请输入会员ID",onfocus:"会员ID应该为大于等于0的整数"}).inputValidator({max:5,onerror:"会员ID应该为大于等于0的整数"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"会员ID应该为大于等于0的整数"});
+		$("#linkurl").formValidator({empty:true,onshow:"请填写链接URL",onfocus:"请填写链接URL"}).inputValidator({onerror:"请填写链接URL"}).regexValidator({regexp:"url",datatype:"enum",param:'i',onerror:"链接URL格式错误"});
+	})
+	function delPic(obj) {
+		var src = $('#picurl').val();
+		$.get("__APP__?m=Info&a=delpic&picurl="+src);
+		$('#picshow').html('');
+		$('#picurl').val('');
+	}
+//-->
+</script>
+<div class="common-form">
+	<div style="clear:both;"><a href="{:U('Info/index')}" class="navbtn">返回{$modulename}管理</a></div>
+	<form name="myform" id="myform" action="{:U('Info/insert')}" method="post">
+	<input type="hidden" name="status" value="1">
+	<input type="hidden" name="picurl" id="picurl" value="">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td align="right" width="130">信息分类：</td>
+				<td align='left'>  
+					<select name="catid" id='catid'>
+					<option value="0" selected>--选择分类--</option>
+					<volist name="CATEGORY" id="vo">
+					<option value="{$vo.id}">{$vo.catname}</option>
+					</volist>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">所在地区：</td>
+				<td align='left'>  
+					<select name="areaid" id='areaid'>
+					<option value="0" selected>--选择地区--</option>
+					<volist name="AREA" id="vo">
+					<option value="{$vo.id}">{$vo.aname}</option>
+					</volist>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">信息标题：</td>
+				<td align='left'><input type="text" name="title" id="title" onkeyup="checkLen(this,{$CFG.cell_titlelen},'titlelen');" onchange="checkLen(this,{$CFG.cell_titlelen},'titlelen');" size="30">
+					{:show_style('toptitle')} 不能超过{$CFG.cell_titlelen}个字符，还可以输入 <span id="titlelen" class="red">{$CFG.cell_titlelen}</span> 字
+				</td>
+			</tr>
+			<tr>
+				<td align="right">信息内容模式：</td>
+				<td align='left'>
+					<input type="radio" name="ispic" value="0" checked onclick="tp(0);">文字
+					<input type="radio" name="ispic" value="1" onclick="tp(1);">图片 （图片宽高：<span class="red">{$CFG['cell_width'][0]} X {$CFG.cell_height}</span> px，超过此宽度或高度将被自动裁剪。）
+				</td>
+			</tr>
+			<tr>
+				<td align="right">信息内容：</td>
+				<td align='left' id="td_txt" style="display:">
+					<textarea name='content' id='content' style="width:{$CFG['cell_width'][0]}px;height:{$CFG.cell_height}px;" onchange="checkLen(this,{$CFG.cell_contentlen},'contentlen');" onkeyup="checkLen(this,{$CFG.cell_contentlen},'contentlen');"></textarea>  不能超过{$CFG.cell_contentlen}个字符，还可以输入 <span id="contentlen" class="red">{$CFG.cell_contentlen}</span> 字
+				</td>
+				<td id="td_pic" style="display:none;">
+					<div class="waitpic cu" style="width:{$CFG['cell_width'][0]}px;height:{$CFG.cell_height}px;" onclick="if($('#picurl').val()!=''){preview($('#picurl').val());return false;}doDialog('{:U('Info/upload')}','上传图片','280','100');">
+						<span id="picshow"></span>
+					</div>
+					<div style="width:{$CFG['cell_width'][0]}px;text-align:center" class="mt10">
+						<span onclick="doDialog('{:U('Info/upload')}','上传图片','280','100')" class="cu"><img src="__PUBLIC__/Images/icon/img_upload.gif" title="上传"/></span>&nbsp;&nbsp;
+						<span onclick="delPic();" class="cu"><img src="__PUBLIC__/Images/icon/img_delete.gif" width="12" height="12" title="删除"/></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">过期时间：</td>
+				<td align='left'>{:show_date('expired','',0,0,'false')}
+					<select onchange="$('#expired').val(this.value);">
+						<option value="">快捷选择</option>
+						<option value="">长期有效</option>
+						<option value="{:date('Y-m-d',strtotime("+3 days"))}">3天</option>
+						<option value="{:date('Y-m-d',strtotime("+7 days"))}">一周</option>
+						<option value="{:date('Y-m-d',strtotime("+15 days"))}">半月</option>
+						<option value="{:date('Y-m-d',strtotime("+1 months"))}">一月</option>
+						<option value="{:date('Y-m-d',strtotime("+6 months"))}">半年</option>
+						<option value="{:date('Y-m-d',strtotime("+1 years"))}">一年</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">会员ID：</td>
+				<td align='left'>
+					<input name="uid" id="uid" value="0"> 
+					<eq name="CFG.contact_extend" value="1">
+					<input type="checkbox" name="extend" value='1' onclick="if(this.checked){ $('#contact').css('display','');}else{ $('#contact').css('display','none');}">扩展联系方式
+					{:tips('可以将联系方式直接放在信息内容里<br>也可以填写更加详细的联系方式，显示在信息栏右下角')}
+					</eq>
+				</td>
+			</tr>
+			<eq name="CFG.contact_extend" value="1">
+			<tbody id="contact" style="display:none;">
+			<tr>
+				<td align="right">联系人：</td>
+				<td align='left'><input name="contact[contacter]" value=""></td>
+			</tr>
+			<tr>
+				<td align="right">联系电话：</td>
+				<td align='left'><input name="contact[tel]" value=""></td>
+			</tr>
+			<eq name="CFG.contact_qq" value="1">
+			<tr>
+				<td align="right">QQ：</td>
+				<td align='left'><input name="contact[qq]" value=""></td>
+			</tr>
+			</eq>
+			<eq name="CFG.contact_msn" value="1">
+			<tr>
+				<td align="right">MSN：</td>
+				<td align='left'><input name="contact[msn]" value=""></td>
+			</tr>
+			</eq>
+			<eq name="CFG.contact_ali" value="1">
+			<tr>
+				<td align="right">阿里旺旺：</td>
+				<td align='left'><input name="contact[ali]" value=""></td>
+			</tr>
+			</eq>
+			</tbody>
+			</eq>
+			<tr>
+				<td align="right">详细介绍：</td>
+				<td align='left'><textarea name='detail' id='detail' style='height:400px;width:700px;'></textarea></td>
+			</tr>
+			<tr>
+				<td align="right">关键字：</td>
+				<td align='left'><input type="text" name="keyword" maxlength='10'> 信息关键字</td>
+			</tr>
+			<tr>
+				<td align="right">外链：</td>
+				<td align='left'><input type="text" name="linkurl" id="linkurl" value=''> 该信息在您网站上的连接，http:// 开头，如无请留空</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

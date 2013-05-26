@@ -1,0 +1,44 @@
+<include file="Public:header" />
+<div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('index/oauth')}">一键登录</a></div>
+<div class="con w960 cent">
+<table align="center" width='930' border="0" cellspacing="0" cellpadding="0" class='table'>
+ <tr class="thead">
+  <td>头像</td>
+  <td>昵称</td>
+  <td>绑定时间</td>
+  <td>上次登录</td>
+  <td>登录次数</td>
+  <td>平台</td>
+  <td>操作</td>
+ </tr> 
+ <volist name="oauth" id="vo">
+ <eq name="vo.enable" value="1">
+ <present name="list[$key]">
+ <tr height="80">
+  <td><if condition="$list[$key]['url'] neq ''"><a href="{$list[$key]['url']}" target="_blank"></if><img src="<if condition="$list[$key]['avatar'] neq ''">{$list[$key]['avatar']}<else />__PUBLIC__/Images/oauth/avatar.png</if>"><if condition="$list[$key]['url'] neq ''"></a></if></td>
+  <td><if condition="$list[$key]['url'] neq ''"><a href="{$list[$key]['url']}" target="_blank"></if>{$list[$key]['nickname']}<if condition="$list[$key]['url'] neq ''"></a></if></td>
+  <td>{$list[$key]['addtime']|date="Y-m-d H:i",###}</td>
+  <td>{$list[$key]['logintime']|date="Y-m-d H:i",###}</td>
+  <td>{$list[$key]['logintimes']}</td>
+  <td>{$vo.name}</td>
+  <td><img src="__PUBLIC__/Images/oauth/{$key}.png" align="absmiddle"/> <a href="{:U('Index/oauth?action=delete&id='.$list[$key]['id'])}" onclick="return confirm('确定要解除绑定吗？');">解除绑定</a></td>
+ </tr>
+ <else />
+ <tr>
+ <td>-</td>
+ <td>-</td>
+ <td>未绑定</td>
+ <td>-</td>
+ <td>-</td>
+ <td>{$vo.name}</td>
+ <td><img src="__PUBLIC__/Images/oauth/{$key}.png" align="absmiddle"/> <a href="{:U('Oauth/connect?site='.$key)}">立即绑定</a></td>
+ </tr>
+ </present>
+ </eq>
+ </volist>
+ <tr>
+  <td colspan='7'>{$page}</td> 
+ </tr>
+</table>
+</div>
+<include file="$footer" />

@@ -1,0 +1,2 @@
+<?php
+return array ( 3 => array ( 'id' => '3', 'moduleid' => '6', 'catname' => 'fdsa', 'style' => '', 'alias' => 'fads', 'items' => '0', 'pid' => '0', 'listorder' => '0', 'seo_title' => '', 'seo_keywords' => '', 'seo_description' => '', ), 4 => array ( 'id' => '4', 'moduleid' => '6', 'catname' => 'fdsafads', 'style' => '', 'alias' => 'fasdfasd', 'items' => '0', 'pid' => '0', 'listorder' => '0', 'seo_title' => '', 'seo_keywords' => '', 'seo_description' => '', ), ); ?>

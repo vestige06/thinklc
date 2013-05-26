@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset={DT_CHARSET}"/>
+<title>UC安全验证</title>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidator.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidatorregex.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/dialog.js"></script>
+<script>
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#upwd").formValidator({onshow:"请输入密码",onfocus:"密码应该为6-20位之间",oncorrect:"输入正确"}).inputValidator({min:6,max:20,onerror:"密码应该为6-20位之间"});
+		$("#upwd2").formValidator({onshow:"请输入确认密码",onfocus:"两次密码输入不同",oncorrect:"密码输入一致"}).compareValidator({desid:"upwd",operateor:"=",onerror:"两次密码输入不同"});
+	})
+//-->
+</script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/dialog.css" />
+<style>
+* {word-break:break-all;font-family:Verdana,Arial;}
+body {margin:0;font-size:12px;color:#333333;background:#FFFFFF;}
+input,select,textarea,td {font-size:12px;}
+img {border:none;}
+ul li {list-style-type:none;}
+ol li {list-style-type:decimal;}
+ul,form {margin:0px;padding:0px;}
+a:link,a:visited,a:active {color:#1C6797;text-decoration:none;}
+a:hover {color:#FF6600;}
+.m {width:640px;margin:auto;}
+.t {border-bottom:#EEEEEE 1px solid;padding:20px 0 0 0;}
+.u {padding:15px 0 0 6px;border-top:#CCCCCC 1px dotted;}
+.l {background:#E2F4FF;padding:20px;margin:0 85px 0 85px;}
+.r {background:#E2F4FF;padding:20px;margin:0 85px 0 85px;text-align:center;}
+.i {width:150px;font-size:13px;}
+.s {background:#ECECEC;padding:1px;}
+.c {background:#ECECEC;padding:1px;}
+.b {font-weight:bold;padding:3px;background:#ECECEC;}
+</style>
+</head>
+<body>
+<div class="m">
+	<br/>
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+			<td><a href="{$Think.config.site_url}"><img src="__PUBLIC__/Images/logo.gif" alt="{$Think.config.site_name}"/></a></td>
+			<td width="70" align="center"><img src="__PUBLIC__/Images/oauth/avatar.png" width="50"/></td>
+			<td>
+				来自 <span style="color:#FF6600;">{$Think.config.site_name}</span> 的 {$Think.session.uname}，您好!
+				<div style="padding-top:5px;">通过安全验证后，就可以与Ucenter的其他应用同步了</div>
+			</td>
+		</tr>
+	</table>
+
+	<br/>
+	<div class="u">
+		<strong>已经注册Ucenter：</strong>请输入其他Ucenter应用的登录密码（比如论坛的登录密码）<br>
+		<strong>尚未注册Ucenter：</strong>请输入您在ThinkLC的登录密码
+	</div>
+	<br/>
+	
+	<div class="l">
+		<form method="post" action="__SELF__" name="myform" id="myform">
+			<table cellpadding="3" cellspacing="4" width="100%">
+				<tr>
+					<td align="right">密 码：</td>
+					<td><input name="upwd" type="password" id="upwd" class="i"/></td>
+				</tr>
+				<tr>
+					<td align="right">确认密码：</td>
+					<td><input name="upwd2" type="password" id="upwd2" class="i"/></td>
+				</tr>
+				<tr>
+					<td width="80"> </td>
+					<td>
+						<input type="submit" name="dosubmit" value=" 验 证 " class="s"/>
+					</td>
+				</tr>
+			</table>
+		</form>	
+	</div>
+	<br/><br/>	
+</div>
+</body>
+</html>

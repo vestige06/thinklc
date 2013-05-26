@@ -1,0 +1,29 @@
+﻿<include file="Public:header" />
+<div class="main">
+  <div class='weiz'>当前位置： <a href="/" >网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">客服中心</a>&nbsp;>&nbsp;问题及解答</div>
+  <table align="center" width='930' border="0" cellspacing="0" cellpadding="0" style='margin:20px auto 0;border:0px;line-height:35px;'>
+    <tr>
+		<td align="right" width="100">问题分类：</td>
+		<td align='left'>{$etype[$row['tid']]['typename']}</td>
+    </tr>
+    <tr>
+		<td align="right" width="100">问题标题：</td>
+		<td align='left'>{$row.title}</td>
+    </tr>
+	<tr>
+		<td align="right" valign="top">问题描述：</td>
+		<td align='left'>{$row.content|nl2br}</td>
+	</tr>
+    <tr>
+      <td align="right">受理状态：</td>
+      <td><if condition="$row.status eq 1"><span class="green">已解决</span><else /><span class="red">待受理</span></if></td>
+    </tr>
+	<if condition="$row.status eq 1">
+    <tr>
+      <td align="right">问题回复：</td>
+      <td>{$row.answer}</td>
+    </tr>
+	</if>
+  </table>
+</div>
+<include file="$footer" />

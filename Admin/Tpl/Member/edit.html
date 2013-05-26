@@ -1,0 +1,54 @@
+<include file="Public:header" />
+<script>
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#uname").formValidator({onshow:"请输入用户名",onfocus:"请输入用户名",oncorrect:"输入正确"}).inputValidator({min:4,max:20,onerror:"用户名应该为4-20位之间"}).regexValidator({regexp:"ps_username",datatype:"enum",param:'i',onerror:"只能包括汉字、数字、字母、下划线类型。"});
+		$("#upwd").formValidator({empty:true,onshow:"不修改密码请留空",onfocus:"密码应该为6-20位之间",oncorrect:"输入正确"}).inputValidator({min:6,max:20,onerror:"密码应该为6-20位之间"});
+		$("#upwd2").formValidator({onshow:"不修改密码请留空",onfocus:"两次密码输入不同",oncorrect:"密码输入一致"}).compareValidator({desid:"upwd",operateor:"=",onerror:"两次密码输入不同"});
+		$("#email").formValidator({onshow:"请输入邮箱",onfocus:"请输入邮箱",oncorrect:"请输入邮箱"}).regexValidator({regexp:"email",datatype:"enum",param:'i',onerror:"邮箱格式错误"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Member/update')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="id" value="{$vo.id}">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td width="120">用户名：</td>
+				<td><input name="uname" id="uname" type="text" size="20" value="{$vo.uname}"/></td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td><input type="password" name="upwd" id="upwd" size="20" class="input-text"></td>
+			</tr>
+			<tr>
+				<td>确认密码：</td>
+				<td><input type="password" name="upwd2" id="upwd2" size="20" class="input-text"></td>
+			</tr>
+			<tr>
+				<td>邮箱：</td>
+				<td><input name="email" type="text" id="email" size="20" value="{$vo.email}"/></td>
+			</tr>
+			<tr>
+				<td>联系人：</td>
+				<td><input type="text" name="contacter" size="20" value="{$vo.contacter}"></td>
+			</tr>
+			<tr>
+				<td>联系电话：</td>
+				<td><input type="text" name="tel" size="40" value="{$vo.tel}"></td>
+			</tr>
+			<tr>
+				<td>公司（店铺）名称：</td>
+				<td><input type="text" name="company" size="40" value="{$vo.company}"></td>
+			</tr>
+			<tr>
+				<td>公司（店铺）地址：</td>
+				<td><input type="text" name="address" size="40" value="{$vo.address}"></td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

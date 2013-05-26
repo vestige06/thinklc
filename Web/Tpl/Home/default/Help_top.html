@@ -1,0 +1,123 @@
+<include file="Public:header" />
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz"><h2>当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">帮助中心</a>&nbsp;>&nbsp;信息置顶说明</h2></div>
+		<volist name="module" id="vo">
+		<table cellpadding="6" cellspacing="1" width="98%" bgcolor="#E3EEF5" align="center" class="mt10">
+		<eq name="vo['id']" value="6">
+			<?php
+				$spread_off = array();
+				$spread_off = getPrice($CFGS[$vo['id']]['spread_off']);
+				$top_off = array();
+				$top_off = getPrice($CFGS[$vo['id']]['top_off']);
+			?>
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb px14 red" colspan="5">{$vo.mtitle} - 置顶基本价格 (购买月份按自然月计算)</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td width="20%">置顶价格</td>
+				<td colspan="4">{$CFGS[$vo['id']]['top_price']} 元/月</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td width="20%">置顶优惠折扣</td>
+				<td colspan="4">
+				<volist name="top_off" id="vol">
+				{$vol[1]}折 / {$vol[0]}个月&nbsp;&nbsp;&nbsp;&nbsp;
+				</volist>
+				</td>
+			</tr>
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb px14 red" colspan="5">{$vo.mtitle} - 商家推广基本价格 (购买月份按自然月计算)</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td width="20%">推广价格</td>
+				<td colspan="4">{$CFGS[$vo['id']]['spread_price']} 元/月</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td width="20%">推广优惠折扣</td>
+				<td colspan="4">
+				<volist name="spread_off" id="vol">
+				{$vol[1]}折 / {$vol[0]}个月&nbsp;&nbsp;&nbsp;&nbsp;
+				</volist>
+				</td>
+			</tr>
+		<else/>
+			<?php
+				$top_price = $top_off_1 = $top_off_2 = $top_off_3 = $top_off_5 = array();
+				$top_price = getPrice($CFGS[$vo['id']]['top_price']);
+				$top_off_1 = getPrice($CFGS[$vo['id']]['top_off_1']);
+				$top_off_2 = getPrice($CFGS[$vo['id']]['top_off_2']);
+				$top_off_3 = getPrice($CFGS[$vo['id']]['top_off_3']);
+				$top_off_5 = getPrice($CFGS[$vo['id']]['top_off_5']);
+			?>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td class="fb px14 red" colspan="5">{$vo.mtitle} - 置顶基本价格 (购买月份按自然月计算)</td>
+			</tr>
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb" width="20%">置顶方式\置顶格数</td>
+				<td class="fb" width="20%">1格</td>
+				<td class="fb" width="20%">2格</td>
+				<td class="fb" width="20%">3格</td>
+				<td class="fb" width="20%">通栏5格</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>分类置顶</td>
+				<td>{$top_price[0][0]} 元/月</td>
+				<td>{$top_price[1][0]} 元/月</td>
+				<td>{$top_price[2][0]} 元/月</td>
+				<td>{$top_price[3][0]} 元/月</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>首页置顶/分类置顶</td>
+				<td>{$top_price[0][1]} 元/月</td>
+				<td>{$top_price[1][1]} 元/月</td>
+				<td>{$top_price[2][1]} 元/月</td>
+				<td>{$top_price[3][1]} 元/月</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td class="fb px14 red" colspan="5">{$vo.mtitle} - 置顶优惠折扣</td>
+			</tr>
+			<tr bgcolor="#F1F7FC" align="center">
+				<td class="fb" width="20%">置顶格数</td>
+				<td class="fb" width="20%">1格</td>
+				<td class="fb" width="20%">2格</td>
+				<td class="fb" width="20%">3格</td>
+				<td class="fb" width="20%">通栏5格</td>
+			</tr>
+			<tr bgcolor="#FFFFFF" align="center">
+				<td>优惠折扣</td>
+				<td>
+				<volist name="top_off_1" id="vol">
+				{$vol[1]}折 / {$vol[0]}个月<br>
+				</volist>
+				</td>
+				<td>
+				<volist name="top_off_2" id="vol">
+				{$vol[1]}折 / {$vol[0]}个月<br>
+				</volist>
+				</td>
+				<td>
+				<volist name="top_off_3" id="vol">
+				{$vol[1]}折 / {$vol[0]}个月<br>
+				</volist>
+				</td>
+				<td>
+				<volist name="top_off_5" id="vol">
+				{$vol[1]}折 / {$vol[0]}个月<br>
+				</volist>
+				</td>
+			</tr>
+		</eq>
+		</table>
+		</volist>
+	</div>
+
+	<div class="pright">
+		<dl class="jingp">
+			<dt>广告赞助<span></span></dt>
+			<dd><script type="text/javascript" src="__PUBLIC__/ads/detail2.js"></script></dd> 
+		</dl>
+	</div> 
+	<div style="clear:both"></div>
+</div>
+<include file="Public:footer" />

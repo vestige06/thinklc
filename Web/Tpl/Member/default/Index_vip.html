@@ -1,0 +1,147 @@
+<include file="Public:header" />
+<script language="JavaScript">
+<!--
+var gprice = new Array(); 
+var gprice2 = new Array(); 
+<volist name="grouplist" id="vo">
+gprice[{$vo['id']}] = {$vo.price};
+gprice2[{$vo['id']}] = {$vo.price2};
+</volist>
+function regrade(gid) {
+	document.getElementById('gid').value = gid;
+	document.getElementById('money').value = gprice2[gid];
+}
+function upgrade(gid) {
+	document.getElementById('gid').value = gid;
+	document.getElementById('money').value = gprice[gid];
+}
+//-->
+</script>
+<div class='weiz'>
+	当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Index/vip')}">会员升级</a>
+</div>
+<div class="con w960 cent">
+ <table cellspacing=0 cellpadding=0 class="userindex">
+  <input type="hidden" name="type" value="editinfo"/>
+  <tr>
+	<td align="right" width="180">您当前的会员级别：&nbsp;&nbsp;</td>
+	<td align='left'>
+		<span class="blue fb">{$groupname}</span>
+		<if condition="$uinfo['gid'] gt 4">&nbsp;&nbsp;（{$uinfo.viptotime|date="Y-m-d",###}过期）</if>
+	</td>
+  </tr>
+ </table>
+ <table cellpadding="6" cellspacing="1" width="840" bgcolor="#E3EEF5" align="center">
+	<tr bgcolor="#F1F7FC" align="center">
+		<td class="fb" width="20%">服务范围\会员组</td>
+		<volist name="grouplist" id="vo">
+		<td class="fb" width="{$width}%">{$vo.gname}</td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>收费模式</td>
+		<volist name="grouplist" id="vo">
+		<td><eq name="vo['id']" value="4"><span class="green">免费</span><else/><span class="red">按年</span></eq></td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>年费</td>
+		<volist name="grouplist" id="vo">
+		<td><eq name="vo['id']" value="4">--<else/><span class="red">{$vo.price} 元/年</span><br>（续费{$vo.price2}元/年）</eq></td>
+		</volist>
+	</tr>
+	<form method="post" action="__SELF__">
+	<input name="gid" type="hidden" id="gid" value="0"/>
+	<input name="money" type="hidden" id="money" value="0"/>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>支付方式</td>
+		<volist name="grouplist" id="vo">
+		<td>
+			<eq name="vo['id']" value="4">
+				--
+			<else/>
+				<input type="radio" name="paytype[{$vo['id']}]" value="0" checked>资金&nbsp;&nbsp;
+				<eq name="vo['usescore']" value="1"><input type="radio" name="paytype[{$vo['id']}]" value="1">积分</eq>
+			</eq>
+		</td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td height="40">升级或续费</td>
+		<volist name="grouplist" id="vo">
+		<td>
+			<if condition="($vo['id'] eq 4) OR ($vo['id'] lt $ugid)">--
+			<elseif condition="($vo['id'] eq $ugid) AND ($vo['upgrade'] eq 1)"/>
+				<input type="submit" name="dosubmit" onclick="if(!confirm('你确定要续费一年会员组吗？确定后会扣除费用')){return false;}regrade({$vo['id']});" value="续 费"/>
+			<elseif condition="$vo['upgrade'] eq 1"/>
+				<input type="submit" name="dosubmit" onclick="if(!confirm('你确定要升级会员组吗？确定后会扣除费用')){return false;}upgrade({$vo['id']});" value="升 级"/>
+			<else/><span class="red">禁止自助升级</span>
+			</if>
+		</td>
+		</volist>
+	</tr>
+	</form>
+	<volist name="modules" id="vo">
+	<if condition="$vo['id'] gt 4">
+	<tr bgcolor="#FFFFFF" align="center">
+		<td colspan="{$colspan}" class="blue">{$vo.mtitle}模块</td>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>每日发布信息数量</td>
+		<volist name="groupsetting" id="vol">
+		<td><?php echo $vol[strtolower($vo['mname']).'_count']?></td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>信息不需审核</td>
+		<volist name="groupsetting" id="vol">
+		<td><img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_pass']?>.gif" align="absmiddle"></td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>自定义信息标题</td>
+		<volist name="groupsetting" id="vol">
+		<td><img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_title']?>.gif" align="absmiddle"></td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>发布图片信息</td>
+		<volist name="groupsetting" id="vol">
+		<td>
+					<eq name="CFGS[$vo['id']]['top_pic']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_pic']?>.gif" align="absmiddle">
+					</eq>
+		</td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>添加详细信息</td>
+		<volist name="groupsetting" id="vol">
+		<td>
+					<eq name="CFGS[$vo['id']]['top_detail']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_detail']?>.gif" align="absmiddle">
+					</eq>
+		</td>
+		</volist>
+	</tr>
+	<tr bgcolor="#FFFFFF" align="center">
+		<td>允许信息外链</td>
+		<volist name="groupsetting" id="vol">
+		<td>
+					<eq name="CFGS[$vo['id']]['top_link']" value="">
+						--
+					<else/>
+						<img src="__PUBLIC__/Images/icon/<?php echo $vol[strtolower($vo['mname']).'_link']?>.gif" align="absmiddle">
+					</eq>
+		</td>
+		</volist>
+	</tr>
+	</if>
+	</volist>
+ </table>
+</div>
+<include file="$footer" />

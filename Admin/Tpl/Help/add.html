@@ -1,0 +1,56 @@
+<include file="Public:header" />
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script>
+<!--
+	KindEditor.ready(function(K) {
+		var answereditor;
+		answereditor = K.create('#answer', {
+			newlineTag : 'br'
+		});
+	});
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#title").formValidator({onshow:"请输入标题",onfocus:"请输入标题",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入标题"});
+		$("#tid").formValidator({onshow:"请选择问题分类",onfocus:"请选择问题分类",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请选择问题分类"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<div style="clear:both;"><a href="{:U('Help/index')}" class="navbtn">返回帮助管理</a></div>
+	<form name="myform" id="myform" action="{:U('Help/insert')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="status" value="1">
+	<input type="hidden" name="answertime" value="{:time()}">
+		<table width="100%" class="table_form contentWrap">
+		<tr>
+			<td width="120">问题分类：</td>
+			<td>
+				<select name="tid" id="tid">
+					<option value="">选择分类</option>
+					<volist name="etype" id="vo">
+					<option value="{$vo.id}">{$vo.typename}</option>
+					</volist>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>标题：</td>
+			<td><input name="title" id="title" type="text" size="60"/></td>
+		</tr>
+		<tr>
+			<td>问题描述：</td>
+			<td><textarea name='content' id='content' style='height:100px;width:400px;'></textarea></td>
+		</tr>
+		<tr>
+			<td>回答：</td>
+			<td><textarea name='answer' id='answer' style='height:400px;width:700px;'></textarea></td>
+		</tr>
+		<tr>
+			<td>前台显示：</td>
+			<td><input name="display" type="radio" value="1" checked/>是&nbsp;&nbsp;<input name="display" type="radio" value="0"/>否</td>
+		</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

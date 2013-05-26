@@ -1,0 +1,35 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Webpage/order')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="{:U('Webpage/add')}">添加单页</a><span></span>
+				<a href="javascript:void(0)" onclick="$('#myform').submit();" class="sort">排序</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="80">排序</th>
+            <th width="60">ID</th>
+            <th width="100">标题</th>
+            <th width="100">英文别名</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+			<td><input name="listorders[{$vo['id']}]" type='text' size='3' value='{$vo.listorder}'></td>
+            <td>{$vo.id}</td>
+            <td>{$vo.title}</td>
+            <td>{$vo.alias}</td>
+			<td>
+				<a href="{:U('Webpage/edit?id='.$vo['id'])}" title="修改单页">{:getIcon('edit','修改单页')}</a>
+				<a href="{:U('Webpage/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此单页吗？')">{:getIcon('del','删除单页')}</a>
+			</td>
+		</tr>
+		</volist>
+		</tbody>
+	</table>
+	</form>
+</div>
+<include file="Public:footer" />

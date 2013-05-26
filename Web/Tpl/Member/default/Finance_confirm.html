@@ -1,0 +1,41 @@
+<include file="Public:header" />
+<div class="main">
+ <div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}" >会员中心</a>&nbsp;>&nbsp;<a href="{:U('Finance/pay')}" >会员充值</a>&nbsp;>&nbsp;充值确认</div>
+ <table align="center" width='930' border="0" cellspacing="0" cellpadding="0" style='margin:20px auto 0;border:0px;line-height:35px;font-size:14px;'>
+  <tr>
+	<td align="right" width="120">支付平台：</td>
+	<td align='left'><eq name="Think.post.paystyle" value="1"><img src="__PUBLIC__/Images/pay/{$Think.post.payid}.gif" align="absmiddle"/><else/>{$data.bank}</eq></td>
+  </tr>
+  <tr>
+	<td align="right">充值金额：</td>
+	<td align='left' class="green fb">{$data.money} 元</td>
+  </tr>
+  <tr>
+	<td align="right">手续费：</td>
+	<td  align='left' class="green fb">{$data.fee} 元</td>
+  </tr>
+  <tr>
+	<td align="right">实收金额：</td>
+	<td align="left" class="red fb">{$data.amount} 元<present name="currency"> （币种:{$currency}）</present></td>
+  </tr>
+  <tr>
+	<td align="right"></td>
+	<td align="left">
+	<eq name="Think.post.paystyle" value="1">
+		- 点击确认充值，系统将跳转至第三方支付平台，支付成功后系统将自动为您入账。<br>
+		- 如果在支付过程中遇到任何问题，请及时与客服中心取得联系，以便及时处理。
+	<else/>
+		- 订单提交成功，请在付款成功后联系客服审核订单。<br>
+		- 如果在支付过程中遇到任何问题，请及时与客服中心取得联系，以便及时处理。
+	</eq>
+	</td>
+  </tr>
+  <eq name="Think.post.paystyle" value="1">
+  <tr>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	<td align="left" style='padding-left:5px;'>{$code}</td>
+  </tr>
+  </eq>
+ </table>
+</div>
+<include file="$footer" />

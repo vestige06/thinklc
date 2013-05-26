@@ -1,0 +1,52 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+var orderurl = "{:U('Link/order')}";
+var resumeurl = "{:U('Link/resume?field=status')}";
+var delurl = "{:U('Link/delete')}";
+-->
+</script>
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Link/order')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Link/add')}','添加链接','520','220')">添加链接</a><span></span>
+				<a class="add" href="{:U('Etype/index?item=link')}">链接分类</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="40"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="80">排序</th>
+            <th width="120">分类</th>
+            <th width="200">网站名称</th>
+            <th width="80">状态</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td><input name="listorders[{$vo['id']}]" type='text' size='3' value='{$vo.listorder}'></td>
+			<td><a href="{:U('Link/index?tid='.$vo['tid'])}">{$etype[$vo['tid']]['typename']}</a></td>
+            <td><a href="{$vo.linkurl}" target="_blank">{$vo.title}</a></td>
+            <td>{:getStatus($vo['status'], true, $vo['id'], 'status', array('待审核','已审核'))}</td>
+			<td>
+				<a href="javascript:doDialog('{:U('Link/edit?id='.$vo['id'])}','修改链接','520','220')" title="修改链接">{:getIcon('edit','修改链接')}</a>
+				<a href="{:U('Link/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此链接吗？')">{:getIcon('del','删除链接')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr>
+			<td colspan="10">
+				<input type="submit" class="button" name="dosubmit" value=" 排 序 " onclick="this.form.action=orderurl"/>
+				<input type="submit" class="button" name="dosubmit" value=" 审 核 " onclick="this.form.action=resumeurl"/>
+				<input type="submit" class="button" name="dosubmit" value=" 删 除 " onclick="if(confirm('确定要删除选中链接吗？')){this.form.action=delurl}else{return false;}"/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

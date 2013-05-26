@@ -1,0 +1,125 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Member/index')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="uname_like" value="1" />
+<input type="hidden" name="contacter_like" value="1" />
+<input type="hidden" name="tel_like" value="1" />
+<input type="hidden" name="address_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="gid" >
+		<option value="">会员组</option>
+		<volist name="grouplist" id="vo">
+		<if condition="$vo.id neq 3"><option value="{$vo.id}" <eq name="Think.get.gid" value="$vo.id"> selected=selected</eq>>{$vo.gname}</option></if>
+		</volist>
+	</select>
+	<select name="fieldskey">
+		<option value="uname" <eq name="Think.get.fieldskey" value="uname"> selected=selected</eq>>会员名</option>
+		<option value="contacter" <eq name="Think.get.fieldskey" value="contacter"> selected=selected</eq>>联系人</option>
+		<option value="tel" <eq name="Think.get.fieldskey" value="tel"> selected=selected</eq>>联系电话</option>
+		<option value="address" <eq name="Think.get.fieldskey" value="address"> selected=selected</eq>>公司地址</option>
+	</select>
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Member/delete')}" method="post" id="myform" onsubmit="return check()">
+	<input type="hidden" name="url" id="url" value="">
+	<input type="hidden" name="type" id="type" value="0">
+	<table class="table">
+		<tr>
+			<th colspan="10" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Member/add')}','添加会员','600','400')">添加会员</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="40"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="60">{:getSort('ID', 'id', $order, $sortImg)}</th>
+            <th width="100">会员名</th>
+            <th width="120">{:getSort('最后登陆', 'logintime', $order, $sortImg)}</th>
+            <th width="60">联系人</th>
+            <th width="120">联系电话</th>
+            <th width="80">{:getSort('积分', 'credit', $order, $sortImg)}</th>
+            <th width="80">{:getSort('余额', 'amount', $order, $sortImg)}</th>
+            <th width="80">会员组</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td>{$vo.id}</td>
+            <td>{$vo.uname}</td>
+            <td><eq name="vo.logintime" value="0"><span class="red">从未登陆</span><else />{$vo.logintime|date="Y-m-d H:i",###}</eq></td>
+            <td>{$vo.contacter}</td>
+            <td>{$vo.tel}</td>
+            <td>{$vo.credit}</td>
+            <td>{$vo.money}</td>
+            <td>{$grouplist[$vo['gid']]['gname']}</td>
+			<td>
+				<a href="javascript:doDialog('{:U('Member/edit?id='.$vo['id'])}','编辑会员','600','340')" title="编辑会员">{:getIcon('edit','编辑会员')}</a>
+				<a href="{:U('Member/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此会员吗？')">{:getIcon('del','删除会员')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="10">
+			<input type="submit" class="button" value=" 删除会员 " onclick="$('#url').val('');return confirm('你确定要删除选中会员吗？')"/>&nbsp;
+			<input type="submit" class="button" value=" 禁止访问 " onclick="$('#url').val('');this.form.action='{:U('Member/move?mgid=1')}'"/>&nbsp;
+			<input type="submit" class="button" value=" 设置 VIP " onclick="$('#type').val('1');$('#url').val('{:U('Member/vip?action=add')}')"/>&nbsp;
+			<input type="submit" class="button" value=" 资金增减 " onclick="$('#type').val('2');$('#url').val('{:U('Money/add')}')"/>&nbsp;
+			<input type="submit" class="button" value=" 积分奖惩 " onclick="$('#type').val('3');$('#url').val('{:U('Credit/add')}')"/>&nbsp;
+			<input type="submit" class="button" value=" 移 动 至 " onclick="if($('#mgid').val()==0){alert('请选择会员组');$('#mgid').focus();return false;}$('#url').val('');this.form.action='{:U('Member/move')}';"/> 
+			<select name="mgid" id="mgid">
+				<option value="0">会员组</option>
+				<volist name="grouplist" id="vo">
+				<if condition="$vo.id lt 5"><option value="{$vo.id}">{$vo.gname}</option></if>
+				</volist>
+			</select>
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<script>
+<!--
+function check() {
+	var url = $('#url').val();
+	if(url=='') return true;
+	else {
+		var type = $('#type').val();
+		if(type==1) title = '添加VIP';
+		else if(type==2) title = '资金增减';
+		else if(type==3) title = '积分奖惩';
+		else {alert('类型错误');return false;}
+		doDialog(url,title,'600','300');
+		$('#myform').submit(function() {
+			jQuery.ajax({
+				url: "{:U('Member/vip?action=uname')}",
+				data: $('#myform').serialize(),
+				type: "POST",
+				success: function (data) {
+						//防止回调延时，窗口关闭了又再次打开
+						if($('#url').val()=='') window.top.art.dialog({id:'doDialog'}).close();
+						else {
+							var d = window.top.art.dialog({id:'doDialog'}).data.iframe;
+							d.document.getElementById('uname').value = data;
+						}
+				}
+			});
+		});
+		return false;
+	}
+}
+//-->
+</script>
+<include file="Public:footer" />

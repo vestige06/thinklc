@@ -1,0 +1,10 @@
+<div class="w960 cent link">
+	<volist name="linktype" id="vo">
+	<div class="linktype clear">{$vo.typename}：</div>
+	<ul>
+		<volist name="links" id="link">
+		<if condition="($link['tid'] eq $vo['id']) AND ($link['status'] eq 1)"><li><a href="{$link.linkurl}" target="_blank">{$link.title}</a></li></if>
+		</volist>
+	</ul>
+	</volist>
+</div>

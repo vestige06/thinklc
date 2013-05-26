@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<title><if condition="$site_title neq ''">{$site_title}</if>{$extend_title} - {$Think.config.site_name}</title>
+<meta name="keywords" content="{$Think.config.site_keywords}">
+<meta name="description" content="{$Think.config.site_description}">
+<script type="text/javascript" src="__PUBLIC__/Js/shouji.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidator.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/formvalidatorregex.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/dialog.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/dialog.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css"/>
+<script language="JavaScript">
+<!--
+function fleshVerify(){
+	//重载验证码
+	var timenow = new Date().getTime();
+	<eq name="Think.config.URL_MODEL" value="0">
+	document.getElementById('verifyImg').src = "{:U('Public/verify')}"+"&"+timenow;
+	<else />
+	document.getElementById('verifyImg').src = "{:U('Public/verify')}"+"{$Think.config.URL_PATHINFO_DEPR}"+timenow;
+	</eq>
+}
+//-->
+</script>
+</head>
+<body class='body'>
+<div id="warp">
+	<div class="head">
+		<div class="w930 cent">
+			<div class="head1">
+				<a href="{$Think.config.site_url}">网站首页</a><volist name="navigation" id="vo">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{$vo.url}">{$vo.name}</a></volist>
+			</div>
+			<div class="head2" id="userline"><script type="text/javascript" src="{:U('Member/Public/userline')}"></script></div>
+		</div>
+	</div>
+	<div class="w960 head3" style="border-bottom: solid #DBE0E3 1px;">
+		<div class="logo"><a href="{$Think.config.site_url}"><img src="__PUBLIC__/Images/logo.gif" alt="{$Think.config.site_name}" /></a></div>
+		<div class="head3-1">{$extend_title}</div><present name="extend_oauth"><div class="head3-oauth">{:W('ShowOauth')}</div></present>
+	</div>

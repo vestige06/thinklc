@@ -1,0 +1,96 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Money/index')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="uname_like" value="1" />
+<input type="hidden" name="reason_like" value="1" />
+<input type="hidden" name="editor_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="type">
+		<option value="">类型</option>
+		<option value="1" <eq name="Think.get.type" value="1"> selected=selected</eq>>收入</option>
+		<option value="2" <eq name="Think.get.type" value="2"> selected=selected</eq>>支出</option>
+	</select>
+	<select name="bank" >
+		<option value="">支付方式</option>
+		<volist name="paytype" id="vo">
+		<option value="{$vo}" <eq name="Think.get.bank" value="$vo"> selected=selected</eq>>{$vo}</option>
+		</volist>
+	</select>
+	{$Think.get.fromtime|show_date='fromtime',###,0,0,'false'}- &nbsp;{$Think.get.totime|show_date='totime',###,0,0,'false'}
+	<select name="mtype">
+		<option value="amount" <eq name="Think.get.mtype" value="amount"> selected=selected</eq>>收支</option>
+		<option value="balance" <eq name="Think.get.mtype" value="balance"> selected=selected</eq>>余额</option>
+	</select>
+	<input type="text" name="minamount" value="{$Think.get.minamount}" size="5"/>至 <input type="text" name="maxamount" value="{$Think.get.maxamount}" size="5"/>
+	<select name="fieldskey">
+		<option value="uname" <eq name="Think.get.fieldskey" value="uname"> selected=selected</eq>>会员名</option>
+		<option value="reason" <eq name="Think.get.fieldskey" value="reason"> selected=selected</eq>>事由</option>
+		<option value="editor" <eq name="Think.get.fieldskey" value="editor"> selected=selected</eq>>操作人</option>
+	</select>
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Money/delete')}" method="post" id="myform">
+	<input type="hidden" name="url" id="url" value="">
+	<table class="table">
+		<tr>
+			<th colspan="11" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Money/add')}','资金增减','600','400')">资金增减</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="40"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="60">{:getSort('流水号', 'id', $order, $sortImg)}</th>
+			<th width="60">{:getSort('收入', 'amount', $order, $sortImg)}</th>
+			<th width="60">支出</th>
+			<th width="60">{:getSort('余额', 'balance', $order, $sortImg)}</th>
+			<th width="80">会员名称</th>
+			<th width="80">支付平台</th>
+			<th width="120">{:getSort('支付时间', 'addtime', $order, $sortImg)}</th>
+			<th width="60">操作人</th>
+			<th width="100">事由</th>
+			<th>备注</td>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td>{$vo.id}</td>
+			<td><if condition="$vo['amount'] gt 0">{$vo.amount}</if></td>
+			<td><if condition="$vo['amount'] lt 0">{$vo.amount}</if></td>
+			<td>{$vo.balance}</td>
+			<td>{$vo.uname}</td>
+			<td>{$vo.bank}</td>
+			<td>{$vo.addtime}</td>
+			<td>{$vo.editor}</td>
+			<td>{$vo.reason}</td>
+			<td>{$vo.note}</td>
+		</tr>
+		</volist>
+		<tr>
+			<td></td>
+			<td>小计</td>
+			<td class="blue">{$income}</td>
+			<td class="red">{$expense}</td>
+			<td colspan="7"></td>
+		</tr>
+		<tr><td colspan="11">
+			<input type="submit" class="button" value=" 批量删除 " onclick="return confirm('确定要删除选中记录吗？')"/>
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

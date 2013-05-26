@@ -1,0 +1,25 @@
+<include file="Public:header" />
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="weiz"><h2>当前位置：<a href="/">首页</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">帮助中心</a>&nbsp;>&nbsp;{$row.title}</h2></div>
+		<if condition="$row.content neq ''">
+		<dl class="ckzl clear" >
+			<dt><span class="red fb">问题描述</span></dt>
+			<dd>{$row.content}</dd>
+		</dl>
+		</if>
+		<dl class="ckzl clear" >
+			<dt><span class="green fb">问题解答</span></dt>
+			<dd style="padding:20px;font-size:14px;">{$row.answer}</dd>
+		</dl>
+	</div>
+
+	<div class="pright">
+		<dl class="jingp">
+			<dt>广告赞助<span></span></dt>
+			<dd><script type="text/javascript" src="__PUBLIC__/ads/detail2.js"></script></dd> 
+		</dl>
+	</div> 
+	<div style="clear:both"></div>
+</div>
+<include file="Public:footer" />

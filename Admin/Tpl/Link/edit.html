@@ -1,0 +1,47 @@
+<include file="Public:header" />
+<script>
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#tid").formValidator({onshow:"请选择链接分类",onfocus:"请选择链接分类",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请选择链接分类"});
+		$("#title").formValidator({onshow:"请输入网站名称",onfocus:"请输入网站名称",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入网站名称"});
+		$("#linkurl").formValidator({onshow:"请填写链接URL",onfocus:"请填写链接URL"}).inputValidator({onerror:"请填写链接URL"}).regexValidator({regexp:"url",datatype:"enum",param:'i',onerror:"链接URL格式错误"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Link/update')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="id" value="{$vo.id}">
+		<table width="100%" class="table_form contentWrap">
+		<tr>
+			<td width="80">链接分类：</td>
+			<td>
+				<select name="tid" id="tid">
+					<option value="">选择分类</option>
+					<volist name="etype" id="vol">
+					<option value="{$vol.id}" <eq name="vo.tid" value="$vol.id">selected</eq>>{$vol.typename}</option>
+					</volist>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>网站名称：</td>
+			<td><input name="title" type="text" id="title" size="40" value="{$vo.title}"/></td>
+		</tr>
+		<tr>
+			<td>链接URL：</td>
+			<td><input name="linkurl" type="text" id="linkurl" size="40" value="{$vo.linkurl}"/></td>
+		</tr>
+		<tr>
+			<td>链接状态：</td>
+			<td>
+				<input name="status" type="radio" value="1" <eq name="vo.status" value="1">checked</eq>/>通过&nbsp;&nbsp;&nbsp;&nbsp;
+				<input name="status" type="radio" value="0" <eq name="vo.status" value="0">checked</eq>/>待审
+			</td>
+		</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

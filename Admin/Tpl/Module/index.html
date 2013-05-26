@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<div class="tablelist">
+	<form name="myform" id="myform" action="{:U('Module/order')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="8" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Module/add')}','添加管理员','520','220')">添加模块</a><span></span>
+				<a href="javascript:void(0)" onclick="$('#myform').submit();" class="sort">排序</a>
+			</th>
+		</tr>
+		<tr>
+			<th width="80">排序</th>
+			<th width="60">ID</th>
+			<th width="150">模块名称</th>
+			<th width="60">类型</th>
+			<th width="60">状态</th>
+			<th width="60">菜单显示</th>
+			<th width="150">安装日期</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+			<td><input name="listorders[{$vo['id']}]" type='text' size='3' value='{$vo.listorder}'></td>
+            <td>{$vo.id}</td>
+            <td>{$vo['mtitle']}<eq name="vo.islink" value="0">（{$vo['mname']}）</eq></td>
+            <td><if condition="$vo['system'] eq 1">系统<elseif condition="$vo['islink'] eq 1"/><font color="red">外部链接</font><else /><font color="blue">自定义</font></if></td>
+            <td>{:getStatus($vo['status'], true, $vo['id'], 'status')}</td>
+            <td>{:getStatus($vo['display'], true, $vo['id'], 'display', array('显示','不显示'))}</td>
+			<td>{$vo.installtime|date="Y-m-d H:i:s",###}</td>
+			<td>
+				<a href="javascript:doDialog('{:U('Module/edit?id='.$vo['id'])}','修改模块——{$vo['mtitle']}','520','220')">{:getIcon('edit','修改模块')}</a>
+				<eq name="vo.system" value="1">
+				{:getIcon('del','删除模块',0)}
+				<else />
+				<a href="{:U('Module/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此模块吗？此操作不可恢复。')">{:getIcon('del','删除模块')}</a>
+				</eq>
+			</td>
+		</tr>
+		</volist>
+		</tbody>
+	</table>
+	</form>
+</div>
+<include file="Public:footer" />

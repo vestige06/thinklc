@@ -1,0 +1,187 @@
+<include file="Public:header" />
+<form name="myform" action="__SELF__" method="post" id="myform">
+<input type="hidden" name="item" value="{$item}">
+<div class="pad-10">
+	<div class="col-tab">
+		<ul class="tabBut cu-li">
+			<li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',5,1);">基本设置</li>
+			<li id="tab_setting_2" onclick="SwapTab('setting','on','',5,2);">支付接口</li>
+			<li id="tab_setting_3" onclick="SwapTab('setting','on','',5,3);">一键登录</li>
+			<li id="tab_setting_4" onclick="SwapTab('setting','on','',5,4);">Ucenter接口</li>
+			<li id="tab_setting_5" onclick="SwapTab('setting','on','',5,5);">同步登录设置</li>
+		</ul>
+		<div id="div_setting_1" class="contentList pad-10">
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="150">新用户注册：</td>
+					<td>
+						<input name="setting[reg_enable]" type="radio" value="1" <if condition="$setting['reg_enable'] eq 1">checked</if>/>开启&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[reg_enable]" type="radio" value="0" <if condition="$setting['reg_enable'] eq 0">checked</if>/>关闭
+					</td>
+				</tr>
+				<tr>
+					<td>地区注册限制：</td>
+					<td>
+						<input name="setting[reg_area]" type="radio" value="1" <if condition="$setting['reg_area'] eq 1">checked</if>/>开启&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[reg_area]" type="radio" value="0" <if condition="$setting['reg_area'] eq 0">checked</if>/>关闭
+					</td>
+				</tr>
+				<tr>
+					<td>新用户注册审核：</td>
+					<td>
+						<input name="setting[reg_status]" type="radio" value="1" <if condition="$setting['reg_status'] eq 1">checked</if>/>不审核&nbsp;&nbsp;&nbsp;&nbsp;
+						<input name="setting[reg_status]" type="radio" value="0" <if condition="$setting['reg_status'] eq 0">checked</if>/>人工审核
+					</td>
+				</tr>
+				<tr>
+					<td>IP注册间隔限制：</td>
+					<td><input name="setting[reg_ip]" type="text" value="{$setting.reg_ip}" size="5"/>小时{:tips('同一IP在本时间间隔内将只能注册一个帐号<br>填0为不限制，填-1为同一IP只能注册一个帐号')}</td>
+				</tr>
+				<tr>
+					<td>注册赠送积分：</td>
+					<td><input name="setting[credit_reg]" type="text" value="{$setting.credit_reg}" size="5"/></td>
+				</tr>
+				<tr>
+					<td>每日登录赠送积分：</td>
+					<td><input name="setting[credit_login]" type="text" value="{$setting.credit_login}" size="5"/></td>
+				</tr>
+				<tr>
+					<td>发布信息赠送积分：</td>
+					<td><input name="setting[credit_post]" type="text" value="{$setting.credit_post}" size="5"/></td>
+				</tr>
+				<tr>
+					<td>充值赠送积分：</td>
+					<td><input name="setting[credit_pay]" type="text" value="{$setting.credit_pay}" size="5"/>充值金额的倍数</td>
+				</tr>
+				<tr>
+					<td>删除信息扣除积分：</td>
+					<td><input name="setting[credit_delete]" type="text" value="{$setting.credit_delete}" size="5"/></td>
+				</tr>
+				<tr>
+					<td>积分兑换比例：</td>
+					<td><input name="setting[credit_money]" type="text" value="{$setting.credit_money}" size="5"/>分=1元{:tips('开通积分置顶、积分购买VIP会员时，按此比例扣除积分')}</td>
+				</tr>
+				<tr>
+					<td>常用支付方式：</td>
+					<td><input name="setting[paytype]" type="text" value="{$setting.paytype}" size="60"/></td>
+				</tr>
+			</table>
+		</div>
+		<div id="div_setting_2" class="contentList pad-10 hidden">
+		<include file="Setting:pay" />
+		</div>
+		<div id="div_setting_3" class="contentList pad-10 hidden">
+		<include file="Setting:oauth" />
+		</div>
+		<div id="div_setting_4" class="contentList pad-10 hidden">
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="150" class="red fb">UCenter会员整合</td>
+					<td>
+						<input type="radio" name="setting[uc_enable]" value="1" <if condition="$setting.uc_enable eq 1">checked</if> onclick="$('#uc').css('display','');if($('#uc_mysql').val()==1){ $('#u_c_m').css('display','');}"/> 开启&nbsp;&nbsp;
+						<input type="radio" name="setting[uc_enable]" value="0" <if condition="$setting.uc_enable eq 0">checked</if> onclick="$('#uc').css('display','none');$('#u_c_m').css('display','none');"/> 关闭
+					</td>
+				</tr>
+				<tbody id="uc" <if condition="$setting.uc_enable eq 0">style="display:none;"</if>>
+				<tr>
+					<td class="tl">API地址</td>
+					<td><input name="setting[uc_api]" type="text" size="50" value="{$setting.uc_api}" id="uc_api"/>{:tips('Ucenter服务所在路径 例如:http://www.life0573.com/uc 结尾不要带斜线')}</td>
+				</tr>
+				<tr>
+					<td class="tl">主机IP</td>
+					<td><input name="setting[uc_ip]" type="text" size="50" value="{$setting.uc_ip}" id="uc_ip"/>{:tips('一般项目和Ucenter在本机不用填写,遇到无法同步时,请填写Ucenter主机的IP地址')}</td>
+				</tr>
+				<tr>
+					<td class="tl">应用ID(APP ID)</td>
+					<td><input name="setting[uc_appid]" type="text" size="30" value="{$setting.uc_appid}" id="uc_appid"/>{:tips('在Ucenter添加应用时生成的ID')}</td>
+				</tr>
+				<tr>
+					<td class="tl">通信密钥</td>
+					<td>
+						<input name="setting[uc_key]" type="text" size="30" value="{$setting.uc_key}" id="uc_key"/>{:tips('必须和Ucenter添加应用时的通信密钥一致')}
+						<a href="javascript:$('#uc_key').val(RandStr());void(0);" class="t">[随机]</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="tl">整合方式</td>
+					<td>
+						<input id="uc_mysql" type="hidden" value="{$setting.uc_mysql}">
+						<input type="radio" id="uc_connect_mysql" name="setting[uc_mysql]" value="1" <eq name="setting.uc_mysql" value="1">checked</eq> onclick="$('#u_c_m').css('display','');$('#uc_mysql').val('1');"/> MySQL&nbsp;&nbsp;
+						<input type="radio" id="uc_connect_post" name="setting[uc_mysql]" value="0" <eq name="setting.uc_mysql" value="0">checked</eq> onclick="$('#u_c_m').css('display','none');$('#uc_mysql').val('0');"/> 远程连接
+						{:tips('当UC数据库不在当前服务器且无法直接连接时，请选择远程连接')}
+					</td>
+				</tr>
+				</tbody>
+				<tbody id="u_c_m" <if condition="($setting.uc_enable eq 0) OR ($setting.uc_mysql eq 0)">style="display:none;"</if>>
+				<tr>
+					<td class="tl">数据库主机名</td>
+					<td><input name="setting[uc_dbhost]" type="text" size="30" value="{$setting.uc_dbhost}" id="uc_dbhost"/></td>
+				</tr>
+				<tr>
+					<td class="tl">数据库用户名</td>
+					<td><input name="setting[uc_dbuser]" type="text" size="30" value="{$setting.uc_dbuser}" id="uc_dbuser"/></td>
+				</tr>
+				<tr>
+					<td class="tl">数据库密码</td>
+					<td><input name="setting[uc_dbpw]" type="text" size="30" value="{$setting.uc_dbpw}" id="uc_dbpw"/></td>
+				</tr>
+				<tr>
+					<td class="tl">数据库名</td>
+					<td><input name="setting[uc_dbname]" type="text" size="30" value="{$setting.uc_dbname}" id="uc_dbname"/></td>
+				</tr>
+				<tr>
+					<td class="tl">数据表前缀</td>
+					<td><input name="setting[uc_dbtablepre]" type="text" size="30" value="{$setting.uc_dbtablepre}" id="uc_dbtablepre"/>{:tips('格式：`数据库名`.前缀<br>例如：`thinklc`.uc_')}</td>
+				</tr>
+				<tr>
+					<td class="tl">数据库字符集</td>
+					<td>	
+						<input type="radio" name="setting[uc_dbcharset]" value="utf8" id="uc_charset_utf8" <if condition="$setting.uc_dbcharset eq 'utf8'">checked</if>/> UTF-8&nbsp;&nbsp;
+						<input type="radio" name="setting[uc_dbcharset]" value="gbk" id="uc_charset_gbk" <if condition="$setting.uc_dbcharset eq 'gbk'">checked</if>/> GBK/GB2312
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="div_setting_5" class="contentList pad-10 hidden">
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td class="tl">UC安全验证</td>
+					<td>
+						<input type="radio" name="setting[uc_verify]" value="1" <if condition="$setting.uc_verify eq 1">checked</if> /> 开启&nbsp;&nbsp;
+						<input type="radio" name="setting[uc_verify]" value="0" <if condition="$setting.uc_verify eq 0">checked</if> /> 关闭
+						{:tips('开启此项，ThinkLC用户需要先进行UC安全验证，验证通过后才能和其他应用同步<br><br><font color=red>强烈建议：如果ThinkLC和其他应用开始相互独立，并且都已经有各自用户时，开启此项</font><br><br>否则，可能出现安全隐患。例如：ThinkLC和其他应用有相同用户名却属于不同用户时<br>如果不进行安全验证，这2个用户的资料和密码可能被同步更新<br>如果一开始就已经和其他应用整合的话，可以不开启')}
+					</td>
+				</tr>
+				<tr>
+					<td width="150" class="tl">Cookie作用域</td>
+					<td><input name="setting[uc_cookie_domain]" type="text" size="30" value="{$setting.uc_cookie_domain}" id="uc_cookie"/>{:tips('例如：www.life0573.com，如果有其他需要同步应用使用了二级域名，请设置：.life0573.com')}</td>
+				</tr>
+				<tr>
+					<td class="tl">Cookie前缀</td>
+					<td>
+						<input name="setting[uc_cookie_pre]" type="text" size="30" value="{$setting.uc_cookie_pre}" id="uc_cookie_pre"/>
+						<a href="javascript:$('#uc_cookie_pre').val(RandStr(8,'abcdefhjmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWYXZ')+'_');void(0);" class="t">[随机]</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="tl">论坛会员自动激活</td>
+					<td>
+						<input type="radio" name="setting[uc_bbs]" value="1" <if condition="$setting.uc_bbs eq 1">checked</if> /> 开启&nbsp;&nbsp;
+						<input type="radio" name="setting[uc_bbs]" value="0" <if condition="$setting.uc_bbs eq 0">checked</if> /> 关闭
+						{:tips('此项可以在会员注册后自动激活论坛帐号，但仅适用于使用DZX2版本的论坛<br>且论坛与UC安装在同一数据库，且整合方式为MySQL连接<br>请确认你的整合符合上述条件，否则请勿开启<br>如果开启请填写论坛数据表前缀')}
+					</td>
+				</tr>
+				<tr>
+					<td class="tl">论坛数据表前缀</td>
+					<td><input name="setting[uc_bbs_pre]" type="text" size="50" value="{$setting.uc_bbs_pre}" id="uc_bbs_pre"/>{:tips('格式：`数据库名`.前缀<br>例如：`thinklc`.bbs_')}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="bk15"></div>
+		<input name="dosubmit" type="submit" value=" 提 交 " class="button" id="dosubmit">
+	</div>
+</div>
+</form>
+</body>
+</html>

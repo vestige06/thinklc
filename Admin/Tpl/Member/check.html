@@ -1,0 +1,79 @@
+<include file="Public:header" />
+<div class="title_h2">搜索</div>
+<p class="line" style="margin-top:0;"></p>
+<form action="{:U('Member/check')}" method="get" id="searchform">
+<if condition="$Think.config.URL_MODE eq 0">
+<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />
+</if>
+<input type="hidden" name="uname_like" value="1" />
+<input type="hidden" name="contacter_like" value="1" />
+<input type="hidden" name="tel_like" value="1" />
+<input type="hidden" name="address_like" value="1" />
+<input type="hidden" name="_order" id="_order" value="{$order}" />
+<input type="hidden" name="_sort" id="_sort" value="{$sort}" />
+	<div class="filed fl">
+	<select name="fieldskey">
+		<option value="uname" <eq name="Think.get.fieldskey" value="uname"> selected=selected</eq>>会员名</option>
+		<option value="contacter" <eq name="Think.get.fieldskey" value="contacter"> selected=selected</eq>>联系人</option>
+		<option value="tel" <eq name="Think.get.fieldskey" value="tel"> selected=selected</eq>>联系电话</option>
+		<option value="address" <eq name="Think.get.fieldskey" value="address"> selected=selected</eq>>公司地址</option>
+	</select>
+	<input type="text" name="fieldsvalue" value="{$Think.get.fieldsvalue}"/>
+	</div>
+	<div class="filed fl">
+		<input type="submit" name="dosubmit" class="button" value="" />
+	</div>
+</form>
+<div class="tablelist">
+	<form action="{:U('Member/delete')}" method="post">
+	<table class="table">
+		<tr>
+			<th colspan="10" class="top_th">
+				<a class="add" href="javascript:doDialog('{:U('Member/add')}','添加会员','600','400')">添加会员</a>
+			</th>
+		</tr>
+		<tr>
+            <th width="40"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
+            <th width="60">{:getSort('ID', 'id', $order, $sortImg)}</th>
+            <th width="100">会员名</th>
+            <th width="60">联系人</th>
+            <th width="120">联系电话</th>
+            <th width="120">{:getSort('注册时间', 'regtime', $order, $sortImg)}</th>
+            <th width="220">注册IP</th>
+			<th>管理操作</th>
+		</tr>
+		<tbody>
+		<volist name="list" id="vo">
+		<tr>
+            <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+			<td>{$vo.id}</td>
+            <td>{$vo.uname}</td>
+            <td>{$vo.contacter}</td>
+            <td>{$vo.tel}</td>
+            <td>{$vo.regtime|date="Y-m-d H:i",###}</td>
+            <td>{$vo.regip}（{$vo.regip|getAddress}）</td>
+			<td>
+				<a href="javascript:doDialog('{:U('Member/edit?id='.$vo['id'])}','编辑会员','600','340')" title="编辑会员">{:getIcon('edit','编辑会员')}</a>
+				<a href="{:U('Member/delete?id='.$vo['id'])}" onclick="return confirm('你确定要删除此会员吗？')">{:getIcon('del','删除会员')}</a>
+			</td>
+		</tr>
+		</volist>
+		<tr><td colspan="10">
+			<input type="submit" class="button" name="dosubmit" value=" 通过审核 " onclick="this.form.action='{:U('Member/move?mgid=4')}'"/>&nbsp;
+			<input type="submit" class="button" name="dosubmit" value=" 删除会员 " onclick="return confirm('你确定要删除选中会员吗？')"/>&nbsp;
+			<input type="submit" class="button" name="dosubmit" value=" 禁止访问 " onclick="this.form.action='{:U('Member/move?mgid=1')}'"/>&nbsp;
+			<input type="submit" class="button" name="dosubmit" value=" 移动至 " onclick="if($('#mgid').val()==0){alert('请选择会员组');$('#mgid').focus();return false;}this.form.action='{:U('Member/move')}';"/> 
+			<select name="mgid" id="mgid">
+				<option value="0">会员组</option>
+				<volist name="grouplist" id="vo">
+				<if condition="$vo.id lt 5"><option value="{$vo.id}">{$vo.gname}</option></if>
+				</volist>
+			</select>
+		</td></tr>
+		</tbody>
+	</table>
+	</form>
+	<div id="pages">{$page}</div>
+</div>
+<include file="Public:footer" />

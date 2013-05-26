@@ -1,0 +1,60 @@
+<include file="Public:header" />
+<script>
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#uname").formValidator({onshow:"请输入用户名",onfocus:"请输入用户名",oncorrect:"输入正确"}).inputValidator({min:4,onerror:"请输入用户名"});
+		$("#money").formValidator({onshow:"请输入金额",onfocus:"金额应该为1-5位的数字"}).inputValidator({max:5,onerror:"金额应该为1-5位的数字"}).regexValidator({regexp:"num1",datatype:"enum",param:'i',onerror:"金额应该为1-5位的数字"});
+		$("#bank").formValidator({onshow:"请选择支付方式",onfocus:"请选择支付方式",oncorrect:"选择正确"}).inputValidator({min:1,onerror:"请选择支付方式"});
+		$("#reason").formValidator({onshow:"请输入事由",onfocus:"请输入事由",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入事由"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="__SELF__" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td width="100">会员名：</td>
+				<td><input type="text" name="uname" id="uname" size="50" value="{$uname}"/></td>
+			</tr>
+			<tr>
+				<td>类型：</td>
+				<td><input name="type" type="radio" value="1" checked/> 收入&nbsp;&nbsp;&nbsp;&nbsp;<input name="type" type="radio" value="0"/> 支出</td>
+			</tr>
+			<tr>
+				<td>金额：</td>
+				<td><input name="money" id="money" type="text" value="" size="10"/></td>
+			</tr>
+			<tr>
+				<td>支付方式：</td>
+				<td>
+					<select name="bank" id="bank">
+						<option value="">请选择</option>
+						<volist name="paytype" id="vo">
+						<option value="{$vo}">{$vo}</option>
+						</volist>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>事由：</td>
+				<td><input name="reason" id="reason" type="text" value="账户充值" size="40"/></td>
+			</tr>
+			<tr>
+				<td>备注：</td>
+				<td><input name="note" type="text" value="手工" size="40"/></td>
+			</tr>
+			<tr>
+				<td>添加到充值记录：</td>
+				<td><input name="charge" type="checkbox" value="1" /></td>
+			</tr>
+			<tr>
+				<td>注意：</td>
+				<td>此表单一经提交，将不可再修改或删除，请务必谨慎操作</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

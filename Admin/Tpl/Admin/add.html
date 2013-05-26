@@ -1,0 +1,46 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#aname").formValidator({onshow:"请输入管理员名",onfocus:"管理员名应该为2-10位之间",oncorrect:"输入正确"}).inputValidator({min:2,max:10,onerror:"管理员名应该为2-10位之间"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+		$("#apwd").formValidator({onshow:"请输入密码",onfocus:"密码应该为6-20位之间",oncorrect:"输入正确"}).inputValidator({min:6,max:20,onerror:"密码应该为6-20位之间"});
+		$("#reapwd").formValidator({onshow:"请输入确认密码",onfocus:"两次密码输入不同。",oncorrect:"密码输入一致"}).compareValidator({desid:"apwd",operateor:"=",onerror:"两次密码输入不同。"});
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Admin/insert')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<th width="120">管理员名：</th>
+				<td><input type="text" name="aname" id="aname" class="input-text"></td>
+			</tr>
+			<tr>
+				<th>管理员密码：</th>
+				<td><input type="password" name="apwd" id="apwd" class="input-text"></td>
+			</tr>
+			<tr>
+				<th>确认密码：</th>
+				<td><input type="password" name="reapwd" id="reapwd" class="input-text"></td>
+			</tr>
+			<tr>
+				<th>管理员角色：</th>
+				<td>
+					<select name="rid" id="rid">
+						<volist name="rolelist" id="vo">
+						<option value="{$vo.id}">{$vo.rname}</option>
+						</volist>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>管理员状态：</th>
+				<td><input type="radio" name="status" value="1" checked> 启用&nbsp;&nbsp;<input type="radio" name="status" value="0"> 禁用</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

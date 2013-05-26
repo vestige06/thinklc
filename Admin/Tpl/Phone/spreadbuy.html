@@ -1,0 +1,75 @@
+<include file="Public:header" />
+<script>
+<!--
+	var spread_price = Number('{$CFG.spread_price}');
+	var spread_off = getPrice('{$CFG.spread_off}');
+	window.onload = checkspreadMoney();
+//-->
+</script>
+<div class="common-form">
+	<div style="clear:both;"><a href="{:U('Phone/spread')}" class="navbtn">返回推广管理</a></div>
+	<form name="myform" id="myform" action="__SELF__" method="post">
+	<input type="hidden" name="id" value="{$vo.id}"/>
+	<input type="hidden" name="uid" value="{$vo.uid}"/>
+	<input type="hidden" name="money" id="money" value="{$CFG.spread_price}"/>
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<td align="right"><if condition="$spread_status eq 1">已</if>推广商家：</td>
+				<td align='left' colspan="2" class="blue">{$vo.title}</td>
+			</tr>
+			<tr>
+				<td align="right" width="120">选择推广<if condition="$spread_status eq 1">续费</if>天数：</td>
+				<td align='left' width="180">
+					<select name="spreaddays" id="spreaddays" onchange="checkspreadMoney();">
+						<option value="1">1个月</option>
+						<option value="2">2个月</option>
+						<option value="3">3个月</option>
+						<option value="6">6个月</option>
+						<option value="12">12个月</option>
+					</select>
+				</td>
+				<td align='left' rowspan="7">
+					<table cellpadding="6" cellspacing="1">
+						<tr bgcolor="#FFFFFF" align="center">
+							<td class="fb px14 red" colspan="5">商家推广基本价格 (购买月份按自然月计算)</td>
+						</tr>
+						<tr bgcolor="#FFFFFF" align="center">
+							<td>基本价格</td>
+							<td>{$CFG.spread_price} 元/月</td>
+						</tr>
+						<volist name="spread_off" id="vo">
+						<tr bgcolor="#FFFFFF" align="center">
+							<td>购买{$vo[0]}个月优惠</td>
+							<td>{$vo[1]}折</td>
+						</tr>
+						</volist>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="right">金额总计：</td>
+				<td align='left'><span class="red" id="oldmoney">{$CFG.spread_price}</span> 元</td>
+			</tr>
+			<tr>
+				<td align="right">优惠价格：</td>
+				<td align='left'><span class="green" id="newmoney">{$CFG.spread_price}</span> 元</td>
+			</tr>
+			<tr>
+				<td align="right">扣除费用：</td>
+				<td align='left'>
+					<input type="radio" name="deduct" value="1">是&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="deduct" value="0" checked>否
+				</td>
+			</tr>
+			<tr>
+				<td align="right">支付方式：</td>
+				<td align='left'>
+					<input type="radio" name="paytype" value="0" checked>资金&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="paytype" value="1">积分
+				</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="button" name="dosubmit" value=" 提 交 "/></div>
+	</form>
+</div>

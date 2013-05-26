@@ -1,0 +1,70 @@
+<include file="Public:header" />
+<script type="text/javascript">
+<!--
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'200',height:'50'}, function(){this.close();$(obj).focus();})}});
+		$("#mtitle").formValidator({onshow:"请输入对应的菜单显示名",onfocus:"请输入对应的菜单显示名",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入对应的菜单显示名"});
+		<if condition="$level egt 3">
+		$("#mname").formValidator({onshow:"请输入模块名",onfocus:"请输入模块名",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入模块名"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+		$("#aname").formValidator({onshow:"请输入操作名",onfocus:"请输入操作名",oncorrect:"输入正确"}).inputValidator({min:1,onerror:"请输入操作名"}).regexValidator({regexp:"username",datatype:"enum",param:'i',onerror:"只能包括数字、字母、下划线三种类型。"});
+		</if>
+	})
+//-->
+</script>
+<div class="common-form">
+	<form name="myform" id="myform" action="{:U('Menu/insert')}" method="post">
+	<input type="hidden" name="doclose" id="doclose" value="0">
+	<input type="hidden" name="pid" value="{$pid}">
+	<input type="hidden" name="level" value="{$level}">
+		<table width="100%" class="table_form contentWrap">
+			<tr>
+				<th>菜单显示名：</th>
+				<td><input type="text" name="mtitle" id="mtitle" class="input-text"></td>
+			</tr>
+			<if condition="$level egt 3">
+			<tr>
+				<th>模块名：</th>
+				<td><input type="text" name="mname" id="mname" class="input-text"></td>
+			</tr>
+			<tr>
+				<th>操作名：</th>
+				<td><input type="text" name="aname" id="aname" class="input-text"></td>
+			</tr>	
+			<tr>
+				<th>附加参数：</th>
+				<td><input type="text" name="parameter" class="input-text"></td>
+			</tr>
+			</if>
+			<if condition="$level eq 4">
+			<tr>
+				<th>Action：</th>
+				<td><input type="text" name="action" class="input-text"></td>
+			</tr>
+			<tr>
+				<th>打开方式：</th>
+				<td>
+				<input type="radio" name="dialog" value="0" checked> 普通方式&nbsp;&nbsp;
+				<input type="radio" name="dialog" value="1"> Ajax弹出窗口&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅对四级菜单有效
+				</td>
+			</tr>
+			</if>
+			<tr>
+				<th>是否显示菜单：</th>
+				<td><input type="radio" name="display" value="1" checked> 是&nbsp;&nbsp;<input type="radio" name="display" value="0"> 否</td>
+			</tr>
+			<tr>
+				<th>菜单状态：</th>
+				<td><input type="radio" name="status" value="1" checked> 启用&nbsp;&nbsp;<input type="radio" name="status" value="0"> 禁用</td>
+			</tr>
+			<tr>
+				<th>说明：</th>
+				<td>
+				1. 附加参数和Action动作非必填项<BR>
+				2. 以上菜单如果设置不显示为菜单，则仅作为权限验证节点使用，如果节点不在菜单里则不验证
+				</td>
+			</tr>
+		</table>
+		<div class="bk15"></div>
+		<div class="btn"><input type="submit" id="dosubmit" class="dialog" name="dosubmit" value="提交"/></div>
+	</form>
+</div>

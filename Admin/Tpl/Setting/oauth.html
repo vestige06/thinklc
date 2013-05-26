@@ -1,0 +1,83 @@
+			<table width="100%" class="table_form contentWrap">
+				<tr>
+					<td width="150" class="red fb">QQ登录：</td>
+					<td>
+						<input type="radio" name="oauth[qq][enable]" value="1" onclick="$('#qq').css('display','')" <eq name="oauth.qq.enable" value="1">checked</eq>/>启用&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="oauth[qq][enable]" value="0" onclick="$('#qq').css('display','none')" <eq name="oauth.qq.enable" value="0">checked</eq>/>禁用&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="http://connect.qq.com/intro/login/" target="_blank"><img src="__PUBLIC__/Images/oauth/qq.png" align="absmiddle"> 帐号申请</a>
+					</td>
+				</tr>
+				<tbody id="qq" <eq name="oauth.qq.enable" value="0">style="display:none;"</eq>>
+				<tr>
+					<td class="tl">显示顺序</td>
+					<td><input name="oauth[qq][order]" type="text" size="5" value="{$oauth.qq.order}"/></td>
+				</tr>
+				<tr>
+					<td class="tl">显示名称</td>
+					<td><input name="oauth[qq][name]" type="text" size="10" value="{$oauth.qq.name}"/></td>
+				</tr>
+				<tr>
+					<td>APP ID：</td>
+					<td><input name="oauth[qq][appid]" type="text" value="{$oauth.qq.appid}" size="30"/></td>
+				</tr>
+				<tr>
+					<td>APP KEY：</td>
+					<td><input name="oauth[qq][appkey]" type="text" value="{$oauth.qq.appkey}" size="30"/></td>
+				</tr>
+				</tbody>
+				<tr>
+					<td width="150" class="red fb">新浪微博：</td>
+					<td>
+						<input type="radio" name="oauth[weibo][enable]" value="1" onclick="$('#weibo').css('display','')" <eq name="oauth.weibo.enable" value="1">checked</eq>/>启用&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="oauth[weibo][enable]" value="0" onclick="$('#weibo').css('display','none')" <eq name="oauth.weibo.enable" value="0">checked</eq>/>禁用&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="http://open.weibo.com/connect/" target="_blank"><img src="__PUBLIC__/Images/oauth/weibo.png" align="absmiddle"> 帐号申请</a>
+					</td>
+				</tr>
+				<tbody id="weibo" <eq name="oauth.weibo.enable" value="0">style="display:none;"</eq>>
+				<tr>
+					<td class="tl">显示顺序</td>
+					<td><input name="oauth[weibo][order]" type="text" size="5" value="{$oauth.weibo.order}"/></td>
+				</tr>
+				<tr>
+					<td class="tl">显示名称</td>
+					<td><input name="oauth[weibo][name]" type="text" size="10" value="{$oauth.weibo.name}"/></td>
+				</tr>
+				<tr>
+					<td>App Key：</td>
+					<td><input name="oauth[weibo][akey]" type="text" value="{$oauth.weibo.akey}" size="30"/></td>
+				</tr>
+				<tr>
+					<td>App Sercet：</td>
+					<td><input name="oauth[weibo][skey]" type="text" value="{$oauth.weibo.skey}" size="30"/></td>
+				</tr>
+				</tbody>
+				<tr>
+					<td width="150" class="red fb">MSN：</td>
+					<td>
+						<input type="radio" name="oauth[msn][enable]" value="1" onclick="$('#msn').css('display','')" <eq name="oauth.msn.enable" value="1">checked</eq> <eq name="oauth.msn.disabled" value="1">disabled</eq>/>启用&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="oauth[msn][enable]" value="0" onclick="$('#msn').css('display','none')" <eq name="oauth.msn.enable" value="0">checked</eq> <eq name="oauth.msn.disabled" value="1">disabled</eq>/>禁用&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="http://manage.dev.live.com/" target="_blank"><img src="__PUBLIC__/Images/oauth/msn.png" align="absmiddle"> 帐号申请</a>
+						<eq name="oauth.msn.disabled" value="1">{:tips('此服务不可用<br>缺少相关文件，或者需要商业授权')}</eq>
+					</td>
+				</tr>
+				<eq name="oauth.msn.disabled" value="0">
+				<tbody id="msn" <eq name="oauth.msn.enable" value="0">style="display:none;"</eq>>
+				<tr>
+					<td class="tl">显示顺序</td>
+					<td><input name="oauth[msn][order]" type="text" size="5" value="{$oauth.msn.order}"/></td>
+				</tr>
+				<tr>
+					<td class="tl">显示名称</td>
+					<td><input name="oauth[msn][name]" type="text" size="10" value="{$oauth.msn.name}"/></td>
+				</tr>
+				<tr>
+					<td>Client ID：</td>
+					<td><input name="oauth[msn][id]" type="text" value="{$oauth.msn.id}" size="30"/></td>
+				</tr>
+				<tr>
+					<td>Client secret：</td>
+					<td><input name="oauth[msn][key]" type="text" value="{$oauth.msn.key}" size="30"/></td>
+				</tr>
+				</tbody>
+				</eq>
+			</table>

@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'title', 2 => 'content', 3 => 'edittime', 4 => 'expired', 5 => 'areaid', 6 => 'catid', 7 => 'uid', 8 => 'count', 9 => 'keyword', 10 => 'linkurl', 11 => 'ispic', 12 => 'picurl', 13 => 'status', 14 => 'detail', 15 => 'extend', 16 => 'contact', 17 => 'toptotime', 18 => 'topstatus', 19 => 'topnum', 20 => 'toptitle', '_autoinc' => true, '_pk' => 'id', ); ?>

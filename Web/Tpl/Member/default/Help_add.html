@@ -1,0 +1,37 @@
+﻿<include file="Public:header" />
+<div class="main">
+  <div class='weiz'>当前位置： <a href="/">网站首页</a>&nbsp;>&nbsp;<a href="{:U('Index/index')}">会员中心</a>&nbsp;>&nbsp;<a href="{:U('Help/index')}">客服中心</a>&nbsp;>&nbsp;提交新问题</div>
+  <div class="w960 cent" style='font-size:14px;color:#ee5500;height:35px;line-height:35px;'>
+	<strong>&nbsp;&nbsp;注意：&nbsp;&nbsp;有问题请先到帮助中心搜索问题，如果无法解决再提问</strong>
+  </div>
+  <form method="post" action="{:U('Help/insert')}">
+  <input type="hidden" name="uid" value="{$uid}">
+  <table align="center" width='930' border=0 cellspacing=0 cellpadding=0 style='margin:20px auto 0;border:0px;line-height:45px;'>
+    <tr>
+		<td width="18%" align="right">问题分类：</td>
+		<td width="82%" align='left'>
+			<select name="tid">
+				<option value="">选择分类</option>
+				<volist name="etype" id="vo">
+				<option value="{$vo.id}">{$vo.typename}</option>
+				</volist>
+			</select>
+			<span class="red">*</span>
+		</td>
+    </tr>
+    <tr>
+		<td align="right">标题：</td>
+		<td align='left'>&nbsp;<input name="title" type="text" size="40"/> <span class="red">*</span></td>
+    </tr>
+	<tr>
+		<td align="right">问题描述：</td>
+		<td align='left'>&nbsp;<textarea name='content' id='content' style='height:200px;width:400px;'></textarea></td>
+	</tr>
+    <tr>
+      <td class="left_title_1"></td>
+      <td>&nbsp;<input type="submit" name="submit" value="提 交" class="btn"/></td>
+    </tr>
+  </table>
+  </form>
+</div>
+<include file="$footer" />
