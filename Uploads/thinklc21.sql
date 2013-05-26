@@ -9,7 +9,7 @@ Source Database       : thinklc21
 Target Server Type    : MYSQL
 Target Server Version : 50141
 File Encoding         : 65001
-
+sasas
 Date: 2013-05-26 22:54:22
 */
 
