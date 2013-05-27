@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @package      	ThinkLC 2.0
  * @author          土豆 QQ:25897 <25897@qq.com>
@@ -12,5 +12,6 @@ define('RUNTIME_PATH', ROOT_PATH.'/Data/Runtime/Web/');
 define('HTML_PATH', ROOT_PATH.'/Data/Html/');
 define('IN_WEB', 1);
 define('APP_NAME', 'Web');
+define('APP_DEBUG', true);
 define('APP_PATH', './Web/');
 require("./ThinkPHP/ThinkPHP.php");
