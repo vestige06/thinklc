@@ -1,11 +1,11 @@
-﻿body{color:#444; height:100%}a{text-decoration:none; color:#444}
+body{color:#444; height:100%}a{text-decoration:none; color:#444}
 html.on,html.on body{background: #e2e9ea; background-image:none;}
 html.addbg,html.addbg body{background:#e2e9ea}
 a:hover{text-decoration:underline;}
 .pad-6{padding:6px; overflow:hidden}.pad-10{padding:10px; overflow:hidden}.pad_10,.pad-lr-10{padding:0 10px}.pad-lr-6{padding:0 6px}
 .hr{background: url(../Images/uline.gif) repeat-x center center;}
 .hr hr{display:none}
-.border-none,.border-none-td td,{border:none}
+.border-none,.border-none-td td{border:none}
 .ib, .ib-li li, .ib-a a, .ib-span span,.common-form ul li span.text,.fixed-bottom .fixed-but .button,.arrowhead,.arrowhead-b,#Skin li,.shortcut a,.shortcut a span,.picBut a,.tab-use,.scroll a{display:inline-block;zoom:1;*display:inline;}
 .cut_line span{ color:#4d82bc; padding:0 4px}
 .mr6{margin-right:6px}.mr8{margin-right:8px}.mr10{margin-right:10px}.mb6{margin-bottom:6px}.mb8{margin-bottom:8px}.mb10{margin-bottom:10px}
@@ -48,7 +48,7 @@ body fieldset.blue legend{padding:3px 8px;font-weight:700;color:#347add; backgro
 	.header .nav li.tab_web a{ position:absolute;}
 	.header .nav li.tab_web a,
 	.header .nav li.tab_web a span{background: url(../Images/admin/site.png) no-repeat;height:34px;line-height:34px;*line-height:38px;_float: left}
-	
+
 	.header .nav li.tab_web{background:none; line-height:38px; vertical-align:middle; padding:0;}
 	.header .nav li.tab_web a{padding:0;padding-left:10px;cursor: hand;!important;cursor: pointer;white-space: nowrap;}
 	.header .nav li.tab_web a:hover,.header .nav li.tab_web a.on{text-decoration: none;color:#3a6ea5;background-position: left -40px; }
@@ -60,7 +60,7 @@ body fieldset.blue legend{padding:3px 8px;font-weight:700;color:#347add; backgro
 	.tab-web-panel ul.tab-scroll{overflow-y:auto; overflow-x:hidden;height:220px;width:150px}
 	.tab-web-panel li a{padding:3px 8px 3px 8px;display:block; padding-right:22px;height:18px;line-height:18px;white-space: nowrap;width:105px}
 	.tab-web-panel li a:hover,.tab-web-panel li.on a{ background-color:#d5e5f6;background-position:50px -52px;}
-	
+
 .header .col-auto{height:80px}
 .header .log{padding:16px 0 0 6px; height:20px}
 .header .tab_style{padding:16px 14px 0 0}
@@ -234,7 +234,7 @@ body fieldset.blue legend{padding:3px 8px;font-weight:700;color:#347add; backgro
 	.fillet span.o2{background-position: right -6px; top:-1px; right:-1px}
 	.fillet span.o3{background-position: left bottom; bottom:-1px; left:-1px}
 	.fillet span.o4{background-position: right bottom; bottom:-1px; right:-1px;}
-	
+
 /*工作流*/
 .workflow{padding:10px 140px 10px 10px;}
 .workflow .col{padding-bottom:20px;background: url(../Images/admin/arrowhead-y.png) no-repeat 10px bottom;}
