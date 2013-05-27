@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* common start */
 * {padding:0px;margin:0px;}
-body {#E6E6E6 url(../Images/web/bg.gif) center;font:14px/1.5 '微软雅黑',Verdana,Arial,Tahoma,sans-serif;color:#666;}
+body {background:#E6E6E6 url(../Images/web/bg.gif) center;font:14px/1.5 '微软雅黑',Verdana,Arial,Tahoma,sans-serif;color:#666;}
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, dl, dt, dd, ol, ul, li, table, tr, th, td, input{font-family:'微软雅黑', Arial, Tahoma, "SimSun", '宋体';}
 .table {margin:0 auto;color:#333333;text-align:center;border-collapse:collapse;}
 .table td {border:1px solid #ccc;}
