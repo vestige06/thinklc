@@ -17,7 +17,7 @@ div.btn{ padding:6px 12px 0 12px; height:30px;line-height:30px}
 .td-line td,.td-line th{border:1px solid #eee}
 .button{background:#ddd;height:24px; border-top:0;border-left:0; border-bottom:1px solid #666; border-right:1px solid #666; padding:3px 6px; margin-right:5px}
 .table-list tr.on,.table-list tr.on td,.table-list tr.on th,.table-list td.on,.table-list th.on{background:#fdf9e5;}
-a.close-own{background: url(../images/cross.png) no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:7px; top:8px; text-indent:200px; overflow: hidden}
+a.close-own{background: url(../Images/cross.png) no-repeat left 3px; display:block; width:16px; height:16px;position: absolute;outline:none;right:7px; top:8px; text-indent:200px; overflow: hidden}
 a.close-own:hover{background-position: left -46px}
 /*通用表单*/
 .common-form{}
@@ -48,11 +48,11 @@ select{ vertical-align:middle;background:none repeat scroll 0 0 #F9F9F9;border-c
 .js ul.newList {left:-9999px;}
 ul.newList * {margin:0; padding:0;}
 ul.newList {margin:0; padding:0; list-style:none; color:#000; background:#fff; position:absolute;  border:1px solid #ccc; top:22px; left:0; overflow:auto; z-index:9999;}
-.newListSelected {color:#000; height:22px; padding:4px 0 0 6px; float:left; background:url(../images/select-bg.png) no-repeat right 0; border-left:1px solid #dfdfdf}
+.newListSelected {color:#000; height:22px; padding:4px 0 0 6px; float:left; background:url(../Images/select-bg.png) no-repeat right 0; border-left:1px solid #dfdfdf}
 .newListSelected span {display:block;}
 ul.newList li a {padding:3px 8px;display:block;text-decoration: none;}
 .selectedTxt {overflow:hidden; height:16px; padding:0 23px 0 0;}
-.measure-input {background:url("../images/ruler.gif") repeat-x scroll 0 9px transparent}
+.measure-input {background:url("../Images/ruler.gif") repeat-x scroll 0 9px transparent}
 .hiLite {background:#e0ebf4!important; color:#444!important;}
 .newListHover {background:#f2f7fb!important; color:#000!important; cursor:default;}
 .newListSelHover, .newListSelFocus {background-position:right -26px; cursor:default;}
@@ -61,7 +61,7 @@ ul.newList li a {padding:3px 8px;display:block;text-decoration: none;}
 .newListOptionTitle li {font-weight:normal; border-left:1px solid #ccc;}
 
 /*表单验证*/
-.onShow,.onFocus,.onError,.onCorrect,.onLoad,.onTime{display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline; vertical-align:middle;background:url(../images/msg_bg.png) no-repeat;	color:#444;line-height:18px;padding:2px 10px 2px 23px; margin-left:10px;_margin-left:5px}
+.onShow,.onFocus,.onError,.onCorrect,.onLoad,.onTime{display:inline-block;display:-moz-inline-stack;zoom:1;*display:inline; vertical-align:middle;background:url(../Images/msg_bg.png) no-repeat;	color:#444;line-height:18px;padding:2px 10px 2px 23px; margin-left:10px;_margin-left:5px}
 .onShow{background-position:3px -147px;border-color:#40B3FF;color:#959595}
 .onFocus{background-position:3px -147px;border-color:#40B3FF;}
 .onError{background-position:3px -47px;border-color:#40B3FF; color:red}
