@@ -42,6 +42,271 @@ class ArticleAction extends CommonAction {
         $map['_string'] = $_query;
     }
 
+    public function insert() {
+        $Blog = D("Article");
+        if ($vo = $Blog->create()) {
+            //过滤特殊字符
+            //已经改在model里验证，填充
+            $vo['title'] = h($_POST['title']);
+            $vo['content'] = h($_POST['content']);
+            $vo['tags'] = empty($vo['tags']) ? '' : h($_POST['tags']);
+            //插入成功，返回id
+            $return_id = $Blog->add();
+            //$return_id = $Blog -> getLastInsID();//此句和上一句回返回的数据id是一样的。
+            if ($return_id) {
+                //数据保存触发器
+                //method_exists -- 检查类的方法是否存在
+                if (method_exists($this, '_trigger')) {
+                    /*
+                      $vo是create创建的数组
+                      array(7) {
+                      ["title"] => string(19) "文章测试标题8"
+                      ["category_id"] => string(2) "10"
+                      ["content"] => string(18) "文章测试内容"
+                      ["tags"] => string(19) "测试数据 博客"
+                      ["status"] => string(1) "1"
+                      ["user_id"] => string(2) "41"
+                      ["create_time"] => int(1357914830)
+                      }
+                     */
+                    $this->_trigger($vo, $return_id);
+                }
+                $this->assign('jumpUrl', __URL__);
+                $this->success("操作成功");
+            } else {
+                $this->error("操作失败");
+            }
+        } else {
+            $this->error($Blog->getError());
+        }
+    }
+
+    // 保存日志的标签和附件
+    public function _trigger($vo, $return_id) {
+        if (ACTION_NAME == 'insert') {
+            $Attach = M("Attach");
+            $att['verify'] = 0;
+            $att['recordId'] = $return_id;
+            $Attach->where("verify='" . $_SESSION["attach_verify"] . "'")->save($att);
+        }
+        if (!empty($vo['tags']) && ACTION_NAME == 'insert') {
+            $this->saveTag($vo, $return_id, "Blog");
+        }else{
+            $this->updateTag($vo, $return_id, "Blog");
+        }
+    }
+    /**
+     * 插入标签
+     * @param type $vo
+     * @param type $return_id
+     * @param type $module
+     */
+    public function saveTag($vo, $return_id, $module) {
+        //$return_id是刚插入的这篇文章成功返回的id
+        if (!empty($vo) && !empty($return_id)) {
+            $Tag = M("Tag");
+            $Tagged = M("Tagged");
+            $tags = explode(' ', $vo['tags']);
+            //Array ( [0] => 波波 [1] => php )
+            //标签循环插入数据库
+            foreach ($tags as $val) {
+                $val = trim($val);
+                if (!empty($val)) {
+                    // 记录已经存在的标签
+                    $map["module"] = $module;
+                    $map["name"] = $val;
+                    $tagg = $Tag->where($map)->find(); //返回结果是0
+                    //select * from think_blog where module="Blog" and name="bobo";
+                    if ($tagg) {
+                        $tagId = $tagg['id'];
+                        //如果此标签已存在，就自增1
+                        $Tag->where('id = ' . $tagId)->setInc('count');
+                    } else {
+                        $t = array();
+                        $t["name"] = $val;
+                        $t["count"] = 1;
+                        $t["module"] = $module;
+                        $result = $Tag->add($t);
+                        $tagId = $result;
+                    }
+                }
+                //记录tag信息，放成关联表当中
+                $t = array();
+                $t["module"] = $module;
+                $t["record_id"] = $return_id; //blog表主键Id
+                $t["tag_time"] = time();
+                $t["tag_id"] = $tagId; //tag表主键id
+                $Tagged->add($t);
+            }
+        }
+    }
+
+    /**
+     * 更新标签
+     * @param type $vo
+     * @param type $return_id
+     * @param type $module
+     */
+    public function updateTag($vo, $return_id, $module) {
+        //$return_id是刚插入的这篇文章成功返回的id
+        if (!empty($vo) && !empty($return_id)) {
+            $Tag = M("Tag");
+            $Tagged = M("Tagged");
+            $tagsNew = explode(' ', $vo['tags']);
+            $tagList = $Tag->select();
+            $tag = array();
+            //查出全部标签的id和name
+            foreach ($tagList as $v) {
+                $tag[$v['id']] = $v['name'];
+            }
+            //查出和当前文章相关联的文章
+            if($return_id){
+                $taggedList = $Tagged->where('record_id = ' . $return_id)->select();
+            }
+            foreach ($taggedList as $value){
+                $tagged[$value['tag_id']] = $tag[$value['tag_id']];
+            }
+            //每次更新，都要把现在的标签删除，再重新插入，这个种的比较准确
+            foreach ($tagged as $key => $value) {
+                $result = $Tag->where('id='.$key)->find();
+                //如果count大于1,就减1,等于1就删除
+                if($result['count'] > 1){
+                    $Tag->where('id=' . $key)->setDec('count');
+                } else {
+                    $Tag->where('id = ' . $key)->delete();
+                }
+            }
+            //删除关联标签
+            $Tagged->where('record_id = ' . $return_id)->delete();
+            //新标签循环插入数据库
+            foreach ($tagsNew as $val) {
+                $val = trim($val);
+                if (!empty($val)) {
+                    // 记录已经存在的标签
+                    $map["module"] = $module;
+                    $map["name"] = $val;
+                    $tagg = $Tag->where($map)->find(); //返回结果是0
+                    //select * from think_blog where module="Blog" and name="bobo";
+                    if ($tagg) {
+                        $tagId = $tagg['id'];
+                        //如果此标签已存在，就自增1
+                        $Tag->where('id = ' . $tagId)->setInc('count');
+                    } else {
+                        $t = array();
+                        $t["name"] = $val;
+                        $t["count"] = 1;
+                        $t["module"] = $module;
+                        $result = $Tag->add($t);
+                        $tagId = $result;
+                    }
+                }
+                //记录tag信息，放成关联表当中
+                $t = array();
+                $t["module"] = $module;
+                $t["record_id"] = $return_id; //blog表主键Id
+                $t["tag_time"] = time();
+                $t["tag_id"] = $tagId; //tag表主键id
+                $Tagged->add($t);
+            }
+        }else{
+            exit();
+        }
+    }
+/*
+    public function edit() {
+        $id = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : 0;
+        if (!empty($id)) {
+            $Blog = D('Blog');
+            $vo = $Blog->getById($id);
+            $this->assign('vo', $vo);
+
+            $category = D('Category');
+            $catelist = $category->select();
+            $this->assign('category', $catelist);
+            $this->display();
+        } else {
+            echo '请选择要编辑的文章';
+            return;
+        }
+    }
+ * 
+ */
+
+    public function update() {
+        $model = D("Article");
+        $vo = $model->create();
+        $vo['title'] = h($_POST['title']);
+        $vo['content'] = h($_POST['content']);
+        $vo['tags'] = h($_POST['tags']);
+        if (!$vo) {
+            $this->error($model->getError());
+        }
+        //当前数据的主键
+        $id = is_array($vo) ? $vo[$model->getPk()] : $vo->{$model->getPk()};
+        $result = $model->save($vo);
+        if ($result) {
+            //数据保存触发器
+            if (method_exists($this, '_trigger')) {
+                $this->_trigger($vo, $id);
+            }
+            if (!empty($_FILES)) {//如果有文件上传
+                //执行默认上传操作
+                //保存附件信息到数据库
+                $this->_upload(MODULE_NAME, $id);
+            }
+            //成功提示
+            $this->success("操作成功！");
+        } else {
+            //错误提示
+            $this->error($model->getError());
+        }
+    }
+/*
+    public function delete() {
+        //把传过来的id转换成整型
+        $did = isset($_GET['id']) && is_numeric($_GET['id']) ? intval($_GET['id']) : 0;
+        if (!empty($did)) {
+            $Blog = D('Blog');
+            $Tag = M('Tag');
+            $Tagged = M('Tagged');
+            $Comment = M('Comment');
+            //删除文章操作，先删除tag表的tag，再删除tags表的关联，再删除评论，最后删除自己
+            $del = $Blog->find($did);
+            if (!empty($del['tags'])) {
+                $tagArr = explode(' ', $del['tags']);
+                foreach ($tagArr as $value) {
+                    $tagResult = $Tag->where('name="' . $value . '"')->select();
+                    //$id = array();
+                    foreach ($tagResult as $val) {
+
+                        if ($val['count'] > 1) {
+                            //如果tag的个数大于1则count减1
+                            $Tag->where('name="' . $val['name'] . '"')->setDec('count');
+                        } else {
+                            //如果只有一个tag，则删除此tag
+                            $Tag->where('id=' . $val['id'])->delete();
+                        }
+                    }
+                    //操作tagged
+                    $Tagged->where('record_id=' . $did)->delete();
+                    //删除评论
+                    $Comment->where('record_id=' . $did)->delete();
+                }
+            }
+            if (false !== $Blog->where('id=' . $did)->delete()) {
+                //$this->assign('jumpUrl', __URL__ . '/index');
+                $this->success('操作成功');
+            } else {
+                $this->error('操作失败：' . $Blog->getDbError());
+            }
+        } else {
+            $this->error('请选择删除用户');
+        }
+    }
+ * 
+ */
+
+
 
     public function move() {
         $mcatid = $_REQUEST['mcatid'];

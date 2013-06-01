@@ -57,10 +57,10 @@ body{
 	float:left;
 }
 .form_info{
-	width:250px;
-	height:150px;
+	width:350px;
+	height:180px;
 	margin-top:200px;
-	margin-right:100px;
+	margin-right:0px;
 	float:right;
 	display:inline;
 }
