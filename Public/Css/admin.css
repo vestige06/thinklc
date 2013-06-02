@@ -137,13 +137,14 @@
 .member_info{
 	position:relative;
 	margin-top:-3px;
-	background:url(../Images/admin/member_info.png) no-repeat 0 0;
-	width:271px;
+	background:url(../Images/admin/member_info.png) no-repeat -60px 0;
+	width:211px;
 	height:40px;
 }
 .member_info a{
 	color:#f1f1f1;
 	line-height:24px;
+        margin-left:32px;
 }
 .member_ico img{
 	padding:8px 0 0 3px;
@@ -158,8 +159,7 @@
 	background:url(../Images/admin/member_info_ico.png) no-repeat -2px 4px;
 }
 .member_info a.system_a{
-	margin-left:92px;
-	margin-right:33px;
+	margin-left:32px;
 }
 .member_info a.system_logout{
 	margin-left:28px;
@@ -187,14 +187,16 @@
 	margin:0;
 	padding:0;
 	width:205px;
+        height: 30px;
+        line-height: 30px;
 	text-indent:30px;
 	overflow:hidden;
 	background: url(../Images/admin/left_ico_default.gif)  no-repeat 25px center;
-	
+
 }
 .left .side a{
 	display:block;
-	padding:10px;
+	padding:0 10px;
 	text-align:left;
 	color:#f1f1f1;
 	margin-right:10px;
@@ -243,7 +245,7 @@
 	margin:0 auto;
 }
 .top_subnav{
-	margin-left:80px;
+	margin-left:10px;
 	background:url(../Images/admin/icon_use.png) no-repeat left -24px; 
 	height:22px; 
 	padding-left:16px;

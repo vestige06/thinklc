@@ -12,17 +12,6 @@
                 <option value="{$vo.id}" <eq name="Think.get.catid" value="$vo.id"> selected=selected</eq>>{$vo.catname}</option>
             </volist>
         </select>
-        <select name="areaid">
-            <option value="">地区</option>
-            <volist name="AREA" id="vo">
-                <option value="{$vo.id}" <eq name="Think.get.areaid" value="$vo.id"> selected=selected</eq>>{$vo.aname}</option>
-            </volist>
-        </select>
-        <select name="istotime">
-            <option value="">服务是否到期</option>
-            <option value="1" <eq name="Think.get.istotime" value="1"> selected=selected</eq>>有效期内</option>
-            <option value="2" <eq name="Think.get.istotime" value="2"> selected=selected</eq>>过期</option>
-        </select>
         {$Think.get.fromtime|show_date='fromtime',###,0,0,'false'}- &nbsp;{$Think.get.totime|show_date='totime',###,0,0,'false'}
         <select name="fieldskey">
             <option value="title" <eq name="Think.get.fieldskey" value="title"> selected=selected</eq>>标题</option>
@@ -45,7 +34,6 @@
             <tr>
                 <th width="20"><input type="checkbox" id="check_box" onclick="selectall('id[]');"/></th>
                 <th width="60">分类</th>
-                <th width="60">地区</th>
                 <th width="80">图片</th>
                 <th>标题</th>
                 <th width="50">会员ID</th>
@@ -59,7 +47,6 @@
                 <tr>
                     <td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
                     <td><a href="{:U('Article/top?catid='.$vo['catid'])}">{$CATEGORY[$vo['catid']]['catname']}</a></td>
-                    <td><eq name="vo['areaid']" value="0">--<else /><a href="{:U('Article/top?areaid='.$vo['areaid'])}">{$AREA[$vo['areaid']]['aname']}</a></eq></td>
                 <td><eq name="vo['ispic']" value="0">--<else /><img src="{$vo.picurl}" align="absmiddle" width="60" onclick="preview(this.src)" class="cu"></eq></td>
                 <td>{$vo.title}&nbsp;{:getToppic($vo['topstatus'],$vo['toptotime'],$vo['topnum'])}</td>
                 <td><a href="{:U('Article/top?fieldskey=uid&fieldsvalue='.$vo['uid'])}">{$vo['uid']}</a></td>

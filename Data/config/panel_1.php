@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => array ( 'mid' => '55', 'aid' => '1', 'mtitle' => '添加文章', 'url' => '/admin.php/article/Add', 'datetime' => '1370101862', ), 1 => array ( 'mid' => '44', 'aid' => '1', 'mtitle' => '一键更新', 'url' => '/admin.php/cache/onekey', 'datetime' => '1370100960', ), ); ?>

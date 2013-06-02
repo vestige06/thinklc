@@ -50,6 +50,7 @@ class ArticleAction extends CommonAction {
             $vo['title'] = h($_POST['title']);
             $vo['content'] = h($_POST['content']);
             $vo['tags'] = empty($vo['tags']) ? '' : h($_POST['tags']);
+            $vo['summary'] = empty($_POST['summary']) ? utf8Substr(h($_POST['content']), 0, 150) : h($_POST['summary']);//摘要
             //插入成功，返回id
             $return_id = $Blog->add();
             //$return_id = $Blog -> getLastInsID();//此句和上一句回返回的数据id是一样的。
@@ -57,18 +58,6 @@ class ArticleAction extends CommonAction {
                 //数据保存触发器
                 //method_exists -- 检查类的方法是否存在
                 if (method_exists($this, '_trigger')) {
-                    /*
-                      $vo是create创建的数组
-                      array(7) {
-                      ["title"] => string(19) "文章测试标题8"
-                      ["category_id"] => string(2) "10"
-                      ["content"] => string(18) "文章测试内容"
-                      ["tags"] => string(19) "测试数据 博客"
-                      ["status"] => string(1) "1"
-                      ["user_id"] => string(2) "41"
-                      ["create_time"] => int(1357914830)
-                      }
-                     */
                     $this->_trigger($vo, $return_id);
                 }
                 $this->assign('jumpUrl', __URL__);
@@ -83,16 +72,16 @@ class ArticleAction extends CommonAction {
 
     // 保存日志的标签和附件
     public function _trigger($vo, $return_id) {
-        if (ACTION_NAME == 'insert') {
-            $Attach = M("Attach");
-            $att['verify'] = 0;
-            $att['recordId'] = $return_id;
-            $Attach->where("verify='" . $_SESSION["attach_verify"] . "'")->save($att);
-        }
+//        if (ACTION_NAME == 'insert') {
+//            $Attach = M("Attach");
+//            $att['verify'] = 0;
+//            $att['recordId'] = $return_id;
+//            $Attach->where("verify='" . $_SESSION["attach_verify"] . "'")->save($att);
+//        }
         if (!empty($vo['tags']) && ACTION_NAME == 'insert') {
-            $this->saveTag($vo, $return_id, "Blog");
+            $this->saveTag($vo, $return_id, "Article");
         }else{
-            $this->updateTag($vo, $return_id, "Blog");
+            $this->updateTag($vo, $return_id, "Article");
         }
     }
     /**
@@ -116,7 +105,7 @@ class ArticleAction extends CommonAction {
                     $map["module"] = $module;
                     $map["name"] = $val;
                     $tagg = $Tag->where($map)->find(); //返回结果是0
-                    //select * from think_blog where module="Blog" and name="bobo";
+                    //select * from think_blog where module="Article" and name="bobo";
                     if ($tagg) {
                         $tagId = $tagg['id'];
                         //如果此标签已存在，就自增1
@@ -186,7 +175,7 @@ class ArticleAction extends CommonAction {
                     $map["module"] = $module;
                     $map["name"] = $val;
                     $tagg = $Tag->where($map)->find(); //返回结果是0
-                    //select * from think_blog where module="Blog" and name="bobo";
+                    //select * from think_blog where module="Article" and name="bobo";
                     if ($tagg) {
                         $tagId = $tagg['id'];
                         //如果此标签已存在，就自增1

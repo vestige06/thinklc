@@ -13,5 +13,5 @@ return array(
 'URL_PATHINFO_DEPR' => '/', // url分割符号，比如设置为”/”就为目录模式，不能使用”:” 和”&”符号
 'URL_HTML_SUFFIX' => '.html', // 伪静态后缀
 'DEFAULT_THEME' => 'default', // 默认主题
-'DEFAULT_MODULE' => 'Info', // 默认模块名
+'DEFAULT_MODULE' => 'Article', // 默认模块名
 );

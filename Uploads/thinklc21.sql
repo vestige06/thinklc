@@ -9,8 +9,8 @@ Source Database       : thinklc21
 Target Server Type    : MYSQL
 Target Server Version : 50141
 File Encoding         : 65001
-sasas
-Date: 2013-05-26 22:54:22
+
+Date: 2013-06-02 23:39:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,7 +35,7 @@ CREATE TABLE `thinklc_admin` (
 -- ----------------------------
 -- Records of thinklc_admin
 -- ----------------------------
-INSERT INTO `thinklc_admin` VALUES ('1', '0', '1', 'admin', '7fef6171469e80d32c0559f88b377245', '127.0.0.1', '1369576374', '0', '1');
+INSERT INTO `thinklc_admin` VALUES ('1', '0', '1', 'admin', '7fef6171469e80d32c0559f88b377245', '127.0.0.1', '1370171072', '0', '1');
 
 -- ----------------------------
 -- Table structure for `thinklc_area`
@@ -60,44 +60,48 @@ INSERT INTO `thinklc_area` VALUES ('1', '默认地区', 'diqu', '1');
 DROP TABLE IF EXISTS `thinklc_article`;
 CREATE TABLE `thinklc_article` (
   `id` mediumint(8) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) NOT NULL,
-  `content` varchar(2000) NOT NULL,
-  `edittime` int(10) NOT NULL,
-  `catid` tinyint(2) NOT NULL DEFAULT '0',
-  `uid` smallint(5) NOT NULL DEFAULT '0',
-  `count` smallint(5) NOT NULL DEFAULT '0',
-  `keyword` varchar(50) NOT NULL,
-  `linkurl` varchar(150) NOT NULL,
-  `ispic` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `picurl` varchar(100) NOT NULL,
+  `title` varchar(150) NOT NULL COMMENT '文章标题',
+  `uid` smallint(5) NOT NULL DEFAULT '0' COMMENT '用户id',
+  `catid` tinyint(2) NOT NULL DEFAULT '0' COMMENT '文章分类',
+  `summary` varchar(300) NOT NULL COMMENT '文章摘要',
+  `content` text NOT NULL COMMENT '文章内容',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `detail` text NOT NULL,
-  `extend` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `contact` varchar(200) NOT NULL,
-  `toptotime` int(10) NOT NULL,
-  `topstatus` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `topnum` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  `toptitle` varchar(10) NOT NULL,
+  `tags` varchar(50) NOT NULL COMMENT '标签',
+  `readcount` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '阅读次数',
+  `commentcount` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '评论次数',
+  `addtime` int(10) NOT NULL,
+  `edittime` int(10) NOT NULL,
+  `toptitle` varchar(10) DEFAULT NULL COMMENT '标题颜色',
+  `topnum` tinyint(1) unsigned DEFAULT '1',
+  `extend` tinyint(1) DEFAULT NULL,
+  `topstatus` tinyint(1) unsigned DEFAULT '0',
+  `picurl` varchar(100) DEFAULT NULL,
+  `ispic` tinyint(1) unsigned DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `cate` (`catid`),
   KEY `uid` (`uid`),
   KEY `title` (`title`),
-  KEY `toptotime` (`toptotime`),
+  KEY `toptotime` (`addtime`),
   KEY `topstatus` (`topstatus`),
   KEY `topnum` (`topnum`),
   KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='文章表';
 
 -- ----------------------------
 -- Records of thinklc_article
 -- ----------------------------
-INSERT INTO `thinklc_article` VALUES ('8', 'zhengzs', 'zhengzs', '1353254556', '5', '0', '0', 'zhengzs', '', '0', '', '1', 'zhengzs', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '');
-INSERT INTO `thinklc_article` VALUES ('11', '人人人人人人人人人人人人人人人人', '花丛人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人从花丛人人人人人人人人人人人人人人人人人人人', '1354424287', '5', '0', '0', '恭恭敬敬', '', '0', '', '0', '工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工工恭恭敬敬', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '#FF6600');
-INSERT INTO `thinklc_article` VALUES ('9', 'hhhhh', 'hhhhh', '1353254625', '5', '0', '0', 'hhhhh', '', '0', '', '1', 'hhhhh', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '');
-INSERT INTO `thinklc_article` VALUES ('10', '有朝一日，我定会乐山再起', '有朝一日，我定会乐山再起', '1354420516', '5', '0', '0', '​有朝一日', '', '0', '', '1', '<strong><span style=\"font-size:16px;\">有朝一日，我定会乐山再起</span></strong><strong><span style=\"font-size:16px;\">，</span></strong><strong><span style=\"font-size:16px;\"><br />\r\n<span style=\"background-color:#FF9900;\">有朝一日，我定会乐山再起</span></span></strong><strong><span style=\"font-size:16px;background-color:#FF9900;\">，</span></strong><strong><span style=\"font-size:16px;\"><br />\r\n<span style=\"color:#E53333;\">有朝一日，我定会乐山再起</span></span></strong>', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '');
-INSERT INTO `thinklc_article` VALUES ('12', 'rrrrrrrrrrrrrrrrr', 'rrrrrrrrrrrrrrrrrrrrrrrrr', '1355241416', '5', '0', '0', 'rrr', '', '0', '', '1', 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '');
-INSERT INTO `thinklc_article` VALUES ('13', 'dasdasd', 'asdasdas', '1367392521', '3', '0', '0', '', '', '0', '', '1', 'dasdas', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '');
-INSERT INTO `thinklc_article` VALUES ('14', 'fds', 'fdsfds', '1367395673', '2', '0', '0', '', '', '0', '', '1', 'fdssdfsdf', '0', 'a:4:{s:9:\"contacter\";s:0:\"\";s:3:\"tel\";s:0:\"\";s:2:\"qq\";s:0:\"\";s:3:\"msn\";s:0:\"\";}', '0', '0', '1', '');
+INSERT INTO `thinklc_article` VALUES ('8', 'zhengzs', '0', '2', 'zhengzs', 'dsaasdads', '0', 'zhengzs', '0', '0', '0', '1370139246', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('11', '人人人人人人人人人人人人人人人人', '0', '2', '花丛人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人人从花丛人人人人人人人人人人人人人人人人人人人', '', '1', '恭恭敬敬', '0', '0', '0', '1354424287', '#FF6600', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('9', 'hhhhh', '0', '2', 'hhhhh', '', '0', 'hhhhh', '0', '0', '0', '1353254625', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('10', '有朝一日，我定会乐山再起', '0', '2', '有朝一日，我定会乐山再起', '', '0', '​有朝一日', '0', '0', '0', '1354420516', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('12', 'rrrrrrrrrrrrrrrrr', '0', '3', 'rrrrrrrrrrrrrrrrrrrrrrrrr', 'rrrrrrrrrrrrrrrrrrrrrrrrr', '1', 'rrr', '0', '0', '0', '1370139311', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('13', 'dasdasd', '0', '3', 'asdasdas', '', '1', '', '0', '0', '0', '1367392521', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('14', 'fds', '0', '2', 'fdsfds', '', '1', '', '0', '0', '0', '1367395673', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('15', 'dasdasdasd', '0', '3', 'sadasdasd', 'dsasaads', '1', 'sadsd', '0', '0', '1370135728', '0', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('16', 'saadsasd', '0', '3', 'asdasdasdasd', 'asdasdasdasdsa', '1', 'asdasd', '0', '0', '1370135866', '0', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('17', 'sdafsdfdsfa', '0', '2', '', 'fdsdafsdfsfds', '1', '', '0', '0', '1370140269', '0', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('18', '佐枯基材基本基本面基本面基本面基本面基本', '0', '3', '', '佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本<br />\r\n佐枯基材基本基本面基本面基本面基本面基本', '1', '文章 啦啊', '0', '0', '1370155997', '0', '', '1', null, '0', '', '0');
+INSERT INTO `thinklc_article` VALUES ('19', '这个错误通常会在你使用HEADER的时候出', '0', '3', '', '这个错误通常会在你使用HEADER的时候出这个错误通常会<br />\r\n在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出<br />\r\n<br />\r\n这个错误通常会在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出<br />\r\n<br />\r\n这个错误通常会在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出这个错误通常会在你使用HEADER的时候出', '1', 'lamp linux', '0', '0', '1370182342', '0', '#33CCCC', '1', null, '0', '', '0');
 
 -- ----------------------------
 -- Table structure for `thinklc_blog`
@@ -458,7 +462,7 @@ INSERT INTO `thinklc_menu` VALUES ('49', 'Phone', 'check', '', '审核{6}', '1',
 INSERT INTO `thinklc_menu` VALUES ('50', 'Phone', 'spread', '', '推广管理', '1', '46', '3', '', '0', '1', '0', '0');
 INSERT INTO `thinklc_menu` VALUES ('51', 'Category', 'index', 'moduleid=6', '分类管理', '1', '46', '3', '', '0', '1', '0', '0');
 INSERT INTO `thinklc_menu` VALUES ('52', 'Setting', 'index', 'item=6', '模块设置', '1', '46', '3', '', '0', '1', '0', '0');
-INSERT INTO `thinklc_menu` VALUES ('53', '', '', '', '博客模块', '1', '0', '1', '', '0', '1', '5', '0');
+INSERT INTO `thinklc_menu` VALUES ('53', '', '', '', '文章模块', '1', '0', '1', '', '0', '1', '5', '0');
 INSERT INTO `thinklc_menu` VALUES ('54', '', '', '', '文章模块', '1', '53', '2', '', '0', '1', '0', '0');
 INSERT INTO `thinklc_menu` VALUES ('55', 'Article', 'Add', '', '添加{7}', '1', '54', '3', '', '0', '1', '0', '0');
 INSERT INTO `thinklc_menu` VALUES ('56', 'Article', 'index', '', '{7}列表', '1', '54', '3', '', '0', '1', '0', '0');
@@ -561,6 +565,8 @@ CREATE TABLE `thinklc_panel` (
 -- ----------------------------
 -- Records of thinklc_panel
 -- ----------------------------
+INSERT INTO `thinklc_panel` VALUES ('44', '1', '一键更新', '/admin.php/cache/onekey', '1370100960');
+INSERT INTO `thinklc_panel` VALUES ('55', '1', '添加文章', '/admin.php/article/Add', '1370101862');
 
 -- ----------------------------
 -- Table structure for `thinklc_phone`
@@ -764,7 +770,7 @@ CREATE TABLE `thinklc_tag` (
   KEY `name` (`name`) USING BTREE,
   KEY `module` (`module`) USING BTREE,
   KEY `count` (`count`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='标签表，存放文章标签';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='标签表，存放文章标签';
 
 -- ----------------------------
 -- Records of thinklc_tag
@@ -776,6 +782,13 @@ INSERT INTO `thinklc_tag` VALUES ('4', 'js', '8', 'Blog');
 INSERT INTO `thinklc_tag` VALUES ('5', 'javascript', '3', 'Blog');
 INSERT INTO `thinklc_tag` VALUES ('6', 'html', '3', 'Blog');
 INSERT INTO `thinklc_tag` VALUES ('7', 'css', '3', 'Blog');
+INSERT INTO `thinklc_tag` VALUES ('8', 'asdasd', '1', 'Article');
+INSERT INTO `thinklc_tag` VALUES ('9', 'zhengzs', '1', 'Article');
+INSERT INTO `thinklc_tag` VALUES ('11', 'rrr', '1', 'Article');
+INSERT INTO `thinklc_tag` VALUES ('12', '文章', '1', 'Article');
+INSERT INTO `thinklc_tag` VALUES ('13', '啦啊', '1', 'Article');
+INSERT INTO `thinklc_tag` VALUES ('14', 'lamp', '1', 'Article');
+INSERT INTO `thinklc_tag` VALUES ('15', 'linux', '1', 'Article');
 
 -- ----------------------------
 -- Table structure for `thinklc_tagged`
@@ -790,7 +803,7 @@ CREATE TABLE `thinklc_tagged` (
   `module` varchar(25) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `module` (`module`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='标签文章关联表';
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='标签文章关联表';
 
 -- ----------------------------
 -- Records of thinklc_tagged
@@ -804,6 +817,13 @@ INSERT INTO `thinklc_tagged` VALUES ('20', '0', '3', '5', '1365948054', 'Blog');
 INSERT INTO `thinklc_tagged` VALUES ('19', '0', '3', '4', '1365948054', 'Blog');
 INSERT INTO `thinklc_tagged` VALUES ('13', '0', '4', '6', '1365433469', 'Blog');
 INSERT INTO `thinklc_tagged` VALUES ('14', '0', '4', '7', '1365433469', 'Blog');
+INSERT INTO `thinklc_tagged` VALUES ('21', '0', '16', '8', '1370135866', 'Article');
+INSERT INTO `thinklc_tagged` VALUES ('22', '0', '8', '9', '1370139246', 'Article');
+INSERT INTO `thinklc_tagged` VALUES ('24', '0', '12', '11', '1370139311', 'Article');
+INSERT INTO `thinklc_tagged` VALUES ('25', '0', '18', '12', '1370155997', 'Article');
+INSERT INTO `thinklc_tagged` VALUES ('26', '0', '18', '13', '1370155997', 'Article');
+INSERT INTO `thinklc_tagged` VALUES ('27', '0', '19', '14', '1370182342', 'Article');
+INSERT INTO `thinklc_tagged` VALUES ('28', '0', '19', '15', '1370182342', 'Article');
 
 -- ----------------------------
 -- Table structure for `thinklc_webpage`

@@ -1,0 +1,171 @@
+<include file="Module:header" />
+<eq name="CFG['contact_extend']" value="1">
+<script language="javascript" type="text/javascript" src="__PUBLIC__/Js/dialog.js"></script>
+<link href="__PUBLIC__/dialog.css" rel="stylesheet" type="text/css" />
+</eq>
+<eq name="CFG.loadtype" value="0"><div class="w960 pagetop clear">{$page}</div></eq>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/nbspslider/css/css.css" />
+<!--[if IE 6]>
+ <script type="text/javascript" src="__PUBLIC__/nbspslider/js/EvPng.js"></script>
+ <script> EvPNG.fix('.num,.num_act,.num_hover,.square,.square_act,.square_hover,.circle,.circle_act,.circle_hover,.roundness,.roundness_act,.roundness_hover,.rectangle,.rectangle_act,.rectangle_hover');
+ </script>
+<![endif]-->
+
+<div class="w960 center clear mt10">
+    <!--幻灯片start-->
+    <div id="slider1" style="float: left">
+        <ul>
+            <li><a href="javascript:void(0);"><img src="__PUBLIC__/nbspslider/images/01.jpg" alt="1111111111" /></a></li>
+            <li><a href="javascript:void(0);"><img src="__PUBLIC__/nbspslider/images/02.jpg" alt="22222222222" /></a></li>
+            <li><a href="javascript:void(0);"><img src="__PUBLIC__/nbspslider/images/03.jpg" alt="333333333333" /></a></li>
+            <li><a href="javascript:void(0);"><img src="__PUBLIC__/nbspslider/images/04.jpg" alt="444444444444" /></a></li>
+            <li><a href="javascript:void(0);"><img src="__PUBLIC__/nbspslider/images/05.jpg" alt="555555555555" /></a></li>
+        </ul>
+    </div>
+    <div class="one">sssssssssss</div>
+    <!--幻灯片end-->
+
+    <div class="two">
+        <ul>
+            <li>####################</li>
+        </ul>
+    </div>
+</div>
+
+<div class="w960 center clear mt10">
+    <div style="width: 300px;height: 200px;border: 1px solid #CCC;padding: 10px;margin: 5px 0;">
+        <ul>
+            <volist name="list" id="vo">
+                <li><a href="{:U('Article/detail?id='.$vo['id'])}" target="_blank"><font color="{$vo.toptitle}">{$vo.title}</font></a></li>
+            </volist>
+        </ul>
+    </div>
+    <div style="width: 300px;height: 200px;border: 1px solid #CCC;padding: 10px;margin: 5px 0;">
+        <ul>
+            <volist name="list" id="vo">
+                <li><a href="{:U('Article/detail?id='.$vo['id'])}" target="_blank"><font color="{$vo.toptitle}">{$vo.title}</font></a></li>
+            </volist>
+        </ul>
+    </div>
+<!--    <ul class="infocont" id="container">
+        <volist name="list" id="vo">
+            <php>$thisrow=(int)($infocount/5);$thisbg=$thisrow%2;</php>
+            <li class="post sj_{$vo.topnum} color{$thisbg}">
+                <div class="info_title">
+                    <if condition="$vo['linkurl'] eq ''"><a href="{:U('Article/detail?id='.$vo['id'])}" target="_blank"><font color="{$vo.toptitle}">{$vo.title}</font></a>
+                        <else /><a href="{$vo.linkurl}" target="_blank"><font color="{$vo.toptitle}">{$vo.title}</font></a>
+                    </if>
+                </div>
+                <div class="info_cont" <eq name="CFG.water" value="0">style="height:{$CFG.cell_height}px"</eq>>
+                    <if condition="$vo.detail neq ''"><a href="{:U('Article/detail?id='.$vo['id'])}" target="_blank"></if>
+                    <eq name="vo['ispic']" value="1"><img src="{$vo.picurl}">
+                    <else/><p class="txt">{$vo.content}<if condition="($CFG['contact_extend'] eq 1) AND ($vo['extend'] eq 1)">{:getExtend($vo['contact'], $CFG, 1)}</if></p>
+                    </eq>
+                    <if condition="$vo.detail neq ''"></a></if>
+                </div>
+                <div class="info_cate">
+                    <eq name="vo['areaid']" value="0">{$Think.config.site_area}<else/>{$AREA[$vo['areaid']]['aname']}</eq>{$CATEGORY[$vo['catid']]['catname']}
+                    <if condition="($CFG['contact_extend'] eq 1) AND ($vo['extend'] eq 1)">
+                        <span class="extend">{:getExtend($vo['contact'], $CFG)}</span>
+                    </if>
+                </div>
+                <div class="info_date">日期：{$vo.edittime|date="Y-m-d",###}</div>
+            </li>
+            <php>$infocount += $vo['topnum'];</php>
+        </volist>
+    </ul>-->
+</div>
+<div class="w960 clear pagefoot">{$page}</div>
+<!--<script type="text/javascript" src="__PUBLIC__/Js/jquery.min.js"></script>-->
+<script type="text/javascript" src="__PUBLIC__/nbspslider/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/nbspslider/js/jquery.nbspSlider.1.1.min.js"></script>
+<eq name="CFG.water" value="1"><script type="text/javascript" src="__PUBLIC__/Js/jquery.masonry.min.js"></script></eq>
+<eq name="CFG.loadtype" value="1"><script type="text/javascript" src="__PUBLIC__/Js/jquery.infinitescroll.min.js"></script></eq>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var $container = $('#container');
+            <eq name="CFG.water" value="1">
+            $container.imagesLoaded(function(){
+            $container.masonry({
+                itemSelector: '.post',
+                columnWidth: 1 //每两列之间的间隙为5像素
+            });
+        });
+            </eq>
+            <eq name="CFG.loadtype" value="1">
+            $container.infinitescroll({
+            navSelector  : '.pagefoot',    // 选择的分页导航
+            nextSelector : '.pagefoot #nextpage',  // 选择的下一个链接到（第2页）
+            itemSelector : '.post',     // 选择检索所有项目
+            loading: {
+                finishedMsg: '没有更多的页面加载。',
+                img: '__PUBLIC__/Image/loadings.gif'
+            }
+        },function(newElements){
+                <eq name="CFG.water" value="1">
+                // 隐藏新的项目，而他们正在加载
+            var $newElems = $( newElements ).css({ opacity: 0 });
+
+            // 确保的图像装载增加砖石布局
+            $newElems.imagesLoaded(function(){
+                // 元素展示准备
+                $newElems.animate({opacity:1});
+                $container.masonry( 'appended', $newElems, true );
+            });
+                </eq>
+            });
+            </eq>
+            $('<a href="#" id="retop">返回顶部</a>').appendTo('body').fadeOut().click(function(){
+            $(document).scrollTop(0);
+            $(this).fadeOut();
+            return false
+        });
+        var $retop = $('#retop');
+        function backTopLeft(){
+            var btLeft = $(window).width() / 2 + 490;
+            if (btLeft <= 950){
+                $retop.css({ 'left': 955 })
+            }else{
+                $retop.css({ 'left': btLeft })
+            }
+        }
+        backTopLeft();
+        $(window).resize(backTopLeft);
+        $(window).scroll(function(){
+            if ($(document).scrollTop() === 0){
+                $retop.fadeOut()
+            }else{
+                $retop.fadeIn()
+            }
+            if ($.browser.msie && $.browser.version == 6.0 && $(document).scrollTop() !== 0){
+                $retop.css({ 'opacity': 1 })
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#slider1").nbspSlider({
+            //nbsp slier幻灯片参数列表
+            widths:             "336px",        // 幻灯片宽度
+            heights:            "230px",        // 幻灯片高度
+            autoplay:           1,              // 是否自动播放幻灯片(1为是0为否)
+            delays:             4000,           // 自动播放--间隔(毫秒)
+            prevId:             'prevBtn',      // 上一张幻灯片按钮ID
+            nextId:             'nextBtn',      // 下一张幻灯片按钮ID
+            effect:             'fade',   // horizontal、vertical、fade、none == 特效：横向、竖向、淡出、无特效
+            speeds:             800,            // 幻灯片切换的速度(毫秒)
+            altOpa:             0.5,            // ALT区块透明度
+            altBgColor:         '#ccc',         // ALT区块背景颜色
+            altHeight:          '25px',         // ALT区块高度
+            altShow:            1,             // ALT区块是否显示(1为是0为否)
+            altFontColor:       '#111111',        // ALT区块内的字体颜色
+            starEndNoEff:       1,            // 开始与结束中间无动画效果(1为是0为否)
+            preNexBtnShow:      0,            // 是否显示上一张下一张按钮
+            numBtnSty:          "square",        // num、square、circle、roundness、rectangle == 数字、正方形、圆圈、圆形、长方形
+            numBtnShow:         1          // 是否显示数字按钮(1为是0为否)
+        });
+    });
+</script>
+<div class="clear"></div>
+<include file="Public:footer" />

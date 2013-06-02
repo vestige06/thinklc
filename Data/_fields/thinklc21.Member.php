@@ -1,2 +1,0 @@
-<?php
-return array ( 0 => 'id', 1 => 'uname', 2 => 'upwd', 3 => 'gid', 4 => 'company', 5 => 'address', 6 => 'contacter', 7 => 'tel', 8 => 'email', 9 => 'regip', 10 => 'regtime', 11 => 'loginip', 12 => 'logintime', 13 => 'credit', 14 => 'money', 15 => 'amount', 16 => 'viptotime', 17 => 'ucverify', '_autoinc' => true, '_pk' => 'id', ); ?>

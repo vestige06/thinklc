@@ -1,77 +1,82 @@
 <include file="Public:header" />
 <div class="pad-10">
-	<div class="common-form">
-		<form name="myform" action="__SELF__" method="post" id="myform">
-			<table width="100%" class="table_form contentWrap">
-				<tr>
-					<td>数据库端口</td> 
-					<td><input type="text" name="config[DB_PORT]" value="{$config.DB_PORT}" class="input-text" id="DB_PORT"></input></td>
-				</tr>
-				<tr>
-					<td>数据库服务器</td> 
-					<td><input type="text" name="config[DB_HOST]" value="{$config.DB_HOST}" class="input-text" id="DB_HOST"></input></td>
-				</tr>
-				<tr>
-					<td>数据库名</td> 
-					<td><input type="text" name="config[DB_NAME]" value="{$config.DB_NAME}" class="input-text" id="DB_NAME"></input></td>
-				</tr>
-				<tr>
-					<td>数据库用户名</td> 
-					<td><input type="text" name="config[DB_USER]" value="{$config.DB_USER}" class="input-text" id="DB_USER"></input></td>
-				</tr>
-				<tr>
-					<td>数据库密码</td> 
-					<td><input type="text" name="config[DB_PWD]" value="{$config.DB_PWD}" class="input-text" id="DB_PWD"></input></td>
-				</tr>
-				<tr>
-					<td>数据表前缀</td> 
-					<td><input type="text" name="config[DB_PREFIX]" value="{$config.DB_PREFIX}" class="input-text" id="DB_PREFIX"></input></td>
-				</tr>
-				<tr>
-					<td>静态缓存</td>
-					<td>
-						<input name="config[HTML_CACHE_ON]" type="radio" value="true" <if condition="$config[HTML_CACHE_ON] eq 1">checked</if> />开启&nbsp;&nbsp;&nbsp;&nbsp;
-						<input name="config[HTML_CACHE_ON]" type="radio" value="false" <if condition="$config[HTML_CACHE_ON] neq 1">checked</if> />关闭
-					</td>
-				</tr>
-				<tr>
-					<td>静态缓存有效期</td>
-					<td><input name="config[HTML_CACHE_TIME]" type="text" value="{$config.HTML_CACHE_TIME}" size="40"/> 秒</td>
-				</tr>
-				<tr>
-					<td>URL模式</td>
-					<td>
-						<select name="config[URL_MODEL]">
-						<option value="0" <if condition="$config.URL_MODEL eq 0">selected</if>>普通模式：http://serverName/index.php?m=module&a=action&id=1</option>
-						<option value="1" <if condition="$config.URL_MODEL eq 1">selected</if>>默认模式：http://serverName/index.php/module/action/id/1/</option>
-						<option value="2" <if condition="$config.URL_MODEL eq 2">selected</if>>REWRITE模式：http://serverName/module/action/id/1/</option>
-						<option value="3" <if condition="$config.URL_MODEL eq 3">selected</if>>兼容模式：http://serverName/index.php?s=/module/action/id/1/</option>
-						</select> REWRITE模式需要空间支持
-					</td>
-				</tr>
-				<tr>
-					<td>URL分割符号</td>
-					<td><input name="config[URL_PATHINFO_DEPR]" type="text" value="{$config.URL_PATHINFO_DEPR}" size="40"/> 不能使用”:” 和”&”符号</td>
-				</tr>
-				<tr>
-					<td>伪静态后缀</td>
-					<td><input name="config[URL_HTML_SUFFIX]" type="text" value="{$config.URL_HTML_SUFFIX}" size="40"/> 例如：.html</td>
-				</tr>
-				<tr>
-					<td>默认模块</td>
-					<td>
-						<select name="config[DEFAULT_MODULE]">
-						<volist name="module" id="vo">
-						<if condition="($vo.id gt 4) AND ($vo.islink eq 0)"><option value="{$vo.mname}" <if condition="$config.DEFAULT_MODULE eq $vo.mname">selected</if>>{$vo.mtitle}</option></if>
-						</volist>
-						</select> 设置默认模块为首页
-					</td>
-				</tr>
-			</table>
-			<div class="bk15"></div>
-			<input name="dosubmit" type="submit" value=" 提 交 " class="button" id="dosubmit">
-		</form>
-	</div>
+    <div class="common-form">
+        <form name="myform" action="__SELF__" method="post" id="myform">
+            <table width="100%" class="table_form contentWrap">
+                <tr>
+                    <td>数据库端口</td> 
+                    <td><input type="text" name="config[DB_PORT]" value="{$config.DB_PORT}" class="input-text" id="DB_PORT"></input></td>
+                </tr>
+                <tr>
+                    <td>数据库服务器</td> 
+                    <td><input type="text" name="config[DB_HOST]" value="{$config.DB_HOST}" class="input-text" id="DB_HOST"></input></td>
+                </tr>
+                <tr>
+                    <td>数据库名</td> 
+                    <td><input type="text" name="config[DB_NAME]" value="{$config.DB_NAME}" class="input-text" id="DB_NAME"></input></td>
+                </tr>
+                <tr>
+                    <td>数据库用户名</td> 
+                    <td><input type="text" name="config[DB_USER]" value="{$config.DB_USER}" class="input-text" id="DB_USER"></input></td>
+                </tr>
+                <tr>
+                    <td>数据库密码</td> 
+                    <td><input type="text" name="config[DB_PWD]" value="{$config.DB_PWD}" class="input-text" id="DB_PWD"></input></td>
+                </tr>
+                <tr>
+                    <td>数据表前缀</td> 
+                    <td><input type="text" name="config[DB_PREFIX]" value="{$config.DB_PREFIX}" class="input-text" id="DB_PREFIX"></input></td>
+                </tr>
+                <tr>
+                    <td>静态缓存</td>
+                    <td>
+                <input name="config[HTML_CACHE_ON]" type="radio" value="true" <if condition="$config[HTML_CACHE_ON] eq 1">checked</if> />开启&nbsp;&nbsp;&nbsp;&nbsp;
+                <input name="config[HTML_CACHE_ON]" type="radio" value="false" <if condition="$config[HTML_CACHE_ON] neq 1">checked</if> />关闭
+                </td>
+                </tr>
+                <tr>
+                    <td>静态缓存有效期</td>
+                    <td><input name="config[HTML_CACHE_TIME]" type="text" value="{$config.HTML_CACHE_TIME}" size="40"/> 秒</td>
+                </tr>
+                <tr>
+                    <td>URL模式</td>
+                    <td>
+                        <select name="config[URL_MODEL]">
+                            <option value="0" <if condition="$config.URL_MODEL eq 0">selected</if>>普通模式：http://serverName/index.php?m=module&a=action&id=1</option>
+                            <option value="1" <if condition="$config.URL_MODEL eq 1">selected</if>>默认模式：http://serverName/index.php/module/action/id/1/</option>
+                            <option value="2" <if condition="$config.URL_MODEL eq 2">selected</if>>REWRITE模式：http://serverName/module/action/id/1/</option>
+                            <option value="3" <if condition="$config.URL_MODEL eq 3">selected</if>>兼容模式：http://serverName/index.php?s=/module/action/id/1/</option>
+                        </select> REWRITE模式需要空间支持
+                    </td>
+                </tr>
+                <tr>
+                    <td>URL分割符号</td>
+                    <td><input name="config[URL_PATHINFO_DEPR]" type="text" value="{$config.URL_PATHINFO_DEPR}" size="40"/> 不能使用”:” 和”&”符号</td>
+                </tr>
+                <tr>
+                    <td>伪静态后缀</td>
+                    <td><input name="config[URL_HTML_SUFFIX]" type="text" value="{$config.URL_HTML_SUFFIX}" size="40"/> 例如：.html</td>
+                </tr>
+                <tr>
+                    <td>默认模块</td>
+                    <td>
+                        <select name="config[DEFAULT_MODULE]">
+                            <volist name="module" id="vo">
+                                <if condition="($vo.id gt 4) AND ($vo.islink eq 0)">
+                                    <option value="{$vo.mname}" <eq name="vo.mname" value="$config.DEFAULT_MODULE">selected</eq> >
+                                    {$vo.mtitle}
+                                    <!--==={$vo.mname}=={$config.DEFAULT_MODULE}-->
+                                    </option>
+                                </if>
+                            </volist>
+                        </select> 设置默认模块为首页
+                    </td>
+                </tr>
+            </table>
+            <div class="bk15"></div>
+            <input name="dosubmit" type="submit" value=" 提 交 " class="button" id="dosubmit">
+        </form>
+    </div>
 </div>
 </body>
 </html>

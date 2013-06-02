@@ -1,2 +1,0 @@
-<?php
-return array ( 0 => 'id', 1 => 'title', 2 => 'business', 3 => 'tel', 4 => 'mobile', 5 => 'address', 6 => 'map', 7 => 'qq', 8 => 'areaid', 9 => 'catid', 10 => 'uid', 11 => 'status', 12 => 'toptotime', 13 => 'toptitle', 14 => 'spreadtotime', '_autoinc' => true, '_pk' => 'id', ); ?>

@@ -1,2 +1,0 @@
-<?php
-return array ( 0 => 'id', 1 => 'title', 2 => 'content', 3 => 'edittime', 4 => 'catid', 5 => 'uid', 6 => 'count', 7 => 'keyword', 8 => 'linkurl', 9 => 'ispic', 10 => 'picurl', 11 => 'status', 12 => 'detail', 13 => 'extend', 14 => 'contact', 15 => 'toptotime', 16 => 'topstatus', 17 => 'topnum', 18 => 'toptitle', '_autoinc' => true, '_pk' => 'id', ); ?>
