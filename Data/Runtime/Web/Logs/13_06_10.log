@@ -1,0 +1,289 @@
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ app_begin ] --START--
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run ReadHtmlCache Behavior [ RunTime:0.003038s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ app_begin ] --END-- [ RunTime:0.010158s ]
+[ 2013-06-10T23:37:32+08:00 ] / | SQL: SHOW COLUMNS FROM `thinklc_article` [ RunTime:0.016517s ]
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: HTTP_REFERER ArticleAction.class.php 第 48 行.
+[ 2013-06-10T23:37:32+08:00 ] / | SQL: SELECT * FROM `thinklc_article` WHERE status = 1  [ RunTime:0.001794s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_template ] --START--
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run LocationTemplate Behavior [ RunTime:0.005410s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_template ] --END-- [ RunTime:0.005553s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_parse ] --START--
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: searchkey 2e658b4e477fb88e12382f4634840003.php 第 62 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 66 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: cate 2e658b4e477fb88e12382f4634840003.php 第 70 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: cate 2e658b4e477fb88e12382f4634840003.php 第 70 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: cate 2e658b4e477fb88e12382f4634840003.php 第 70 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 93 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: page 2e658b4e477fb88e12382f4634840003.php 第 101 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: infocount 2e658b4e477fb88e12382f4634840003.php 第 142 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: infocount 2e658b4e477fb88e12382f4634840003.php 第 160 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: page 2e658b4e477fb88e12382f4634840003.php 第 163 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 254 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined variable: havelink 2e658b4e477fb88e12382f4634840003.php 第 261 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [2] Invalid argument supplied for foreach() ShowAboutWidget.class.php 第 9 行.
+[ 2013-06-10T23:37:32+08:00 ] / | NOTIC: [8] Undefined index: type ShowAboutWidget.class.php 第 13 行.
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run ParseTemplate Behavior [ RunTime:0.116713s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_parse ] --END-- [ RunTime:0.116808s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_filter ] --START--
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run ContentReplace Behavior [ RunTime:0.001467s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run TokenBuild Behavior [ RunTime:0.001874s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run WriteHtmlCache Behavior [ RunTime:0.001127s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run ShowRuntime Behavior [ RunTime:0.001417s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_filter ] --END-- [ RunTime:0.006139s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_end ] --START--
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Run ShowPageTrace Behavior [ RunTime:0.006025s ]
+[ 2013-06-10T23:37:32+08:00 ] / | INFO: Tag[ view_end ] --END-- [ RunTime:0.006128s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ route_check ] --START--
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run CheckRoute Behavior [ RunTime:0.016626s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ route_check ] --END-- [ RunTime:0.016779s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ app_begin ] --START--
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run ReadHtmlCache Behavior [ RunTime:0.002193s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ app_begin ] --END-- [ RunTime:0.002312s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | NOTIC: [8] Undefined index: uc_enable BaseAction.class.php 第 15 行.
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_template ] --START--
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run LocationTemplate Behavior [ RunTime:0.003044s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_template ] --END-- [ RunTime:0.003141s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_parse ] --START--
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run ParseTemplate Behavior [ RunTime:0.031605s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_parse ] --END-- [ RunTime:0.031694s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_filter ] --START--
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run ContentReplace Behavior [ RunTime:0.000936s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run TokenBuild Behavior [ RunTime:0.001123s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run WriteHtmlCache Behavior [ RunTime:0.002177s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run ShowRuntime Behavior [ RunTime:0.001326s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_filter ] --END-- [ RunTime:0.005834s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_end ] --START--
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Run ShowPageTrace Behavior [ RunTime:0.001177s ]
+[ 2013-06-10T23:37:32+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_end ] --END-- [ RunTime:0.001266s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ app_begin ] --START--
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run ReadHtmlCache Behavior [ RunTime:0.001527s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ app_begin ] --END-- [ RunTime:0.001674s ]
+[ 2013-06-10T23:37:37+08:00 ] / | SQL: SHOW COLUMNS FROM `thinklc_article` [ RunTime:0.003565s ]
+[ 2013-06-10T23:37:37+08:00 ] / | SQL: SELECT * FROM `thinklc_article` WHERE status = 1  [ RunTime:0.000637s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_template ] --START--
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run LocationTemplate Behavior [ RunTime:0.002140s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_template ] --END-- [ RunTime:0.002226s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_parse ] --START--
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: searchkey 2e658b4e477fb88e12382f4634840003.php 第 62 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 66 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: cate 2e658b4e477fb88e12382f4634840003.php 第 70 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: cate 2e658b4e477fb88e12382f4634840003.php 第 70 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: cate 2e658b4e477fb88e12382f4634840003.php 第 70 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 93 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: page 2e658b4e477fb88e12382f4634840003.php 第 101 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: infocount 2e658b4e477fb88e12382f4634840003.php 第 142 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: infocount 2e658b4e477fb88e12382f4634840003.php 第 160 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: linkurl 2e658b4e477fb88e12382f4634840003.php 第 145 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 149 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: detail 2e658b4e477fb88e12382f4634840003.php 第 152 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: areaid 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 155 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: page 2e658b4e477fb88e12382f4634840003.php 第 163 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: AREA 2e658b4e477fb88e12382f4634840003.php 第 254 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined variable: havelink 2e658b4e477fb88e12382f4634840003.php 第 261 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [2] Invalid argument supplied for foreach() ShowAboutWidget.class.php 第 9 行.
+[ 2013-06-10T23:37:37+08:00 ] / | NOTIC: [8] Undefined index: type ShowAboutWidget.class.php 第 13 行.
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run ParseTemplate Behavior [ RunTime:0.072193s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_parse ] --END-- [ RunTime:0.072270s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_filter ] --START--
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run ContentReplace Behavior [ RunTime:0.001111s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run TokenBuild Behavior [ RunTime:0.001377s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run WriteHtmlCache Behavior [ RunTime:0.000826s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run ShowRuntime Behavior [ RunTime:0.001062s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_filter ] --END-- [ RunTime:0.004616s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_end ] --START--
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Run ShowPageTrace Behavior [ RunTime:0.002229s ]
+[ 2013-06-10T23:37:37+08:00 ] / | INFO: Tag[ view_end ] --END-- [ RunTime:0.002350s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ route_check ] --START--
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run CheckRoute Behavior [ RunTime:0.002117s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ route_check ] --END-- [ RunTime:0.002731s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ app_begin ] --START--
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run ReadHtmlCache Behavior [ RunTime:0.000899s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ app_begin ] --END-- [ RunTime:0.001008s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | NOTIC: [8] Undefined index: uc_enable BaseAction.class.php 第 15 行.
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_template ] --START--
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run LocationTemplate Behavior [ RunTime:0.001770s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_template ] --END-- [ RunTime:0.001861s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_parse ] --START--
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run ParseTemplate Behavior [ RunTime:0.013831s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_parse ] --END-- [ RunTime:0.013919s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_filter ] --START--
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run ContentReplace Behavior [ RunTime:0.000614s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run TokenBuild Behavior [ RunTime:0.000659s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run WriteHtmlCache Behavior [ RunTime:0.000489s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run ShowRuntime Behavior [ RunTime:0.000730s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_filter ] --END-- [ RunTime:0.002729s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_end ] --START--
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Run ShowPageTrace Behavior [ RunTime:0.000754s ]
+[ 2013-06-10T23:37:37+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_end ] --END-- [ RunTime:0.000835s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ route_check ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run CheckRoute Behavior [ RunTime:0.002256s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ route_check ] --END-- [ RunTime:0.002410s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ app_begin ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run ReadHtmlCache Behavior [ RunTime:0.001618s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ app_begin ] --END-- [ RunTime:0.001806s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | SQL: SHOW COLUMNS FROM `thinklc_article` [ RunTime:0.007614s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | SQL: SELECT * FROM `thinklc_article` WHERE id=18 LIMIT 1   [ RunTime:0.000785s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined index: detail ArticleAction.class.php 第 289 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_template ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run LocationTemplate Behavior [ RunTime:0.002928s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_template ] --END-- [ RunTime:0.003067s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_parse ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined variable: extend_title 1c667617dfdffc28521e2ed0af09cfcf.php 第 7 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined variable: extend_title 1c667617dfdffc28521e2ed0af09cfcf.php 第 41 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined index: areaid 1c667617dfdffc28521e2ed0af09cfcf.php 第 48 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined index: keyword 1c667617dfdffc28521e2ed0af09cfcf.php 第 56 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined index: linkurl 1c667617dfdffc28521e2ed0af09cfcf.php 第 57 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined index: detail 1c667617dfdffc28521e2ed0af09cfcf.php 第 74 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined variable: AREA 1c667617dfdffc28521e2ed0af09cfcf.php 第 90 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined variable: havelink 1c667617dfdffc28521e2ed0af09cfcf.php 第 97 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [2] Invalid argument supplied for foreach() ShowAboutWidget.class.php 第 9 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | NOTIC: [8] Undefined index: type ShowAboutWidget.class.php 第 13 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run ParseTemplate Behavior [ RunTime:0.042751s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_parse ] --END-- [ RunTime:0.042831s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_filter ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run ContentReplace Behavior [ RunTime:0.000676s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run TokenBuild Behavior [ RunTime:0.000739s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run WriteHtmlCache Behavior [ RunTime:0.000497s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run ShowRuntime Behavior [ RunTime:0.000760s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_filter ] --END-- [ RunTime:0.002913s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_end ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Run ShowPageTrace Behavior [ RunTime:0.000812s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/article/detail/id/18.html | INFO: Tag[ view_end ] --END-- [ RunTime:0.000912s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ route_check ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run CheckRoute Behavior [ RunTime:0.002453s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ route_check ] --END-- [ RunTime:0.002600s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ app_begin ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run ReadHtmlCache Behavior [ RunTime:0.001552s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ app_begin ] --END-- [ RunTime:0.001661s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | NOTIC: [8] Undefined index: uc_enable BaseAction.class.php 第 15 行.
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_template ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run LocationTemplate Behavior [ RunTime:0.001980s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_template ] --END-- [ RunTime:0.002071s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_parse ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run ParseTemplate Behavior [ RunTime:0.030428s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_parse ] --END-- [ RunTime:0.030516s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_filter ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run ContentReplace Behavior [ RunTime:0.000898s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run TokenBuild Behavior [ RunTime:0.001129s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run WriteHtmlCache Behavior [ RunTime:0.000784s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run ShowRuntime Behavior [ RunTime:0.001005s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_filter ] --END-- [ RunTime:0.004055s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_end ] --START--
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Run ShowPageTrace Behavior [ RunTime:0.001038s ]
+[ 2013-06-10T23:37:53+08:00 ] /index.php/Member/public/userline.html | INFO: Tag[ view_end ] --END-- [ RunTime:0.001120s ]

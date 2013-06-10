@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'title', 2 => 'uid', 3 => 'catid', 4 => 'summary', 5 => 'content', 6 => 'status', 7 => 'tags', 8 => 'readcount', 9 => 'commentcount', 10 => 'addtime', 11 => 'edittime', 12 => 'toptitle', 13 => 'topnum', 14 => 'extend', 15 => 'topstatus', 16 => 'picurl', 17 => 'ispic', '_autoinc' => true, '_pk' => 'id', ); ?>
